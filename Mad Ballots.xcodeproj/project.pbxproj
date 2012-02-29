@@ -1,0 +1,450 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0EE3D61714FEB63500E4A0CE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EE3D61614FEB63500E4A0CE /* UIKit.framework */; };
+		0EE3D61914FEB63500E4A0CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EE3D61814FEB63500E4A0CE /* Foundation.framework */; };
+		0EE3D61B14FEB63500E4A0CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EE3D61A14FEB63500E4A0CE /* CoreGraphics.framework */; };
+		0EE3D62114FEB63500E4A0CE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0EE3D61F14FEB63500E4A0CE /* InfoPlist.strings */; };
+		0EE3D62314FEB63500E4A0CE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D62214FEB63500E4A0CE /* main.m */; };
+		0EE3D62714FEB63500E4A0CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D62614FEB63500E4A0CE /* AppDelegate.m */; };
+		0EE3D62A14FEB63500E4A0CE /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EE3D62814FEB63500E4A0CE /* MainStoryboard.storyboard */; };
+		0EE3D62D14FEB63500E4A0CE /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D62C14FEB63500E4A0CE /* MasterViewController.m */; };
+		0EE3D63014FEB63500E4A0CE /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D62F14FEB63500E4A0CE /* DetailViewController.m */; };
+		0EE3D63814FEB63500E4A0CE /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EE3D63714FEB63500E4A0CE /* SenTestingKit.framework */; };
+		0EE3D63914FEB63500E4A0CE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EE3D61614FEB63500E4A0CE /* UIKit.framework */; };
+		0EE3D63A14FEB63500E4A0CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EE3D61814FEB63500E4A0CE /* Foundation.framework */; };
+		0EE3D64214FEB63500E4A0CE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0EE3D64014FEB63500E4A0CE /* InfoPlist.strings */; };
+		0EE3D64514FEB63500E4A0CE /* Mad_BallotsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D64414FEB63500E4A0CE /* Mad_BallotsTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0EE3D63B14FEB63500E4A0CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0EE3D60914FEB63400E4A0CE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0EE3D61114FEB63500E4A0CE;
+			remoteInfo = "Mad Ballots";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0EE3D61214FEB63500E4A0CE /* Mad Ballots.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mad Ballots.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0EE3D61614FEB63500E4A0CE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0EE3D61814FEB63500E4A0CE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		0EE3D61A14FEB63500E4A0CE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		0EE3D61E14FEB63500E4A0CE /* Mad Ballots-Info.plist */ = {isa = PBXFileReference; path = "Mad Ballots-Info.plist"; sourceTree = "<group>"; };
+		0EE3D62014FEB63500E4A0CE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0EE3D62214FEB63500E4A0CE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0EE3D62414FEB63500E4A0CE /* Mad Ballots-Prefix.pch */ = {isa = PBXFileReference; path = "Mad Ballots-Prefix.pch"; sourceTree = "<group>"; };
+		0EE3D62514FEB63500E4A0CE /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		0EE3D62614FEB63500E4A0CE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0EE3D62914FEB63500E4A0CE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		0EE3D62B14FEB63500E4A0CE /* MasterViewController.h */ = {isa = PBXFileReference; path = MasterViewController.h; sourceTree = "<group>"; };
+		0EE3D62C14FEB63500E4A0CE /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		0EE3D62E14FEB63500E4A0CE /* DetailViewController.h */ = {isa = PBXFileReference; path = DetailViewController.h; sourceTree = "<group>"; };
+		0EE3D62F14FEB63500E4A0CE /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		0EE3D63614FEB63500E4A0CE /* Mad BallotsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mad BallotsTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0EE3D63714FEB63500E4A0CE /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		0EE3D63F14FEB63500E4A0CE /* Mad BallotsTests-Info.plist */ = {isa = PBXFileReference; path = "Mad BallotsTests-Info.plist"; sourceTree = "<group>"; };
+		0EE3D64114FEB63500E4A0CE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0EE3D64314FEB63500E4A0CE /* Mad_BallotsTests.h */ = {isa = PBXFileReference; path = Mad_BallotsTests.h; sourceTree = "<group>"; };
+		0EE3D64414FEB63500E4A0CE /* Mad_BallotsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Mad_BallotsTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0EE3D60F14FEB63500E4A0CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0EE3D61714FEB63500E4A0CE /* UIKit.framework in Frameworks */,
+				0EE3D61914FEB63500E4A0CE /* Foundation.framework in Frameworks */,
+				0EE3D61B14FEB63500E4A0CE /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EE3D63214FEB63500E4A0CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0EE3D63814FEB63500E4A0CE /* SenTestingKit.framework in Frameworks */,
+				0EE3D63914FEB63500E4A0CE /* UIKit.framework in Frameworks */,
+				0EE3D63A14FEB63500E4A0CE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0EE3D60714FEB63400E4A0CE = {
+			isa = PBXGroup;
+			children = (
+				0EE3D61C14FEB63500E4A0CE /* Mad Ballots */,
+				0EE3D63D14FEB63500E4A0CE /* Mad BallotsTests */,
+				0EE3D61514FEB63500E4A0CE /* Frameworks */,
+				0EE3D61314FEB63500E4A0CE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0EE3D61314FEB63500E4A0CE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0EE3D61214FEB63500E4A0CE /* Mad Ballots.app */,
+				0EE3D63614FEB63500E4A0CE /* Mad BallotsTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0EE3D61514FEB63500E4A0CE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0EE3D61614FEB63500E4A0CE /* UIKit.framework */,
+				0EE3D61814FEB63500E4A0CE /* Foundation.framework */,
+				0EE3D61A14FEB63500E4A0CE /* CoreGraphics.framework */,
+				0EE3D63714FEB63500E4A0CE /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0EE3D61C14FEB63500E4A0CE /* Mad Ballots */ = {
+			isa = PBXGroup;
+			children = (
+				0EE3D62514FEB63500E4A0CE /* AppDelegate.h */,
+				0EE3D62614FEB63500E4A0CE /* AppDelegate.m */,
+				0EE3D62814FEB63500E4A0CE /* MainStoryboard.storyboard */,
+				0EE3D62B14FEB63500E4A0CE /* MasterViewController.h */,
+				0EE3D62C14FEB63500E4A0CE /* MasterViewController.m */,
+				0EE3D62E14FEB63500E4A0CE /* DetailViewController.h */,
+				0EE3D62F14FEB63500E4A0CE /* DetailViewController.m */,
+				0EE3D61D14FEB63500E4A0CE /* Supporting Files */,
+			);
+			path = "Mad Ballots";
+			sourceTree = "<group>";
+		};
+		0EE3D61D14FEB63500E4A0CE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0EE3D61E14FEB63500E4A0CE /* Mad Ballots-Info.plist */,
+				0EE3D61F14FEB63500E4A0CE /* InfoPlist.strings */,
+				0EE3D62214FEB63500E4A0CE /* main.m */,
+				0EE3D62414FEB63500E4A0CE /* Mad Ballots-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0EE3D63D14FEB63500E4A0CE /* Mad BallotsTests */ = {
+			isa = PBXGroup;
+			children = (
+				0EE3D64314FEB63500E4A0CE /* Mad_BallotsTests.h */,
+				0EE3D64414FEB63500E4A0CE /* Mad_BallotsTests.m */,
+				0EE3D63E14FEB63500E4A0CE /* Supporting Files */,
+			);
+			path = "Mad BallotsTests";
+			sourceTree = "<group>";
+		};
+		0EE3D63E14FEB63500E4A0CE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0EE3D63F14FEB63500E4A0CE /* Mad BallotsTests-Info.plist */,
+				0EE3D64014FEB63500E4A0CE /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0EE3D61114FEB63500E4A0CE /* Mad Ballots */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0EE3D64814FEB63500E4A0CE /* Build configuration list for PBXNativeTarget "Mad Ballots" */;
+			buildPhases = (
+				0EE3D60E14FEB63500E4A0CE /* Sources */,
+				0EE3D60F14FEB63500E4A0CE /* Frameworks */,
+				0EE3D61014FEB63500E4A0CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Mad Ballots";
+			productName = "Mad Ballots";
+			productReference = 0EE3D61214FEB63500E4A0CE /* Mad Ballots.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0EE3D63514FEB63500E4A0CE /* Mad BallotsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0EE3D64B14FEB63500E4A0CE /* Build configuration list for PBXNativeTarget "Mad BallotsTests" */;
+			buildPhases = (
+				0EE3D63114FEB63500E4A0CE /* Sources */,
+				0EE3D63214FEB63500E4A0CE /* Frameworks */,
+				0EE3D63314FEB63500E4A0CE /* Resources */,
+				0EE3D63414FEB63500E4A0CE /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0EE3D63C14FEB63500E4A0CE /* PBXTargetDependency */,
+			);
+			name = "Mad BallotsTests";
+			productName = "Mad BallotsTests";
+			productReference = 0EE3D63614FEB63500E4A0CE /* Mad BallotsTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0EE3D60914FEB63400E4A0CE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 0EE3D60C14FEB63400E4A0CE /* Build configuration list for PBXProject "Mad Ballots" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0EE3D60714FEB63400E4A0CE;
+			productRefGroup = 0EE3D61314FEB63500E4A0CE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0EE3D61114FEB63500E4A0CE /* Mad Ballots */,
+				0EE3D63514FEB63500E4A0CE /* Mad BallotsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0EE3D61014FEB63500E4A0CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0EE3D62114FEB63500E4A0CE /* InfoPlist.strings in Resources */,
+				0EE3D62A14FEB63500E4A0CE /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EE3D63314FEB63500E4A0CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0EE3D64214FEB63500E4A0CE /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0EE3D63414FEB63500E4A0CE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0EE3D60E14FEB63500E4A0CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0EE3D62314FEB63500E4A0CE /* main.m in Sources */,
+				0EE3D62714FEB63500E4A0CE /* AppDelegate.m in Sources */,
+				0EE3D62D14FEB63500E4A0CE /* MasterViewController.m in Sources */,
+				0EE3D63014FEB63500E4A0CE /* DetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EE3D63114FEB63500E4A0CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0EE3D64514FEB63500E4A0CE /* Mad_BallotsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0EE3D63C14FEB63500E4A0CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0EE3D61114FEB63500E4A0CE /* Mad Ballots */;
+			targetProxy = 0EE3D63B14FEB63500E4A0CE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0EE3D61F14FEB63500E4A0CE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0EE3D62014FEB63500E4A0CE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		0EE3D62814FEB63500E4A0CE /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0EE3D62914FEB63500E4A0CE /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		0EE3D64014FEB63500E4A0CE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0EE3D64114FEB63500E4A0CE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0EE3D64614FEB63500E4A0CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		0EE3D64714FEB63500E4A0CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0EE3D64914FEB63500E4A0CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Mad Ballots/Mad Ballots-Prefix.pch";
+				INFOPLIST_FILE = "Mad Ballots/Mad Ballots-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		0EE3D64A14FEB63500E4A0CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Mad Ballots/Mad Ballots-Prefix.pch";
+				INFOPLIST_FILE = "Mad Ballots/Mad Ballots-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		0EE3D64C14FEB63500E4A0CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Mad Ballots.app/Mad Ballots";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Mad Ballots/Mad Ballots-Prefix.pch";
+				INFOPLIST_FILE = "Mad BallotsTests/Mad BallotsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		0EE3D64D14FEB63500E4A0CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Mad Ballots.app/Mad Ballots";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Mad Ballots/Mad Ballots-Prefix.pch";
+				INFOPLIST_FILE = "Mad BallotsTests/Mad BallotsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0EE3D60C14FEB63400E4A0CE /* Build configuration list for PBXProject "Mad Ballots" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0EE3D64614FEB63500E4A0CE /* Debug */,
+				0EE3D64714FEB63500E4A0CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0EE3D64814FEB63500E4A0CE /* Build configuration list for PBXNativeTarget "Mad Ballots" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0EE3D64914FEB63500E4A0CE /* Debug */,
+				0EE3D64A14FEB63500E4A0CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		0EE3D64B14FEB63500E4A0CE /* Build configuration list for PBXNativeTarget "Mad BallotsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0EE3D64C14FEB63500E4A0CE /* Debug */,
+				0EE3D64D14FEB63500E4A0CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0EE3D60914FEB63400E4A0CE /* Project object */;
+}
