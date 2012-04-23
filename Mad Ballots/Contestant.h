@@ -45,6 +45,8 @@
 
 
 +(RKObjectMapping*) getObjectMapping;
++(RKObjectMapping*) getPostObjectMapping;
+
 
 -(NSString*) getGameStatus;
 -(BOOL) isActionNeeded;

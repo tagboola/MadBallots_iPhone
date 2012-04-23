@@ -105,7 +105,8 @@
 -(IBAction)acceptGameInvitation:(id)sender
 {
     contestant.status = @"1";
-    [[RKObjectManager sharedManager].router routeClass:[Contestant class] toResourcePath:@"contestant.json" forMethod:RKRequestMethodPOST];
+    [[RKObjectManager sharedManager].mappingProvider registerMapping:[Contestant getPostObjectMapping] withRootKeyPath:@"contestant"];
+    [[RKObjectManager sharedManager].router routeClass:[Contestant class] toResourcePath:@"contestants.json" forMethod:RKRequestMethodPOST];
     [[RKObjectManager sharedManager] postObject:contestant delegate:self];
 }
 
@@ -169,6 +170,7 @@
 #pragma mark RKObjectLoaderDelegate methods
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
+    //TODO Dismiss 
     NSLog(@"Load collection of Contestants: %@", objects);
     self.contestants = [NSMutableArray arrayWithArray:objects];
     [self.tableView reloadData];
