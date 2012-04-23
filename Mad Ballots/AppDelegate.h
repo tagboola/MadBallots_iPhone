@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Facebook.h"
+#import "RestKit.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,FBSessionDelegate,FBRequestDelegate,RKObjectLoaderDelegate>{
+    Facebook *facebook;
+}
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic,retain) Facebook *facebook;
+
+-(void) loginToFacebook;
 
 @end
