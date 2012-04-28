@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "RestKit.h"
+#import "Player.h"
+
 
 
 @interface CreateGameController : UITableViewController <RKObjectLoaderDelegate>{
@@ -19,8 +21,10 @@
     IBOutlet UITableView *tableView;
     IBOutlet UIButton *inviteButton;
     IBOutlet UIBarButtonItem *createGameButton;
-
-
+    IBOutlet UITableViewCell *nameTableViewCell;
+    IBOutlet UITableViewCell *roundTableViewCell;
+    IBOutlet UITableViewCell *usernameTableViewCell;
+    IBOutlet UITableViewCell *facebookTableViewCell;
 }
 
 
@@ -31,6 +35,10 @@
 @property (nonatomic,retain) IBOutlet UITableView *tableView;
 @property (nonatomic,retain) IBOutlet UIButton *inviteButton;
 @property (nonatomic,retain) IBOutlet UIBarButtonItem *createGameButton;
+@property (nonatomic,retain) IBOutlet UITableViewCell *nameTableViewCell;
+@property (nonatomic,retain) IBOutlet UITableViewCell *roundTableViewCell;
+@property (nonatomic,retain) IBOutlet UITableViewCell *usernameTableViewCell;
+@property (nonatomic,retain) IBOutlet UITableViewCell *facebookTableViewCell;
 
 
 
@@ -38,4 +46,7 @@
 
 -(IBAction)inviteButtonClicked:(id) sender;
 -(IBAction)createGameButtonClicked:(id) sender;
+-(void) invitePlayer:(Player*)player;
+
+
 @end

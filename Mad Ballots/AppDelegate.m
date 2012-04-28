@@ -24,12 +24,14 @@
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     [standardDefaults setObject:@"5" forKey:USER_ID_KEY];
     [standardDefaults setObject:@"test" forKey:PASSWORD_KEY];
-    [standardDefaults setObject:@"tunde5" forKey:USERNAME_KEY];
-    [standardDefaults setObject:@"tunde5" forKey:NAME_KEY];
-    [standardDefaults setObject:@"tunde5@gmail.com" forKey:EMAIL_KEY];
+    [standardDefaults setObject:@"tunde4" forKey:USERNAME_KEY];
+    [standardDefaults setObject:@"tunde4" forKey:NAME_KEY];
+    [standardDefaults setObject:@"tunde4@gmail.com" forKey:EMAIL_KEY];
     [standardDefaults synchronize];
     
     //Initialize RESTKit singleton instance
+    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelCritical);
+    RKLogConfigureByName("RestKit/Network", RKLogLevelCritical); 
     RKClient *client = [RKClient clientWithBaseURL:BASE_URL];
     [client setUsername:[standardDefaults objectForKey:USERNAME_KEY]];
     [client setPassword:[standardDefaults objectForKey:PASSWORD_KEY]];
@@ -39,14 +41,11 @@
     RKObjectMappingProvider *provider = [RKObjectMappingProvider objectMappingProvider];
     [provider registerMapping:[Game getObjectMapping] withRootKeyPath:@"game"];
     [provider registerMapping:[Player getObjectMapping] withRootKeyPath:@"player"];
-    //[provider addObjectMapping:[Round getObjectMapping]];
-    //[provider addObjectMapping:[Player getObjectMapping]];
-    //[provider setSerializationMapping:[[Game getObjectMapping] inverseMapping] forClass:[Game class]];
     manager.mappingProvider = provider;
     manager.serializationMIMEType = @"application/json";
     RKObjectRouter *router = [RKObjectManager sharedManager].router;
     //[router routeClass:[Game class] toResourcePath:@"/games.json" forMethod:RKRequestMethodPOST];
-    [router routeClass:[Player class] toResourcePath:@"players/:playerId"];
+//    [router routeClass:[Player class] toResourcePath:@"players/:playerId.json"];
     [router routeClass:[Player class] toResourcePath:@"/players.json" forMethod:RKRequestMethodPOST];
     [RKObjectManager setSharedManager:manager];
     
@@ -106,10 +105,10 @@
 
 
 -(void) fbDidLogin {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[facebook accessToken] forKey:FACEBOOK_ACCESS_TOKEN_KEY];
-    [defaults setObject:[facebook expirationDate] forKey:FACEBOOK_EXIPIRATION_DATE_KEY];
-    [defaults synchronize];
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    [defaults setObject:[facebook accessToken] forKey:FACEBOOK_ACCESS_TOKEN_KEY];
+//    [defaults setObject:[facebook expirationDate] forKey:FACEBOOK_EXIPIRATION_DATE_KEY];
+//    [defaults synchronize];
     [self.facebook requestWithGraphPath:@"me" andDelegate:self];
 }
 
@@ -167,8 +166,10 @@
         player.email = [defaults objectForKey:EMAIL_KEY];
         player.facebookId = facebookId;
         
-        RKObjectManager *manager = [RKObjectManager sharedManager];
-        [manager putObject:player delegate:self];
+        RKObjectRouter *router = [[RKObjectRouter alloc] init];
+        [router routeClass:[Player class] toResourcePath:[NSString stringWithFormat:@"players/%@.json",player.playerId]];
+        [RKObjectManager sharedManager].router = router;
+        [[RKObjectManager sharedManager] putObject:player delegate:self];
         
     }
     
@@ -184,13 +185,19 @@
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
     NSLog(@"Did post player: %@", objects);
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[facebook accessToken] forKey:FACEBOOK_ACCESS_TOKEN_KEY];
+    [defaults setObject:[facebook expirationDate] forKey:FACEBOOK_EXIPIRATION_DATE_KEY];
+    [defaults synchronize];
     //TODO: Tell current view to refresh
     
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error{
     NSLog(@"Object Loader failed with error: %@", [error localizedDescription]);
-    //TODO: Tell current view to refresh
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:FACEBOOK_ID_KEY];
+    //TODO: Tell current view to refresh and show error
     
 }
 

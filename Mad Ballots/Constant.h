@@ -12,4 +12,5 @@ extern NSString * const FACEBOOK_APP_ID;
 extern NSString * const FACEBOOK_ACCESS_TOKEN_KEY;
 extern NSString * const FACEBOOK_EXIPIRATION_DATE_KEY;
 
+#define MAXIMUM_NUMBER_OF_INVITES 5
 
