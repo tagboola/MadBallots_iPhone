@@ -88,8 +88,8 @@
 }
 
 -(NSString*) getCategory{
-    if(round == nil || round.category)
-        return @"No Category";
+    if(round == nil || round.category == nil)
+        return @"Game hasn't started yet";
     else
         return round.category;      
 }
@@ -103,6 +103,10 @@
 
 -(BOOL) hasAcceptedInvite{
     return [status isEqualToString:@"1"];
+}
+
+-(BOOL) hasRejectedInvite{
+    return [status isEqualToString:@"-1"];
 }
 
 @end

@@ -54,9 +54,7 @@ static NSString * const CHECKED = @"checked";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
-	UIBarButtonItem *acceptButton = [[UIBarButtonItem alloc] initWithTitle:@"Invite" style:UIBarButtonItemStylePlain target:self action:@selector(addSelectedPlayers)];
-	self.navigationItem.rightBarButtonItem = acceptButton;
+
 	self.playersArray = [NSMutableArray array];
 	self.searchPlayersArray = [NSMutableArray array];
     self.selectedPlayersArray = [NSMutableArray arrayWithCapacity:MAXIMUM_NUMBER_OF_INVITES];
@@ -107,7 +105,7 @@ static NSString * const CHECKED = @"checked";
  }
  */
 
--(void)addSelectedPlayers{
+-(IBAction)addSelectedPlayers:(id)sender{
     for(NSDictionary *facebookDictionary in selectedPlayersArray){
         [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/players.json?facebook_id=%@",[facebookDictionary objectForKey:ID]] objectMapping:[Player getObjectMapping] delegate:self];
     }
@@ -152,8 +150,7 @@ static NSString * const CHECKED = @"checked";
 		element = [self.playersArray objectAtIndex:indexPath.row];}
    
     
-    NSNumber *checked = [element objectForKey:CHECKED];
-    if([checked intValue] == 1)
+    if([[element objectForKey:CHECKED] intValue] == 1)
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     else
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -284,9 +281,6 @@ static NSString * const CHECKED = @"checked";
 	return YES;
 }
 	
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-	self.navigationItem.titleView.userInteractionEnabled = YES;
-}
 
 #pragma mark RKObjectLoaderDelegate methods
 
@@ -303,6 +297,7 @@ static NSString * const CHECKED = @"checked";
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error{
+    //TODO: Display error messsages
     NSLog(@"Object Loader failed with error: %@", [error localizedDescription]);
     RKRequestQueue *queue = [[RKObjectManager sharedManager] requestQueue]; 
     if(queue.count == 1)

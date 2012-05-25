@@ -22,11 +22,11 @@
     
     //Set up default user settings
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-    [standardDefaults setObject:@"5" forKey:USER_ID_KEY];
+    [standardDefaults setObject:@"3" forKey:USER_ID_KEY];
     [standardDefaults setObject:@"test" forKey:PASSWORD_KEY];
-    [standardDefaults setObject:@"tunde4" forKey:USERNAME_KEY];
-    [standardDefaults setObject:@"tunde4" forKey:NAME_KEY];
-    [standardDefaults setObject:@"tunde4@gmail.com" forKey:EMAIL_KEY];
+    [standardDefaults setObject:@"tunde5" forKey:USERNAME_KEY];
+    [standardDefaults setObject:@"tunde5" forKey:NAME_KEY];
+    [standardDefaults setObject:@"tunde5@gmail.com" forKey:EMAIL_KEY];
     [standardDefaults synchronize];
     
     //Initialize RESTKit singleton instance

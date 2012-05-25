@@ -7,17 +7,18 @@
 //
 
 
-#define MINIMUM_NUMBER_OF_INVITES 2
-
 #import "CreateGameController.h"
 #import "Game.h"
 #import "PlayerRequestViewController.h"
+#import "Contestant.h"
 
 @implementation CreateGameController
+@synthesize numberOfPlayersAlreadyInvited;
+@synthesize game;
 @synthesize nameTextField;
 @synthesize numOfRoundsTextField;
 @synthesize playerInviteTextField;
-@synthesize invitedPlayers;
+@synthesize playersToBeInvited;
 @synthesize tableView;
 @synthesize inviteButton;
 @synthesize createGameButton;
@@ -31,6 +32,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
     }
     return self;
 }
@@ -39,23 +41,28 @@
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (void)allowPlayerInvitations:(BOOL)allowed {
+    self.inviteButton.userInteractionEnabled = allowed;
+    self.facebookTableViewCell.userInteractionEnabled = allowed;
+    self.playerInviteTextField.userInteractionEnabled = allowed;
+}
+
 - (void)invitePlayer:(Player *)player{
-    for(Player *invitedPlayer in self.invitedPlayers){
+    //TODO: Protect the array from exceding the maximum number of invites
+    for(Player *invitedPlayer in self.playersToBeInvited){
         if([invitedPlayer.username isEqualToString:player.username]){
             if(self.navigationController.visibleViewController == self)
                 [[[UIAlertView alloc] initWithTitle:@"You can't invite a player twice" message:@"Please enter another username" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show]; 
             return;
         }
     }
-    [self.invitedPlayers addObject:player];
+    [self.playersToBeInvited addObject:player];
     [self.tableView reloadData];
-    if([self.invitedPlayers count] == MAXIMUM_NUMBER_OF_INVITES){
-        self.inviteButton.userInteractionEnabled = NO;
-        self.facebookTableViewCell.userInteractionEnabled = NO;
+    if([self.playersToBeInvited count] == MAXIMUM_NUMBER_OF_INVITES){
+        [self allowPlayerInvitations:NO];
     }
 }
 
@@ -64,9 +71,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if(!playersToBeInvited){
+        playersToBeInvited = [NSMutableArray array];
+    }
     // Do any additional setup after loading the view from its nib.
-    self.invitedPlayers = [NSMutableArray array];
-    self.title = @"New Game";
+    if(game){
+        self.nameTextField.text = game.name;
+        self.numOfRoundsTextField.text = game.numberOfRounds;
+        self.nameTextField.userInteractionEnabled = NO;
+        self.numOfRoundsTextField.userInteractionEnabled = NO;
+        self.title = @"Invite Players";
+        [self.navigationItem.rightBarButtonItem setTitle:@"Invite"];
+    }
+    else
+        self.title = @"New Game";
 }
 
 - (void)viewDidUnload
@@ -109,7 +127,7 @@
         [[[UIAlertView alloc] initWithTitle:@"Number of rounds is required" message:@"Please enter the number of rounds you would like for your game" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show]; 
         return NO;
     }
-    if([self.invitedPlayers count] < MINIMUM_NUMBER_OF_INVITES){
+    if([self.playersToBeInvited count] < MINIMUM_NUMBER_OF_INVITES){
         [[[UIAlertView alloc] initWithTitle:@"You need to invite more users" message:[NSString stringWithFormat:@"Minimum of %d players needed to play",(MINIMUM_NUMBER_OF_INVITES+1)] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show]; 
         return NO;
     }
@@ -119,30 +137,53 @@
 -(IBAction)createGameButtonClicked:(id) sender{
     if(![self isGameValid])
         return;
-    
-    Game *newGame = [[Game alloc] init];
-    newGame.name = self.nameTextField.text;
-    newGame.ownerId = [[NSUserDefaults standardUserDefaults] objectForKey:USER_ID_KEY];
-    newGame.numberOfRounds = self.numOfRoundsTextField.text;
-    
-
-    NSString *resourcePath = @"/games.json?playerIds=";
-    for(Player *player in self.invitedPlayers)
-        resourcePath = [resourcePath stringByAppendingString:[NSString stringWithFormat:@"%@,",player.playerId]];
-    resourcePath = [resourcePath substringToIndex:(resourcePath.length-1)];
-    
-    RKObjectRouter *router = [[RKObjectRouter alloc] init];
-    [router routeClass:[Game class] toResourcePath:resourcePath forMethod:RKRequestMethodPOST];
-    [RKObjectManager sharedManager].router = router;
-    [[RKObjectManager sharedManager] postObject:newGame delegate:self];
+//    if(!game){
+        Game *newGame = [[Game alloc] init];
+        newGame.name = self.nameTextField.text;
+        newGame.ownerId = [[NSUserDefaults standardUserDefaults] objectForKey:USER_ID_KEY];
+        newGame.numberOfRounds = self.numOfRoundsTextField.text;
+        NSString *resourcePath = @"/games.json?playerIds=";
+        for(int ii=numberOfPlayersAlreadyInvited ;ii < [playersToBeInvited count];ii++){
+            Player *player = [playersToBeInvited objectAtIndex:ii];
+            resourcePath = [resourcePath stringByAppendingString:[NSString stringWithFormat:@"%@,",player.playerId]];
+        }
+        resourcePath = [resourcePath substringToIndex:(resourcePath.length-1)];
+        if(game)
+            resourcePath = [resourcePath stringByAppendingFormat:@"&gameId=%@",game.gameId];
+        
+        RKObjectRouter *router = [[RKObjectRouter alloc] init];
+        [router routeClass:[Game class] toResourcePath:resourcePath forMethod:RKRequestMethodPOST];
+        [RKObjectManager sharedManager].router = router;
+        [[RKObjectManager sharedManager] postObject:newGame delegate:self];
+//    }
+//    else{
+//        NSString *resourcePath = @"/contestants.json?playerIds=";
+//        for(int ii=numberOfContestants ;ii < [invitedPlayers count];ii++){
+//            Player *player = [invitedPlayers objectAtIndex:ii];
+//            resourcePath = [resourcePath stringByAppendingString:[NSString stringWithFormat:@"%@,",player.playerId]];
+//        }
+//        resourcePath = [resourcePath substringToIndex:(resourcePath.length-1)];  
+//        resourcePath = [resourcePath stringByAppendingFormat:@"&gameId=%@",game.gameId];    
+//        RKObjectRouter *router = [[RKObjectRouter alloc] init];
+//        [router routeClass:[Contestant class] toResourcePath:resourcePath forMethod:RKRequestMethodPOST];
+//        [RKObjectManager sharedManager].router = router;
+//        //TODO: Clean this ish up
+//        Contestant *dummyContestant = [[Contestant alloc] init];
+//        dummyContestant.playerId = @"-1";
+//        dummyContestant.gameId = @"-1";
+//        [[RKObjectManager sharedManager] postObject:dummyContestant mapResponseWith:[Contestant getObjectMapping] delegate:self];
+//        //[[RKObjectManager sharedManager] postObject:dummyContestant delegate:self];
+//    }
 
 }
+
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([[segue identifier] isEqualToString:@"showPlayerRequestViewController"]) {
         PlayerRequestViewController *playerRequestView = [segue destinationViewController];
-        playerRequestView.invitedPlayers =  [invitedPlayers copy];
+        playerRequestView.invitedPlayers =  [playersToBeInvited copy];
     } 
     
 }
@@ -165,15 +206,17 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    if([invitedPlayers count] <= indexPath.row){
-        //TODO clear image of invited player
+    if([playersToBeInvited count] <= indexPath.row){
         cell.textLabel.text = @"";
         cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.imageView.image = nil;
         return cell;
     }
     //TODO show invited players image
-    Player *player = [invitedPlayers objectAtIndex:indexPath.row];
+    Player *player = [playersToBeInvited objectAtIndex:indexPath.row];
     cell.textLabel.text = player.username;
+    if(indexPath.row <= numberOfPlayersAlreadyInvited - 1)
+        cell.textLabel.textColor = [UIColor grayColor];
     cell.accessoryType =  UITableViewCellAccessoryCheckmark;
     
     return cell;
@@ -181,24 +224,24 @@
 
 #pragma mark Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    if(indexPath.section == 2 && [invitedPlayers count] > indexPath.row){
-        [invitedPlayers removeObjectAtIndex:indexPath.row];
-        if([invitedPlayers count] == MAXIMUM_NUMBER_OF_INVITES - 1){
-            self.inviteButton.userInteractionEnabled = YES;
-            self.facebookTableViewCell.userInteractionEnabled = YES;
-        }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if(indexPath.row <= numberOfPlayersAlreadyInvited - 1)
+        return;
+    if(indexPath.section == 2 && [playersToBeInvited count] > indexPath.row){
+        [playersToBeInvited removeObjectAtIndex:indexPath.row];
+        if([playersToBeInvited count] == MAXIMUM_NUMBER_OF_INVITES - 1)
+            [self allowPlayerInvitations:YES];        
         [self.tableView reloadData];
     }
-	[self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 #pragma mark RKObjectLoaderDelegate methods
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
     NSLog(@"Loaded collection of Players: %@", objects);
-    //TODO Catch when game is returned and pop controller
     if([objectLoader.resourcePath isEqualToString:[NSString stringWithFormat:@"players.json?username=%@",self.playerInviteTextField.text]]){
         if([objects count] > 0){
             Player *player = [objects objectAtIndex:0];
@@ -213,11 +256,10 @@
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error{
     NSLog(@"Object Loader failed with error: %@", [error localizedDescription]);
-    //TODO Show error when objects bad username
     if([objectLoader.resourcePath isEqualToString:[NSString stringWithFormat:@"players.json?username=%@",self.playerInviteTextField.text]]){
+        //TODO: Duplicated Code
         [[[UIAlertView alloc] initWithTitle:@"Username not found" message:@"Please try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }else{
-        //TODO Show error when game there is an error creating a game
         [[[UIAlertView alloc] initWithTitle:@"Error creating game" message:@"Please try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }
 }

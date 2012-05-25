@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "RestKit.h"
 #import "Player.h"
+#import "Game.h"
 
 
 
 @interface CreateGameController : UITableViewController <RKObjectLoaderDelegate>{
-    
-    NSMutableArray *invitedPlayers;
+    int numberOfPlayersAlreadyInvited;
+    Game *game;
+    NSMutableArray *playersToBeInvited;
     IBOutlet UITextField *nameTextField;
     IBOutlet UITextField *numOfRoundsTextField;
     IBOutlet UITextField *playerInviteTextField;
@@ -26,9 +28,9 @@
     IBOutlet UITableViewCell *usernameTableViewCell;
     IBOutlet UITableViewCell *facebookTableViewCell;
 }
-
-
-@property (nonatomic,retain) NSMutableArray *invitedPlayers;
+@property (nonatomic,assign) int numberOfPlayersAlreadyInvited;
+@property (nonatomic,retain) Game *game;
+@property (nonatomic,retain) NSMutableArray *playersToBeInvited;
 @property (nonatomic,retain) IBOutlet UITextField *nameTextField;
 @property (nonatomic,retain) IBOutlet UITextField *numOfRoundsTextField;
 @property (nonatomic,retain) IBOutlet UITextField *playerInviteTextField;

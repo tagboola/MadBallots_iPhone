@@ -14,6 +14,7 @@
 @synthesize gameId;
 @synthesize ownerId; 
 @synthesize numberOfRounds;
+@synthesize currentGameId;
 
 +(RKObjectMapping*) getObjectMapping{
     RKObjectMapping *gameMapping = [RKObjectMapping mappingForClass:[Game class]];
@@ -21,8 +22,19 @@
     [gameMapping mapKeyPath:@"id" toAttribute:@"gameId"];
     [gameMapping mapKeyPath:@"owner_id" toAttribute:@"ownerId"];
     [gameMapping mapKeyPath:@"num_rounds" toAttribute:@"numberOfRounds"];
+    [gameMapping mapKeyPath:@"current_round" toAttribute:@"currentGameId"];
     return gameMapping;
 }
+
+
+-(BOOL) iAmOwner{
+    return [ownerId isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:USER_ID_KEY]];
+}
+
+-(BOOL) hasGameStarted{
+    return currentGameId != nil;
+}
+
 
 
 
