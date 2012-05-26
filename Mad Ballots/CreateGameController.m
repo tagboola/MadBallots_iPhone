@@ -91,7 +91,8 @@
     
     
     [self.playerInviteTextField resignFirstResponder];
-    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"players.json?username=%@",self.playerInviteTextField.text] objectMapping:[Player getObjectMapping] delegate:self];
+    NSString * resourcePath = [NSString stringWithFormat:@"players.json?username=%@",[self.playerInviteTextField text]];
+    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:resourcePath delegate:self]; //loadObjectsAtResourcePath:resourcePath objectMapping:[Player getObjectMapping] delegate:self];
     
 }
 
@@ -110,6 +111,8 @@
     }
     return YES;
 }
+
+
 
 -(IBAction)createGameButtonClicked:(id) sender{
     if(![self isGameValid])
@@ -138,17 +141,25 @@
 #pragma mark RKObjectLoaderDelegate methods
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-    NSLog(@"Loaded collection of Players: %@", objects);
+    
+    NSLog(@"Loaded collection of Objects: %@", objects);
+    
     if([objects count] > 0){
-        Player *player = [objects objectAtIndex:0];
-        [self.invitedPlayers addObject:player];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([self.invitedPlayers count] - 1) inSection:2];
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        cell.textLabel.text = player.username;
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        if([self.invitedPlayers count] == MAXIMUM_NUMBER_OF_INVITES)
-            self.inviteButton.userInteractionEnabled = NO;
-        [self.tableView reloadData];
+        NSString *objectClass = NSStringFromClass([[objects objectAtIndex:0] class]);
+
+        if ( [objectClass isEqualToString:@"Player"] ){ //Process player
+            Player *player = [objects objectAtIndex:0];
+            [self.invitedPlayers addObject:player];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([self.invitedPlayers count] - 1) inSection:2];
+            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+            cell.textLabel.text = player.username;
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            if([self.invitedPlayers count] == MAXIMUM_NUMBER_OF_INVITES)
+                self.inviteButton.userInteractionEnabled = NO;
+            [self.tableView reloadData];
+        }else if  ( [objectClass isEqualToString:@"Game"] ){ //Process Game
+            
+        }
     }else
         [[[UIAlertView alloc] initWithTitle:@"Username not found" message:@"Please try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 
