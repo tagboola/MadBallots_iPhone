@@ -51,6 +51,8 @@
 -(NSString*) getGameStatus;
 -(BOOL) isActionNeeded;
 -(BOOL) isInvitation;
+-(BOOL) hasAcceptedInvite;
+-(BOOL) hasRejectedInvite;
 -(NSString*) getCategory;
 -(NSString*) getRoundDescription;
 

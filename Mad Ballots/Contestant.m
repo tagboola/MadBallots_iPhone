@@ -53,7 +53,7 @@
     if([status isEqualToString:@"0"])
         return [NSString stringWithFormat:@"You have received an invitation from %@", gameOwner];
     else if(card == nil || round == nil)
-        return [NSString stringWithFormat:@"Waiting for %@ to start the game...", gameOwner];
+        return @"Waiting for players to respond...";
     else if(![card isCardFilled])
         return @"Fill your card";
     else if(![round areCardsFilled])
@@ -88,8 +88,8 @@
 }
 
 -(NSString*) getCategory{
-    if(round == nil || round.category)
-        return @"No Category";
+    if(round == nil || round.category == nil)
+        return @"Game hasn't started yet";
     else
         return round.category;      
 }
@@ -99,6 +99,14 @@
         return [NSString stringWithFormat:@"Round 0 of %@",game.numberOfRounds];
     else
         return [NSString stringWithFormat:@"Round %@ of %@",currentRoundCount,game.numberOfRounds];
+}
+
+-(BOOL) hasAcceptedInvite{
+    return [status isEqualToString:@"1"];
+}
+
+-(BOOL) hasRejectedInvite{
+    return [status isEqualToString:@"-1"];
 }
 
 @end

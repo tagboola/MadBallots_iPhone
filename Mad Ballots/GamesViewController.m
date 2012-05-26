@@ -41,11 +41,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-    // Do any additional setup after loading the view, typically from a nib.    
+	// Do any additional setup after loading the view, typically from a nib.
+    self.title = @"Games";
     self.gamesArray = [NSArray arrayWithObjects:[NSMutableArray array],[NSMutableArray array], nil];
     self.sectionTitleArray = [NSArray arrayWithObjects:@"Game Invitations",@"Active Games", nil];
-    [self loadGames];
 
 }
 
@@ -65,6 +64,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self loadGames];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -84,7 +85,6 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
     if ([[segue identifier] isEqualToString:@"showGameViewController"]) {
         GameViewController *gameView = [segue destinationViewController];
         NSIndexPath *indexPath = [self.tableView 
@@ -139,10 +139,10 @@
     
     static NSString *CellIdentifier = @"GamesCell";
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell == nil) {
+        if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
+    
     Contestant *contestant = [[self.gamesArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     cell.textLabel.text = contestant.game.name;
     cell.detailTextLabel.text = [contestant getGameStatus];
@@ -155,7 +155,7 @@
         cell.detailTextLabel.textColor = [UIColor blackColor];
     //TODO - Add support showing owners pictures
     cell.imageView.image = [UIImage imageNamed:@"default_list_user.png"];
-
+    
 
     return cell;
 }
@@ -180,8 +180,12 @@
 
 #pragma mark RKObjectLoaderDelegate methods
 
-- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
+- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects
+{
     NSLog(@"Load collection of Contestants: %@", objects);
+    if([objects count] > 0)
+        self.gamesArray = [NSArray arrayWithObjects:[NSMutableArray array],[NSMutableArray array], nil];
+    
     for(Contestant *contestant in objects){
         if([contestant isInvitation])
             [[self.gamesArray objectAtIndex:0] addObject:contestant];
@@ -193,7 +197,6 @@
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error{
     NSLog(@"Object Loader failed with error: %@", [error localizedDescription]);
-
 }
 
 

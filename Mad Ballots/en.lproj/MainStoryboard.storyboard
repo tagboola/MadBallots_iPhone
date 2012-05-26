@@ -110,8 +110,8 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="77K-1G-MbQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="xfb-QO-9CS" customClass="CreateGameController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="J8t-GP-BFX">
-                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="J8t-GP-BFX">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -204,28 +204,13 @@
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="3VD-ya-Af2">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="3VD-ya-Af2">
                                         <rect key="frame" x="0.0" y="191" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="RLK-si-AJI">
-                                                    <rect key="frame" x="0.0" y="3" width="300" height="37"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal">
-                                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <state key="highlighted">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <segue destination="yyd-hm-g0w" kind="push" id="m6y-cP-q4M"/>
-                                                    </connections>
-                                                </button>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Invite your Facebook friends!" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="DwH-1i-x70">
                                                     <rect key="frame" x="20" y="9" width="260" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -237,6 +222,9 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="yyd-hm-g0w" kind="push" identifier="showPlayerRequestViewController" id="TZO-Hs-oA1"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -309,11 +297,15 @@
                     </navigationItem>
                     <connections>
                         <outlet property="createGameButton" destination="YwY-yi-YPM" id="88S-Wy-dpy"/>
+                        <outlet property="facebookTableViewCell" destination="3VD-ya-Af2" id="ojF-8B-5w4"/>
                         <outlet property="inviteButton" destination="qG5-11-dDt" id="d3f-Qw-Ej8"/>
+                        <outlet property="nameTableViewCell" destination="hCC-7u-p6N" id="lYw-jb-N4b"/>
                         <outlet property="nameTextField" destination="pUB-Tb-6FJ" id="6r7-sr-hh2"/>
                         <outlet property="numOfRoundsTextField" destination="1co-3F-thM" id="m7i-3Z-gUD"/>
                         <outlet property="playerInviteTextField" destination="TSA-w1-sFO" id="Ade-7B-EmN"/>
+                        <outlet property="roundTableViewCell" destination="dTI-Yk-M3N" id="Gua-Td-tw9"/>
                         <outlet property="tableView" destination="J8t-GP-BFX" id="rwf-sH-3xE"/>
+                        <outlet property="usernameTableViewCell" destination="Olc-Id-swx" id="Qwl-BS-0Mf"/>
                     </connections>
                 </tableViewController>
             </objects>
@@ -353,7 +345,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="rJq-ND-bHf">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="gB3-WC-Iwt"/>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="gB3-WC-Iwt">
+                            <connections>
+                                <action selector="addSelectedPlayers:" destination="yyd-hm-g0w" id="3xM-QS-W3U"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="searchDisplayController" destination="GDQ-g4-vN0" id="bkh-se-GJ7"/>
@@ -369,7 +365,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1425" y="-567"/>
+            <point key="canvasLocation" x="1329" y="-631"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="INn-s2-uHW">
@@ -772,6 +768,15 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="OPA-Hu-wyO">
+                                <rect key="frame" x="1" y="416" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Start the game?" style="plain" id="DJN-Bk-FJ8"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="dvF-kG-Olm"/>
+                                    <barButtonItem title="Yes" id="Pcd-Xc-Hgz"/>
+                                </items>
+                            </toolbar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="pJD-sO-Fxc">
                                 <rect key="frame" x="0.0" y="372" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -796,7 +801,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GameCell" textLabel="WmM-zp-xff" detailTextLabel="MAB-KP-jDN" style="IBUITableViewCellStyleValue1" id="T5t-2K-aUd">
-                                        <rect key="frame" x="0.0" y="46" width="285" height="45"/>
+                                        <rect key="frame" x="0.0" y="46" width="285" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="265" height="43"/>
@@ -883,13 +888,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="qNE-fH-Rg3"/>
+                    <navigationItem key="navigationItem" id="qNE-fH-Rg3">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="add" id="lJN-8n-hhJ">
+                            <connections>
+                                <segue destination="xfb-QO-9CS" kind="push" identifier="invitePlayers" id="Wsc-nl-ZDC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="acceptGameInvitationToolbar" destination="pJD-sO-Fxc" id="Nvh-rZ-lNS"/>
                         <outlet property="categoryLabel" destination="cHb-P4-ZaK" id="jnZ-zw-csT"/>
                         <outlet property="fillCardButton" destination="NHz-OT-dtO" id="fkM-G9-79N"/>
                         <outlet property="gameNameLabel" destination="5It-wH-l29" id="iIs-0N-ejO"/>
                         <outlet property="roundLabel" destination="xW1-is-amr" id="uK0-Op-9MA"/>
+                        <outlet property="startGameToolbar" destination="OPA-Hu-wyO" id="4HI-xx-Mie"/>
                         <outlet property="tableView" destination="1BI-Ec-xwv" id="Wys-7m-GTm"/>
                         <outlet property="voteButton" destination="yq8-Bx-RNK" id="Gmn-xi-ddn"/>
                     </connections>
@@ -972,4 +984,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="Wsc-nl-ZDC"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -251,6 +251,18 @@
         [defaults setObject:facebookId forKey:FACEBOOK_ID_KEY];
         [defaults synchronize];
         
+        Player *player = [[Player alloc] init];
+        player.playerId = [defaults objectForKey:USER_ID_KEY];
+        player.name = [defaults objectForKey:NAME_KEY];
+        player.username = [defaults objectForKey:USERNAME_KEY];
+        player.email = [defaults objectForKey:EMAIL_KEY];
+        player.facebookId = facebookId;
+        
+        RKObjectRouter *router = [[RKObjectRouter alloc] init];
+        [router routeClass:[Player class] toResourcePath:[NSString stringWithFormat:@"players/%@.json",player.playerId]];
+        [RKObjectManager sharedManager].router = router;
+        [[RKObjectManager sharedManager] putObject:player delegate:self];
+        
     }
     
 }
@@ -300,6 +312,12 @@
 #pragma mark RKObjectLoaderDelegate methods
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
+    NSLog(@"Did post player: %@", objects);
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[facebook accessToken] forKey:FACEBOOK_ACCESS_TOKEN_KEY];
+    [defaults setObject:[facebook expirationDate] forKey:FACEBOOK_EXIPIRATION_DATE_KEY];
+    [defaults synchronize];
+    //TODO: Tell current view to refresh
     
     NSString *objectClass = NSStringFromClass([[objectLoader targetObject] class]);
     if ( [objectClass isEqualToString:@"Player"] ){ //Process player
@@ -320,6 +338,9 @@
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error{
     NSLog(@"Object Loader failed with error: %@", [error localizedDescription]);
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:FACEBOOK_ID_KEY];
+    //TODO: Tell current view to refresh and show error
     
     if ([objectLoader response].isUnauthorized){ //Unauthorized - invalid ptoken. Let's show the login screen.
         [AppDelegate showLogin];

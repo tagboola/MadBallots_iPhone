@@ -14,6 +14,7 @@
     Contestant *contestant;
     NSMutableArray *contestants;
     IBOutlet UIToolbar *acceptGameInvitationToolbar;
+    IBOutlet UIToolbar *startGameToolbar;
     IBOutlet UIButton *fillCardButton;
     IBOutlet UIButton *voteButton;
     IBOutlet UILabel *gameNameLabel;
@@ -23,6 +24,7 @@
 }
 
 @property (nonatomic,retain) IBOutlet UIToolbar *acceptGameInvitationToolbar;
+@property (nonatomic,retain) IBOutlet UIToolbar *startGameToolbar;
 @property (nonatomic,retain) Contestant *contestant;
 @property (nonatomic,retain) NSMutableArray *contestants;
 @property (nonatomic,retain) IBOutlet UIButton *fillCardButton;
@@ -36,6 +38,7 @@
 
 -(IBAction)acceptGameInvitation:(id)sender;
 -(IBAction)rejectGameInvitation:(id)sender;
+
 
 
 

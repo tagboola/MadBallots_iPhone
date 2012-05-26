@@ -10,13 +10,17 @@
 #import "AppDelegate.h"
 #import "UIImageView+WebCache.h"
 #import "SFHFKeychainUtils.h"
+#import "Player.h"
+#import "CreateGameController.h"
 
+#define MAX_NUMBER_OF_INVITES MAXIMUM_NUMBER_OF_INVITES - [self.invitedPlayers count]
 
 
 @implementation PlayerRequestViewController
 
 @synthesize playersArray;
 @synthesize searchPlayersArray;
+@synthesize selectedPlayersArray;
 @synthesize invitedPlayers;
 @synthesize facebook;
 
@@ -52,11 +56,10 @@ static NSString * const CHECKED = @"checked";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
-	UIBarButtonItem *acceptButton = [[UIBarButtonItem alloc] initWithTitle:@"Invite" style:UIBarButtonItemStylePlain target:self action:@selector(addSelectedPlayers)];
-	self.navigationItem.rightBarButtonItem = acceptButton;
-	self.playersArray = [[NSMutableArray alloc] init];
-	self.searchPlayersArray = [[NSMutableArray alloc] init];
+
+	self.playersArray = [NSMutableArray array];
+	self.searchPlayersArray = [NSMutableArray array];
+    self.selectedPlayersArray = [NSMutableArray arrayWithCapacity:MAXIMUM_NUMBER_OF_INVITES];
     
 }
 
@@ -103,6 +106,12 @@ static NSString * const CHECKED = @"checked";
  }
  */
 
+-(IBAction)addSelectedPlayers:(id)sender{
+    for(NSDictionary *facebookDictionary in selectedPlayersArray){
+        [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/players.json?facebook_id=%@",[facebookDictionary objectForKey:ID]] objectMapping:[Player getObjectMapping] delegate:self];
+    }
+}
+
 
 #pragma mark -
 #pragma mark Table view data source
@@ -142,8 +151,7 @@ static NSString * const CHECKED = @"checked";
 		element = [self.playersArray objectAtIndex:indexPath.row];}
    
     
-    NSNumber *checked = [element objectForKey:CHECKED];
-    if([checked intValue] == 1)
+    if([[element objectForKey:CHECKED] intValue] == 1)
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     else
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -175,14 +183,16 @@ static NSString * const CHECKED = @"checked";
     
     UITableViewCell *cell = [activeTableView cellForRowAtIndexPath:indexPath];
     NSDictionary *player = [activePlayerArray objectAtIndex:indexPath.row];
-    if(cell.accessoryType == UITableViewCellAccessoryNone){
+    if(cell.accessoryType == UITableViewCellAccessoryNone && [selectedPlayersArray count] < MAX_NUMBER_OF_INVITES ){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         [player setValue:[NSNumber numberWithInt:1] forKey:CHECKED];
-    }else{
+        [selectedPlayersArray addObject:player];
+    }else if(cell.accessoryType == UITableViewCellAccessoryCheckmark && [selectedPlayersArray count] <= MAX_NUMBER_OF_INVITES ){
         cell.accessoryType = UITableViewCellAccessoryNone;
         [player setValue:[NSNumber numberWithInt:0] forKey:CHECKED];
+        [selectedPlayersArray removeObject:player];
     }
-	
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 
@@ -272,10 +282,28 @@ static NSString * const CHECKED = @"checked";
 	return YES;
 }
 	
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-	self.navigationItem.titleView.userInteractionEnabled = YES;
+
+#pragma mark RKObjectLoaderDelegate methods
+
+- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
+    NSLog(@"Loaded collection of Players: %@", objects);
+    if([objects count] > 0){
+        Player *player = [objects objectAtIndex:0];
+        CreateGameController *createGameView = [[self.navigationController viewControllers] objectAtIndex:([[self.navigationController viewControllers] count]-2)];
+        [createGameView invitePlayer:player];
+    }
+    RKRequestQueue *queue = [[RKObjectManager sharedManager] requestQueue]; 
+    if(queue.count == 1)
+        [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error{
+    //TODO: Display error messsages
+    NSLog(@"Object Loader failed with error: %@", [error localizedDescription]);
+    RKRequestQueue *queue = [[RKObjectManager sharedManager] requestQueue]; 
+    if(queue.count == 1)
+        [self.navigationController popViewControllerAnimated:YES];
+}
 	
 	
 @end
