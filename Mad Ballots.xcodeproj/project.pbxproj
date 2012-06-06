@@ -133,7 +133,7 @@
 		0E4406EF1578682700D7D8A3 /* BallotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallotViewController.m; sourceTree = "<group>"; };
 		0E61959A157FEB25003F1672 /* BallotOverviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallotOverviewController.h; sourceTree = "<group>"; };
 		0E61959B157FEB25003F1672 /* BallotOverviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallotOverviewController.m; sourceTree = "<group>"; };
-		0E61959D157FEB69003F1672 /* TicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = TicketViewController.h; sourceTree = "<group>"; };
+		0E61959D157FEB69003F1672 /* TicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketViewController.h; sourceTree = "<group>"; };
 		0E61959E157FEB69003F1672 /* TicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketViewController.m; sourceTree = "<group>"; };
 		0E675700157A987500690B98 /* Candidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Candidate.h; sourceTree = "<group>"; };
 		0E675701157A987500690B98 /* Candidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Candidate.m; sourceTree = "<group>"; };
