@@ -251,17 +251,6 @@
         [defaults setObject:facebookId forKey:FACEBOOK_ID_KEY];
         [defaults synchronize];
         
-        Player *player = [[Player alloc] init];
-        player.playerId = [defaults objectForKey:USER_ID_KEY];
-        player.name = [defaults objectForKey:NAME_KEY];
-        player.username = [defaults objectForKey:USERNAME_KEY];
-        player.email = [defaults objectForKey:EMAIL_KEY];
-        player.facebookId = facebookId;
-        
-        RKObjectRouter *router = [[RKObjectRouter alloc] init];
-        [router routeClass:[Player class] toResourcePath:[NSString stringWithFormat:@"players/%@.json",player.playerId]];
-        [RKObjectManager sharedManager].router = router;
-        [[RKObjectManager sharedManager] putObject:player delegate:self];
         
     }
     
@@ -280,29 +269,46 @@
     //[client setUsername:username];
     //[client setPassword:password];
     
+    //Initialize RESTKit singleton instance
+    RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelCritical);
+    RKLogConfigureByName("RestKit/Network", RKLogLevelCritical); 
     
     //Initialize ObjectManageger singleton instance
     RKObjectManager *manager = [RKObjectManager objectManagerWithBaseURL:[NSURL URLWithString:BASE_URL]];
+    manager.serializationMIMEType = @"application/json";
     [manager setClient:client];
     client.requestQueue.delegate = self;
+    
+    //Setup Provider Object Mappings
     RKObjectMappingProvider *provider = [RKObjectMappingProvider objectMappingProvider];
     [provider registerMapping:[Game getObjectMapping] withRootKeyPath:@"game"];
     [provider registerMapping:[Player getObjectMapping] withRootKeyPath:@"player"];
     [provider registerMapping:[MBAuthentication getObjectMapping] withRootKeyPath:@"omniauth.auth"];
     [provider registerMapping:[MBPlayerSession getObjectMapping] withRootKeyPath:@"player_session"];
-    //[provider registerMapping:[Contestant getObjectMapping] withRootKeyPath:@"contestant"];
+    [provider registerMapping:[Contestant getObjectMapping] withRootKeyPath:@"contestant"];
     //[provider addObjectMapping:[Round getObjectMapping]];
     //[provider addObjectMapping:[Player getObjectMapping]];
+    
+    
+    //Setup Provider Serializations
+    RKObjectMapping *contestantSerializationMapping = [Contestant getSerializationMapping];
+    contestantSerializationMapping.rootKeyPath = @"contestant";
+    [provider setSerializationMapping:contestantSerializationMapping forClass:[Contestant class]];
     //[provider setSerializationMapping:[[Game getObjectMapping] inverseMapping] forClass:[Game class]];
+    
     manager.mappingProvider = provider;
-    manager.serializationMIMEType = @"application/json";
+
+    
+    //Setup Routes
     RKObjectRouter *router = [RKObjectManager sharedManager].router;
-    //[router routeClass:[Game class] toResourcePath:@"/games.json" forMethod:RKRequestMethodPOST];
-    [router routeClass:[Player class] toResourcePath:@"players/:playerId"];
-    //[router routeClass:[Contestant class] toResourcePath:@"players/:playerId/contestants.json" forMethod:RKRequestMethodGET];
+    [router routeClass:[Game class] toResourcePath:@"/games.json" forMethod:RKRequestMethodPOST];
+    //[router routeClass:[Player class] toResourcePath:@"players/:playerId"];
     [router routeClass:[Player class] toResourcePath:@"/players.json" forMethod:RKRequestMethodPOST];
     [router routeClass:[MBAuthentication class] toResourcePath:@"/authentications" forMethod:RKRequestMethodPOST];
     [router routeClass:[MBPlayerSession class] toResourcePath:@"/player_sessions" forMethod:RKRequestMethodPOST];
+    [router routeClass:[Contestant class] toResourcePathPattern:@"/contestants/:contestantId\\.json" forMethod:RKRequestMethodPUT];
+    [router routeClass:[Contestant class] toResourcePath:@"players/:playerId/contestants.json" forMethod:RKRequestMethodGET];
+    [router routeClass:[Contestant class] toResourcePath:@"/contestants.json" forMethod:RKRequestMethodPOST];
     [RKObjectManager setSharedManager:manager];
         
 }

@@ -83,7 +83,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
- 
+    
+    self.navigationController.toolbarHidden = TRUE;
+    
     // Uncomment the following line to preserve selection between presentations.
     [self updateButtons];
     self.gameNameLabel.text = self.contestant.game.name;
@@ -141,12 +143,6 @@
 -(IBAction)acceptGameInvitation:(id)sender
 {
     contestant.status = @"1";
-    RKObjectMappingProvider *mapper = [[RKObjectMappingProvider alloc] init];
-    RKObjectRouter *router = [[RKObjectRouter alloc] init];
-    [mapper registerMapping:[Contestant getPostObjectMapping] withRootKeyPath:@"contestant"];
-    [router routeClass:[Contestant class] toResourcePath:[NSString stringWithFormat:@"/contestants/%@.json", contestant.contestantId] forMethod:RKRequestMethodPUT];
-    [RKObjectManager sharedManager].mappingProvider = mapper;
-    [RKObjectManager sharedManager].router = router;
     [[RKObjectManager sharedManager] putObject:contestant delegate:self];
 }
 
@@ -234,7 +230,7 @@
         //TODO: Do we start when all users have repsonded or when minimum number of users have responded??
         if([self.contestant.game iAmOwner] && ![self.contestant.game hasGameStarted] && [self allContestantsResponded] && [contestants count] >= MINIMUM_NUMBER_OF_INVITES)
             [self showToolbar:startGameToolbar];
-        if([contestants count] < MINIMUM_NUMBER_OF_INVITES+1)
+        if( ([self.contestant.game iAmOwner]) && ([contestants count] < MINIMUM_NUMBER_OF_INVITES+1) )
             [[[UIAlertView alloc] initWithTitle:@"Invite more friends!" message:[NSString stringWithFormat:@"You need atleast %d players to start a game", MINIMUM_NUMBER_OF_INVITES+1] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         //TODO: If everyone can invite, must check to see if this is just an invitation before inviting other players
         [self updateButtons];
@@ -244,6 +240,7 @@
         if([(Contestant*)objectLoader.sourceObject hasRejectedInvite])
             [self.navigationController popViewControllerAnimated:YES];
         else{
+            //self.contestants = [NSMutableArray arrayWithArray:objects];
             [self hideToolbar:acceptGameInvitationToolbar];
             for(Contestant *gameContestant in contestants){
                 if([gameContestant.contestantId isEqualToString:contestant.contestantId])

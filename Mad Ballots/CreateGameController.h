@@ -27,6 +27,8 @@
     IBOutlet UITableViewCell *roundTableViewCell;
     IBOutlet UITableViewCell *usernameTableViewCell;
     IBOutlet UITableViewCell *facebookTableViewCell;
+    IBOutlet UILabel *facebookTableViewCellLabel;
+
 }
 @property (nonatomic,assign) int numberOfPlayersAlreadyInvited;
 @property (nonatomic,retain) Game *game;
@@ -41,7 +43,7 @@
 @property (nonatomic,retain) IBOutlet UITableViewCell *roundTableViewCell;
 @property (nonatomic,retain) IBOutlet UITableViewCell *usernameTableViewCell;
 @property (nonatomic,retain) IBOutlet UITableViewCell *facebookTableViewCell;
-
+@property (nonatomic,retain) IBOutlet UILabel *facebookTableViewCellLabel;
 
 
 

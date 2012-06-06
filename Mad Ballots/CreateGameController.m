@@ -11,6 +11,8 @@
 #import "Game.h"
 #import "PlayerRequestViewController.h"
 #import "Contestant.h"
+#import "AppDelegate.h"
+#import "Facebook.h"
 
 @implementation CreateGameController
 @synthesize numberOfPlayersAlreadyInvited;
@@ -26,6 +28,7 @@
 @synthesize roundTableViewCell;
 @synthesize usernameTableViewCell;
 @synthesize facebookTableViewCell;
+@synthesize facebookTableViewCellLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -66,11 +69,26 @@
     }
 }
 
+-(void)invitePlayersToGame:(Game *)aGame{
+    for(int ii=0 ;ii < [playersToBeInvited count];ii++){
+        Player *player = [playersToBeInvited objectAtIndex:ii];
+        Contestant *newContestant = [[Contestant alloc] init];
+        newContestant.gameId = [aGame gameId];
+        newContestant.playerId = [player playerId];
+        newContestant.status = @"0";
+        [[RKObjectManager sharedManager] postObject:newContestant delegate:NULL];
+    }
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //Enable/disable the invite facebook button
+    //facebookTableViewCell. = ([AppDelegate facebook].isSessionValid) ? YES : NO;
+    
     if(!playersToBeInvited){
         playersToBeInvited = [NSMutableArray array];
     }
@@ -140,43 +158,15 @@
 -(IBAction)createGameButtonClicked:(id) sender{
     if(![self isGameValid])
         return;
-//    if(!game){
+    if(!game){ //CREATE A NEW GAME
         Game *newGame = [[Game alloc] init];
         newGame.name = self.nameTextField.text;
         newGame.ownerId = [[NSUserDefaults standardUserDefaults] objectForKey:USER_ID_KEY];
         newGame.numberOfRounds = self.numOfRoundsTextField.text;
-        NSString *resourcePath = @"/games.json?playerIds=";
-        for(int ii=numberOfPlayersAlreadyInvited ;ii < [playersToBeInvited count];ii++){
-            Player *player = [playersToBeInvited objectAtIndex:ii];
-            resourcePath = [resourcePath stringByAppendingString:[NSString stringWithFormat:@"%@,",player.playerId]];
-        }
-        resourcePath = [resourcePath substringToIndex:(resourcePath.length-1)];
-        if(game)
-            resourcePath = [resourcePath stringByAppendingFormat:@"&gameId=%@",game.gameId];
-        
-        RKObjectRouter *router = [[RKObjectRouter alloc] init];
-        [router routeClass:[Game class] toResourcePath:resourcePath forMethod:RKRequestMethodPOST];
-        [RKObjectManager sharedManager].router = router;
         [[RKObjectManager sharedManager] postObject:newGame delegate:self];
-//    }
-//    else{
-//        NSString *resourcePath = @"/contestants.json?playerIds=";
-//        for(int ii=numberOfContestants ;ii < [invitedPlayers count];ii++){
-//            Player *player = [invitedPlayers objectAtIndex:ii];
-//            resourcePath = [resourcePath stringByAppendingString:[NSString stringWithFormat:@"%@,",player.playerId]];
-//        }
-//        resourcePath = [resourcePath substringToIndex:(resourcePath.length-1)];  
-//        resourcePath = [resourcePath stringByAppendingFormat:@"&gameId=%@",game.gameId];    
-//        RKObjectRouter *router = [[RKObjectRouter alloc] init];
-//        [router routeClass:[Contestant class] toResourcePath:resourcePath forMethod:RKRequestMethodPOST];
-//        [RKObjectManager sharedManager].router = router;
-//        //TODO: Clean this ish up
-//        Contestant *dummyContestant = [[Contestant alloc] init];
-//        dummyContestant.playerId = @"-1";
-//        dummyContestant.gameId = @"-1";
-//        [[RKObjectManager sharedManager] postObject:dummyContestant mapResponseWith:[Contestant getObjectMapping] delegate:self];
-//        //[[RKObjectManager sharedManager] postObject:dummyContestant delegate:self];
-//    }
+    }else{ //GAME ALREADY EXISTS - JUST INVITING PLAYERS
+        [self invitePlayersToGame:[self game]];
+    }
 
 }
 
@@ -200,8 +190,16 @@
         return roundTableViewCell;
     else if(indexPath.section == 1 && indexPath.row == 0)
         return usernameTableViewCell;
-    else if(indexPath.section == 1 && indexPath.row == 1)
+    else if(indexPath.section == 1 && indexPath.row == 1){
+        if (![AppDelegate facebook].isSessionValid){
+            facebookTableViewCell.userInteractionEnabled = NO;
+            facebookTableViewCellLabel.textColor = [UIColor grayColor];
+        }else{
+            facebookTableViewCell.userInteractionEnabled = YES;
+            facebookTableViewCellLabel.textColor = [UIColor blackColor];
+        }
         return facebookTableViewCell;
+    }
     
     static NSString *CellIdentifier = @"InvitedPlayersCell";
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -251,7 +249,9 @@
             [self invitePlayer:player];
         }else
             [[[UIAlertView alloc] initWithTitle:@"Username not found" message:@"Please try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-    }else{
+    }else if ([[objectLoader.targetObject class] isEqual:[Game class]]){ //It's a game
+        //ADD THE PLAYERS AS CONTESTANTS
+        [self invitePlayersToGame:(Game *)objectLoader.targetObject];
         [self.navigationController popViewControllerAnimated:YES];
     }
 

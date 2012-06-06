@@ -46,6 +46,7 @@
 
 +(RKObjectMapping*) getObjectMapping;
 +(RKObjectMapping*) getPostObjectMapping;
++(RKObjectMapping*) getSerializationMapping;
 
 
 -(NSString*) getGameStatus;

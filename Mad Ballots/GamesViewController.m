@@ -30,10 +30,7 @@
 
 -(void) loadGames{
     NSString *contestantsPath = [NSString stringWithFormat:@"players/%@/contestants.json",[AppDelegate currentPlayer].playerId];
-//    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:contestantsPath usingBlock:^(RKObjectLoader *loader) {
-//        loader.targetObject = [[Contestant alloc] init];
-//        loader.delegate = self;
-//    }];//loadObjectsAtResourcePath:contestantsPath delegate:self];
+    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:contestantsPath delegate:self];
 }
 
 #pragma mark - View lifecycle
@@ -45,6 +42,7 @@
     self.title = @"Games";
     self.gamesArray = [NSArray arrayWithObjects:[NSMutableArray array],[NSMutableArray array], nil];
     self.sectionTitleArray = [NSArray arrayWithObjects:@"Game Invitations",@"Active Games", nil];
+    
 
 }
 
@@ -58,14 +56,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self navigationController].toolbarHidden = FALSE;
     [self refreshUI];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self loadGames];
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated

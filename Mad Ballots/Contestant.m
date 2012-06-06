@@ -28,8 +28,8 @@
     [contestantMapping mapKeyPath:@"game_id" toAttribute:@"gameId"];
     [contestantMapping mapKeyPath:@"player_id" toAttribute:@"playerId"];
     [contestantMapping mapKeyPath:@"game" toRelationship:@"game" withMapping:[Game getObjectMapping]];
-    [contestantMapping mapKeyPath:@"active_card" toRelationship:@"card" withMapping:[Card getObjectMapping]];
-    [contestantMapping mapKeyPath:@"current_round" toRelationship:@"round" withMapping:[Round getObjectMapping]];
+    //[contestantMapping mapKeyPath:@"active_card" toRelationship:@"card" withMapping:[Card getObjectMapping]];
+    //[contestantMapping mapKeyPath:@"current_round" toRelationship:@"round" withMapping:[Round getObjectMapping]];
     [contestantMapping mapKeyPath:@"player" toRelationship:@"player" withMapping:[Player getObjectMapping]];
     [contestantMapping mapKeyPath:@"status" toAttribute:@"status"];
     [contestantMapping mapKeyPath:@"game_owner" toAttribute:@"gameOwner"];
@@ -46,8 +46,14 @@
     [contestantMapping mapKeyPath:@"player_id" toAttribute:@"playerId"];
     [contestantMapping mapKeyPath:@"status" toAttribute:@"status"];
     return contestantMapping;
-    
 }
+
++(RKObjectMapping*) getSerializationMapping{
+    RKObjectMapping *serializationMapping = [[Contestant getPostObjectMapping] inverseMapping];
+    return serializationMapping;
+}
+
+
 
 -(NSString*) getGameStatus{
     if([status isEqualToString:@"0"])
