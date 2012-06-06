@@ -26,6 +26,5 @@
 
 +(RKObjectMapping*)getObjectMapping;
 -(BOOL) iAmOwner;
--(BOOL) hasGameStarted;
 
 @end

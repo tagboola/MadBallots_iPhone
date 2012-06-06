@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "UIImageView+WebCache.h"
 #import "Player.h"
-#import "CreateGameController.h"
+#import "CreateGameViewController.h"
 
 #define MAX_NUMBER_OF_INVITES MAXIMUM_NUMBER_OF_INVITES - [self.invitedPlayers count]
 
@@ -288,7 +288,7 @@ static NSString * const CHECKED = @"checked";
     NSLog(@"Loaded collection of Players: %@", objects);
     if([objects count] > 0){
         Player *player = [objects objectAtIndex:0];
-        CreateGameController *createGameView = [[self.navigationController viewControllers] objectAtIndex:([[self.navigationController viewControllers] count]-2)];
+        CreateGameViewController *createGameView = [[self.navigationController viewControllers] objectAtIndex:([[self.navigationController viewControllers] count]-2)];
         [createGameView invitePlayer:player];
     }
     RKRequestQueue *queue = [[RKObjectManager sharedManager] requestQueue]; 

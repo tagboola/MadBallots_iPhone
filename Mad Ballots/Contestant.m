@@ -109,4 +109,7 @@
     return [status isEqualToString:@"-1"];
 }
 
+-(BOOL) hasGameStarted{
+    return round != nil;
+}
 @end

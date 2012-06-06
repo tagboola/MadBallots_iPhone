@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="10K549" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="3">
     <dependencies>
+        <deployment defaultVersion="1280" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
     </dependencies>
@@ -79,7 +80,7 @@
         <scene sceneID="hqX-7w-xla">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="77K-1G-MbQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="xfb-QO-9CS" customClass="CreateGameController" sceneMemberID="viewController">
+                <tableViewController id="xfb-QO-9CS" customClass="CreateGameViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="J8t-GP-BFX">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -116,7 +117,7 @@
                                         <rect key="frame" x="0.0" y="55" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Rounds" lineBreakMode="tailTruncation" minimumFontSize="10" id="J1d-Cv-r0D">
@@ -178,7 +179,7 @@
                                         <rect key="frame" x="0.0" y="191" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Invite your Facebook friends!" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="DwH-1i-x70">
@@ -214,7 +215,7 @@
                                         <rect key="frame" x="0.0" y="327" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -224,7 +225,7 @@
                                         <rect key="frame" x="0.0" y="371" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -234,7 +235,7 @@
                                         <rect key="frame" x="0.0" y="415" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -355,6 +356,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="813-IO-QmI" kind="push" id="Eca-eJ-qgB"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NHz-OT-dtO">
                                 <rect key="frame" x="19" y="359" width="85" height="37"/>
@@ -367,6 +371,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="kgW-SQ-qfq" kind="push" identifier="fillCard" id="NeA-5u-5hG"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Game Name" lineBreakMode="tailTruncation" minimumFontSize="10" id="5It-wH-l29">
                                 <rect key="frame" x="20" y="6" width="280" height="21"/>
@@ -395,7 +402,11 @@
                                 <items>
                                     <barButtonItem title="Start the game?" style="plain" id="DJN-Bk-FJ8"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="dvF-kG-Olm"/>
-                                    <barButtonItem title="Yes" id="Pcd-Xc-Hgz"/>
+                                    <barButtonItem title="Yes" id="Pcd-Xc-Hgz">
+                                        <connections>
+                                            <action selector="startGame:" destination="b4J-Ao-Pfk" id="hoL-BN-5hT"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="pJD-sO-Fxc">
@@ -476,7 +487,149 @@
             </objects>
             <point key="canvasLocation" x="932" y="318"/>
         </scene>
+        <scene sceneID="OzH-UH-5xq">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rrU-OX-SQJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="kgW-SQ-qfq" customClass="CardViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3MQ-0c-U9y">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="11" id="iDe-cg-aDh">
+                                <rect key="frame" x="0.0" y="40" width="320" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="changePage" destination="kgW-SQ-qfq" eventType="valueChanged" id="Rpi-th-k1X"/>
+                                </connections>
+                            </pageControl>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="What NBA Team is..." lineBreakMode="tailTruncation" minimumFontSize="10" id="EIx-0I-wZ7">
+                                <rect key="frame" x="10" y="0.0" width="300" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="KAQ-gL-xJc">
+                                <rect key="frame" x="0.0" y="76" width="320" height="340"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="kgW-SQ-qfq" id="Ciu-2j-sX1"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="AQv-Xr-ZHO"/>
+                    <connections>
+                        <outlet property="pageControl" destination="iDe-cg-aDh" id="iST-FO-e8a"/>
+                        <outlet property="scrollView" destination="KAQ-gL-xJc" id="z26-4K-4mq"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1505" y="121"/>
+        </scene>
+        <scene sceneID="x2I-vO-i60">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VBU-N7-595" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="813-IO-QmI" customClass="TicketViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="idb-cU-JYE">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="11" id="z47-Gn-d7k">
+                                <rect key="frame" x="0.0" y="40" width="320" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="changePage" destination="813-IO-QmI" eventType="valueChanged" id="fgN-h5-YFb"/>
+                                </connections>
+                            </pageControl>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="What NBA Team is..." lineBreakMode="tailTruncation" minimumFontSize="10" id="vd0-O7-LPW">
+                                <rect key="frame" x="10" y="0.0" width="300" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="yay-p0-ItI">
+                                <rect key="frame" x="0.0" y="76" width="320" height="340"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="kgW-SQ-qfq" id="KWL-Gw-0rw"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="QTg-34-vkh"/>
+                    <connections>
+                        <outlet property="pageControl" destination="z47-Gn-d7k" id="Yhw-Lx-n0g"/>
+                        <outlet property="scrollView" destination="yay-p0-ItI" id="fRJ-ah-Xc8"/>
+                        <outlet property="titleLabel" destination="vd0-O7-LPW" id="Xeh-8W-Bkh"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1362" y="770"/>
+        </scene>
     </scenes>
+    <classes>
+        <class className="CardViewController" superclassName="ScrollViewWithPaging">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CardViewController.h"/>
+        </class>
+        <class className="CreateGameViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateGameViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="createGameButtonClicked:"/>
+                <relationship kind="action" name="inviteButtonClicked:"/>
+                <relationship kind="outlet" name="createGameButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="facebookTableViewCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="inviteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="nameTableViewCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="numOfRoundsTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="playerInviteTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="roundTableViewCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="usernameTableViewCell" candidateClass="UITableViewCell"/>
+            </relationships>
+        </class>
+        <class className="GameViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GameViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="acceptGameInvitation:"/>
+                <relationship kind="action" name="rejectGameInvitation:"/>
+                <relationship kind="action" name="startGame:"/>
+                <relationship kind="outlet" name="acceptGameInvitationToolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="categoryLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fillCardButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="gameNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="roundLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="startGameToolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="voteButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="GamesViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GamesViewController.h"/>
+        </class>
+        <class className="PlayerRequestViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayerRequestViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addSelectedPlayers:"/>
+            </relationships>
+        </class>
+        <class className="ScrollViewWithPaging" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ScrollViewWithPaging.h"/>
+            <relationships>
+                <relationship kind="action" name="changePage"/>
+                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TicketViewController" superclassName="ScrollViewWithPaging">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TicketViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

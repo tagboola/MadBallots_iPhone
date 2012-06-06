@@ -25,7 +25,6 @@
     [objectMapping mapKeyPath:@"contestant_id" toAttribute:@"contestantId"];
     [objectMapping mapKeyPath:@"vote_status" toAttribute:@"voteStatus"];
     [objectMapping mapKeyPath:@"card_status" toAttribute:@"cardStatus"];
-    [objectMapping mapKeyPath:@"contestant_id" toAttribute:@"contestntId"];
     return objectMapping;
 }
 

@@ -55,5 +55,6 @@
 -(BOOL) hasRejectedInvite;
 -(NSString*) getCategory;
 -(NSString*) getRoundDescription;
+-(BOOL) hasGameStarted;
 
 @end

@@ -7,7 +7,9 @@
 //
 
 #import "GameViewController.h"
-#import "CreateGameController.h"
+#import "CreateGameViewController.h"
+#import "Round.h"
+#import "CardViewController.h"
 
 @implementation GameViewController
 
@@ -19,7 +21,7 @@
 @synthesize gameNameLabel;
 @synthesize categoryLabel;
 @synthesize roundLabel;
-@synthesize contestants;
+@synthesize gameContestants;
 @synthesize tableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil    
@@ -40,9 +42,9 @@
 
 -(void) updateButtons{
     //TODO:Add remove game button
-    self.fillCardButton.userInteractionEnabled = self.contestant.card != nil && ![self.contestant.card isCardFilled];
-    self.voteButton.userInteractionEnabled = self.contestant.card != nil && ![self.contestant.card isVoteCast];
-    self.navigationItem.rightBarButtonItem.enabled = (self.contestants && [self.contestant.game iAmOwner] && ![self.contestant.game hasGameStarted] && [self.contestants count] <  MAXIMUM_NUMBER_OF_INVITES+1);
+    self.fillCardButton.userInteractionEnabled = self.contestant.card != nil && ![self.contestant.round areCardsFilled];
+    self.voteButton.userInteractionEnabled = self.contestant.card != nil && ![self.contestant.round areCardsFilled];
+    self.navigationItem.rightBarButtonItem.enabled = self.gameContestants && [self.contestant.game iAmOwner] && ![self.contestant hasGameStarted] && ([self.gameContestants count] <  MAXIMUM_NUMBER_OF_INVITES+1);
 
 }
 
@@ -62,9 +64,9 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"invitePlayers"]) {
-        CreateGameController *createGameView = [segue destinationViewController];
+        CreateGameViewController *createGameView = [segue destinationViewController];
         NSMutableArray *invitedContestants = [NSMutableArray array];
-        for(Contestant *gameContestant in contestants){
+        for(Contestant *gameContestant in gameContestants){
             if(![gameContestant.playerId isEqualToString:[[NSUserDefaults standardUserDefaults] stringForKey:USER_ID_KEY]]){
                 [invitedContestants addObject:gameContestant.player];
             }
@@ -72,8 +74,11 @@
         createGameView.playersToBeInvited = [NSMutableArray array];
         [createGameView.playersToBeInvited addObjectsFromArray:invitedContestants];
         createGameView.game = self.contestant.game;
-        createGameView.numberOfPlayersAlreadyInvited = [contestants count] - 1;
+        createGameView.numberOfPlayersAlreadyInvited = [gameContestants count] - 1;
         
+    }else if([[segue identifier] isEqualToString:@"fillCard"]){
+        CardViewController *cardView = [segue destinationViewController];
+        cardView.dataArray = self.gameContestants;
     }
     
 }
@@ -84,7 +89,6 @@
 {
     [super viewDidLoad];
  
-    // Uncomment the following line to preserve selection between presentations.
     [self updateButtons];
     self.gameNameLabel.text = self.contestant.game.name;
     self.categoryLabel.text = [self.contestant getCategory];
@@ -137,10 +141,25 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
--(IBAction)acceptGameInvitation:(id)sender
+-(IBAction)startGame:(id)sender
 {
-    contestant.status = @"1";
+    Round *round = [[Round alloc] init];
+    round.state = @"0";
+    round.voteStatus = @"0";
+    round.cardStatus = @"0";
+    round.gameId = self.contestant.gameId;
+    NSString *resourcePath =[NSString stringWithFormat:@"/rounds.json",self.contestant.gameId];
+    RKObjectRouter *router = [[RKObjectRouter alloc] init];
+    RKObjectMappingProvider *provider = [RKObjectMappingProvider objectMappingProvider];
+    [provider registerMapping:[Round getObjectMapping] withRootKeyPath:@"round"]; 
+    [router routeClass:[Round class] toResourcePath:resourcePath forMethod:RKRequestMethodPOST];
+    [RKObjectManager sharedManager].router = router;
+    [RKObjectManager sharedManager].mappingProvider = provider;
+    [[RKObjectManager sharedManager] postObject:round delegate:self];
+}
+
+- (void)respondToGameInvitation
+{
     RKObjectMappingProvider *mapper = [[RKObjectMappingProvider alloc] init];
     RKObjectRouter *router = [[RKObjectRouter alloc] init];
     [mapper registerMapping:[Contestant getPostObjectMapping] withRootKeyPath:@"contestant"];
@@ -150,20 +169,21 @@
     [[RKObjectManager sharedManager] putObject:contestant delegate:self];
 }
 
+-(IBAction)acceptGameInvitation:(id)sender
+{
+    contestant.status = @"1";
+    [self respondToGameInvitation];
+}
 
 -(IBAction)rejectGameInvitation:(id)sender
 {
     contestant.status = @"-1";
-    RKObjectMappingProvider *mapper = [[RKObjectMappingProvider alloc] init];
-    RKObjectRouter *router = [[RKObjectRouter alloc] init];
-    [mapper registerMapping:[Contestant getPostObjectMapping] withRootKeyPath:@"contestant"];
-    [router routeClass:[Contestant class] toResourcePath:[NSString stringWithFormat:@"/contestants/%@.json", contestant.contestantId] forMethod:RKRequestMethodPUT];
-    [RKObjectManager sharedManager].mappingProvider = mapper;
-    [RKObjectManager sharedManager].router = router;
-    [[RKObjectManager sharedManager] putObject:contestant delegate:self];
-} 
--(BOOL) allContestantsResponded{
-    for(Contestant *gameContestant in self.contestants){
+    [self respondToGameInvitation];
+}
+
+
+-(BOOL) haveAllContestantsResponded{
+    for(Contestant *gameContestant in self.gameContestants){
         if([gameContestant isInvitation])
             return false;
     }
@@ -176,9 +196,8 @@
     return 1;
 }
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self.contestants count];
+    return [self.gameContestants count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -190,9 +209,9 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
     cell.accessoryType = UITableViewCellAccessoryNone;
-    Contestant *cellContestant = [self.contestants objectAtIndex:indexPath.row];
+    Contestant *cellContestant = [self.gameContestants objectAtIndex:indexPath.row];
     cell.textLabel.text = cellContestant.player.username;
-    if([self.contestant.game hasGameStarted]){
+    if([self.contestant hasGameStarted]){
         cell.detailTextLabel.text = cellContestant.score;
     }else{
         cell.detailTextLabel.text = @"";
@@ -229,15 +248,14 @@
     NSLog(@"Load collection of Contestants: %@", objects);
     //TODO: Duplicated Code
     if([objectLoader.resourcePath isEqualToString:[NSString stringWithFormat:@"games/%@/contestants.json", contestant.gameId,contestant.contestantId]]){
-        self.contestants = [NSMutableArray arrayWithArray:objects];
+        self.gameContestants = [NSMutableArray arrayWithArray:objects];
         [self.tableView reloadData];
         //TODO: Do we start when all users have repsonded or when minimum number of users have responded??
-        if([self.contestant.game iAmOwner] && ![self.contestant.game hasGameStarted] && [self allContestantsResponded] && [contestants count] >= MINIMUM_NUMBER_OF_INVITES)
+        if([self.contestant.game iAmOwner] && ![self.contestant hasGameStarted] && [self haveAllContestantsResponded] && [gameContestants count] >= MINIMUM_NUMBER_OF_INVITES)
             [self showToolbar:startGameToolbar];
-        if([contestants count] < MINIMUM_NUMBER_OF_INVITES+1)
+        if([gameContestants count] < MINIMUM_NUMBER_OF_INVITES+1)
             [[[UIAlertView alloc] initWithTitle:@"Invite more friends!" message:[NSString stringWithFormat:@"You need atleast %d players to start a game", MINIMUM_NUMBER_OF_INVITES+1] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         //TODO: If everyone can invite, must check to see if this is just an invitation before inviting other players
-        [self updateButtons];
     }
     //TODO:Duplicated Code
     if([objectLoader.resourcePath isEqualToString:[NSString stringWithFormat:@"/contestants/%@.json", contestant.contestantId]]){
@@ -245,13 +263,23 @@
             [self.navigationController popViewControllerAnimated:YES];
         else{
             [self hideToolbar:acceptGameInvitationToolbar];
-            for(Contestant *gameContestant in contestants){
+            for(Contestant *gameContestant in gameContestants){
                 if([gameContestant.contestantId isEqualToString:contestant.contestantId])
                     gameContestant.status = @"1";
             }
             [self.tableView reloadData];
         }
     }
+    //TODO:Duplicated Code
+    if([objectLoader.resourcePath isEqualToString:[NSString stringWithFormat:@"/rounds.json",self.contestant.gameId]]){
+        //Game was started
+        [self hideToolbar:startGameToolbar];
+        self.roundLabel.text = [NSString stringWithFormat:@"Round 1 of %@",self.contestant.game.numberOfRounds];
+        Round *round = [objects objectAtIndex:0];
+        self.categoryLabel.text = round.category;
+        //TODO: Update contestant object. It needs players new card
+    }
+    [self updateButtons];
     
 }
 
