@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "GamesViewController.h"
 #import "GameViewController.h"
 #import "Game.h"
@@ -27,8 +28,8 @@
 }
 
 -(void) loadGames{
-    NSString *contestantsPath = [NSString stringWithFormat:@"players/%@/contestants.json",[[NSUserDefaults standardUserDefaults] objectForKey:USER_ID_KEY]];
-    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:contestantsPath objectMapping:[Contestant getObjectMapping] delegate:self];
+    NSString *contestantsPath = [NSString stringWithFormat:@"players/%@/contestants.json",[AppDelegate currentPlayer].playerId];
+    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:contestantsPath delegate:self];
 }
 
 #pragma mark - View lifecycle
@@ -40,6 +41,7 @@
     self.title = @"Games";
     self.gamesArray = [NSArray arrayWithObjects:[NSMutableArray array],[NSMutableArray array], nil];
     self.sectionTitleArray = [NSArray arrayWithObjects:@"Game Invitations",@"Active Games", nil];
+    
 
 }
 
@@ -53,13 +55,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self navigationController].toolbarHidden = FALSE;
+    [self refreshUI];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self loadGames];
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -87,6 +89,31 @@
     }
     
 }
+
+
+-(IBAction)logout:(id)sender
+{
+    [[AppDelegate getInstance] logout:sender];
+}
+
+
+-(void)refreshUI
+{
+    //Reload the Welcome Label
+    if ([AppDelegate getInstance].currentPlayer){
+        welcomeLabel.text = [NSString stringWithFormat:@"Welcome, %@", [AppDelegate getInstance].currentPlayer.name];
+        loginLogoutButton.title = @"Logout";
+        loginLogoutButton.target = [AppDelegate getInstance];
+        loginLogoutButton.action = @selector(logout:);
+    }else{
+        loginLogoutButton.title = @"Login";
+        loginLogoutButton.target = [AppDelegate class];
+        loginLogoutButton.action = @selector(showLogin:);
+    }
+    [self loadGames];
+    
+}
+
 
 #pragma mark UITableViewDatasource methods
 

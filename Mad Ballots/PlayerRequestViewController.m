@@ -9,6 +9,7 @@
 #import "PlayerRequestViewController.h"
 #import "AppDelegate.h"
 #import "UIImageView+WebCache.h"
+#import "SFHFKeychainUtils.h"
 #import "Player.h"
 #import "CreateGameViewController.h"
 
@@ -42,11 +43,12 @@ static NSString * const CHECKED = @"checked";
 
 -(void) getFacebookFriends{
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];;
-	NSNumber *fb_ID = [prefs objectForKey:FACEBOOK_ID_KEY];
-	NSString *fql = [NSString stringWithFormat:@"SELECT name,pic_square_with_logo,uid FROM user WHERE is_app_user = 1 AND uid IN (SELECT uid2 FROM friend WHERE uid1 = %@)",fb_ID];
+	NSString *fb_ID = [prefs objectForKey:FACEBOOK_ID_KEY];
+    NSString *fbAccessToken = [SFHFKeychainUtils getPasswordForUsername:fb_ID andServiceName:@"fb_token" error:NULL];
+	NSString *fql = [NSString stringWithFormat:@"SELECT name,pic_square_with_logo,uid FROM user WHERE is_app_user = 1 AND uid IN (SELECT uid2 FROM friend WHERE uid1 = %@)",fb_ID]; /*Put this in the where clause: is_app_user = 1 AND */
 	NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObject:fql forKey:@"query"];
-	[params setObject:(NSString*)[prefs objectForKey:FACEBOOK_ACCESS_TOKEN_KEY] forKey:@"access_token"];
-    [self.facebook requestWithMethodName:@"fql.query" andParams:params andHttpMethod:@"GET"          andDelegate:self];
+	[params setObject:fbAccessToken forKey:@"access_token"];
+    [[AppDelegate facebook] requestWithMethodName:@"fql.query" andParams:params andHttpMethod:@"GET"          andDelegate:self];
 	NSLog(@"Facebook GET Application Friends by FQL");
 }
 
@@ -71,17 +73,16 @@ static NSString * const CHECKED = @"checked";
 
  - (void)viewDidAppear:(BOOL)animated {
      [super viewDidAppear:animated];
-     self.facebook = [[Facebook alloc] initWithAppId:FACEBOOK_APP_ID andDelegate:nil];
+     /*self.facebook = [[Facebook alloc] initWithAppId:FACEBOOK_APP_ID andDelegate:nil];
      NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
      if ([defaults objectForKey:FACEBOOK_ACCESS_TOKEN_KEY] && [defaults objectForKey:FACEBOOK_EXIPIRATION_DATE_KEY]) {
          facebook.accessToken = [defaults objectForKey:FACEBOOK_ACCESS_TOKEN_KEY];
          facebook.expirationDate = [defaults objectForKey:FACEBOOK_EXIPIRATION_DATE_KEY];
-     }
-     if([facebook isSessionValid]){
+     }*/
+     if([[AppDelegate facebook] isSessionValid]){
          [self getFacebookFriends];
      }else{
-         AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-         [delegate loginToFacebook];
+         [[AppDelegate getInstance] loginToFacebook:self];
      }
  }
 

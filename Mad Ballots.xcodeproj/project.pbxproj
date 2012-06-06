@@ -38,7 +38,6 @@
 		0E7BC1C0152A0F5600BCE387 /* default_list_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E7BC1BF152A0F5600BCE387 /* default_list_user.png */; };
 		0E7BC1C2152A0F5C00BCE387 /* default_list_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E7BC1C1152A0F5C00BCE387 /* default_list_user@2x.png */; };
 		0E7BC1EE152A17B300BCE387 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E7BC1E6152A16BE00BCE387 /* CFNetwork.framework */; };
-		0E7BC1EF152A17B800BCE387 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EE3D63714FEB63500E4A0CE /* SenTestingKit.framework */; };
 		0E7BC1F1152A17BD00BCE387 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E7BC1EA152A16D200BCE387 /* MobileCoreServices.framework */; };
 		0E7BC1F2152A17C000BCE387 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E7BC1E8152A16C800BCE387 /* SystemConfiguration.framework */; };
 		0E7BC1F8152A1B3100BCE387 /* Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7BC1F7152A1B3100BCE387 /* Constant.m */; };
@@ -61,12 +60,15 @@
 		0EE3D62714FEB63500E4A0CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D62614FEB63500E4A0CE /* AppDelegate.m */; };
 		0EE3D62A14FEB63500E4A0CE /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EE3D62814FEB63500E4A0CE /* MainStoryboard.storyboard */; };
 		0EE3D62D14FEB63500E4A0CE /* GamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D62C14FEB63500E4A0CE /* GamesViewController.m */; };
-		0EE3D63814FEB63500E4A0CE /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EE3D63714FEB63500E4A0CE /* SenTestingKit.framework */; };
-		0EE3D63914FEB63500E4A0CE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EE3D61614FEB63500E4A0CE /* UIKit.framework */; };
-		0EE3D63A14FEB63500E4A0CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EE3D61814FEB63500E4A0CE /* Foundation.framework */; };
-		0EE3D64214FEB63500E4A0CE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0EE3D64014FEB63500E4A0CE /* InfoPlist.strings */; };
-		0EE3D64514FEB63500E4A0CE /* Mad_BallotsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D64414FEB63500E4A0CE /* Mad_BallotsTests.m */; };
 		0EE3D66514FECBB300E4A0CE /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D66414FECBB300E4A0CE /* Game.m */; };
+		681188E9154F762D007B323B /* MBPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 681188E8154F762D007B323B /* MBPlayerViewController.m */; };
+		6831FB491561FBCA0093AFB3 /* MBAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 6831FB481561FBCA0093AFB3 /* MBAuthentication.m */; };
+		6831FB4D1561FF3A0093AFB3 /* MBAuthenticationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6831FB4C1561FF3A0093AFB3 /* MBAuthenticationInfo.m */; };
+		6831FB501561FF480093AFB3 /* MBAuthenticationCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 6831FB4F1561FF480093AFB3 /* MBAuthenticationCredentials.m */; };
+		6863C1B7154F6B0B004015E0 /* MBPlayerSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 6863C1B6154F6B0B004015E0 /* MBPlayerSession.m */; };
+		689CDB88156DC664008E5648 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 689CDB87156DC664008E5648 /* SFHFKeychainUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		68BEF4CD1564AC070094DC1C /* MBRootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BEF4CC1564AC060094DC1C /* MBRootNavigationController.m */; };
+		68C27FF41550D37200B1A503 /* MBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C27FF31550D37200B1A503 /* MBLoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,12 +107,12 @@
 			remoteGlobalIDString = 25160D1514564E810060A5C5;
 			remoteInfo = RestKit;
 		};
-		0EE3D63B14FEB63500E4A0CE /* PBXContainerItemProxy */ = {
+		68493D8F1546302C0051DF1C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 0EE3D60914FEB63400E4A0CE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0EE3D61114FEB63500E4A0CE;
-			remoteInfo = "Mad Ballots";
+			containerPortal = 0E7BC27D152AAC5F00BCE387 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 259C301615128079003066A2;
+			remoteInfo = RestKitResources;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -214,7 +216,6 @@
 		0EE3D62914FEB63500E4A0CE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		0EE3D62B14FEB63500E4A0CE /* GamesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GamesViewController.h; sourceTree = "<group>"; };
 		0EE3D62C14FEB63500E4A0CE /* GamesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GamesViewController.m; sourceTree = "<group>"; };
-		0EE3D63614FEB63500E4A0CE /* Mad BallotsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mad BallotsTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EE3D63714FEB63500E4A0CE /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		0EE3D63F14FEB63500E4A0CE /* Mad BallotsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Mad BallotsTests-Info.plist"; sourceTree = "<group>"; };
 		0EE3D64114FEB63500E4A0CE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -222,6 +223,22 @@
 		0EE3D64414FEB63500E4A0CE /* Mad_BallotsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Mad_BallotsTests.m; sourceTree = "<group>"; };
 		0EE3D66314FECBB300E4A0CE /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		0EE3D66414FECBB300E4A0CE /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		681188E7154F762D007B323B /* MBPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPlayerViewController.h; sourceTree = "<group>"; };
+		681188E8154F762D007B323B /* MBPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPlayerViewController.m; sourceTree = "<group>"; };
+		6831FB471561FBCA0093AFB3 /* MBAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBAuthentication.h; sourceTree = "<group>"; };
+		6831FB481561FBCA0093AFB3 /* MBAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBAuthentication.m; sourceTree = "<group>"; };
+		6831FB4B1561FF3A0093AFB3 /* MBAuthenticationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBAuthenticationInfo.h; sourceTree = "<group>"; };
+		6831FB4C1561FF3A0093AFB3 /* MBAuthenticationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBAuthenticationInfo.m; sourceTree = "<group>"; };
+		6831FB4E1561FF480093AFB3 /* MBAuthenticationCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBAuthenticationCredentials.h; sourceTree = "<group>"; };
+		6831FB4F1561FF480093AFB3 /* MBAuthenticationCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBAuthenticationCredentials.m; sourceTree = "<group>"; };
+		6863C1B5154F6B0B004015E0 /* MBPlayerSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPlayerSession.h; sourceTree = "<group>"; };
+		6863C1B6154F6B0B004015E0 /* MBPlayerSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPlayerSession.m; sourceTree = "<group>"; };
+		689CDB86156DC664008E5648 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
+		689CDB87156DC664008E5648 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
+		68BEF4CB1564AC060094DC1C /* MBRootNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBRootNavigationController.h; sourceTree = "<group>"; };
+		68BEF4CC1564AC060094DC1C /* MBRootNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBRootNavigationController.m; sourceTree = "<group>"; };
+		68C27FF21550D37200B1A503 /* MBLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBLoginViewController.h; sourceTree = "<group>"; };
+		68C27FF31550D37200B1A503 /* MBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBLoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,7 +248,6 @@
 			files = (
 				0E7BC291152AAD6A00BCE387 /* libRestKit.a in Frameworks */,
 				0EE3D61B14FEB63500E4A0CE /* CoreGraphics.framework in Frameworks */,
-				0E7BC1EF152A17B800BCE387 /* SenTestingKit.framework in Frameworks */,
 				0E7BC238152A4D9B00BCE387 /* Security.framework in Frameworks */,
 				0E7BC1EE152A17B300BCE387 /* CFNetwork.framework in Frameworks */,
 				0E7BC23E152A4DE200BCE387 /* libxml2.dylib in Frameworks */,
@@ -242,16 +258,6 @@
 				0E7BC1F1152A17BD00BCE387 /* MobileCoreServices.framework in Frameworks */,
 				0EE3D61914FEB63500E4A0CE /* Foundation.framework in Frameworks */,
 				0E764D8315321EA20025F490 /* libfacebook_ios_sdk.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0EE3D63214FEB63500E4A0CE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0EE3D63814FEB63500E4A0CE /* SenTestingKit.framework in Frameworks */,
-				0EE3D63914FEB63500E4A0CE /* UIKit.framework in Frameworks */,
-				0EE3D63A14FEB63500E4A0CE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +284,7 @@
 		0E23E96A152EA5240027E9A0 /* Game Models */ = {
 			isa = PBXGroup;
 			children = (
+				6831FB4A1561FC920093AFB3 /* Authentication */,
 				0EE3D66314FECBB300E4A0CE /* Game.h */,
 				0EE3D66414FECBB300E4A0CE /* Game.m */,
 				0E7BC293152BCFD600BCE387 /* Round.h */,
@@ -348,6 +355,7 @@
 				0E7BC28A152AAC5F00BCE387 /* RestKitTests.octest */,
 				0E7BC28C152AAC5F00BCE387 /* RestKit.framework */,
 				0E7BC28E152AAC5F00BCE387 /* RestKitFrameworkTests.octest */,
+				68493D901546302C0051DF1C /* RestKitResources.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -367,7 +375,6 @@
 			isa = PBXGroup;
 			children = (
 				0EE3D61214FEB63500E4A0CE /* Mad Ballots.app */,
-				0EE3D63614FEB63500E4A0CE /* Mad BallotsTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -394,6 +401,7 @@
 		0EE3D61C14FEB63500E4A0CE /* Mad Ballots */ = {
 			isa = PBXGroup;
 			children = (
+				689CDB82156DC017008E5648 /* Keychain */,
 				0EE3D65F14FEC50800E4A0CE /* User Interface Resources */,
 				0EE3D65D14FEC4F800E4A0CE /* View Controllers */,
 				0EE3D61D14FEB63500E4A0CE /* Supporting Files */,
@@ -442,6 +450,8 @@
 		0EE3D65D14FEC4F800E4A0CE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				68C27FF21550D37200B1A503 /* MBLoginViewController.h */,
+				68C27FF31550D37200B1A503 /* MBLoginViewController.m */,
 				0EE3D62B14FEB63500E4A0CE /* GamesViewController.h */,
 				0EE3D62C14FEB63500E4A0CE /* GamesViewController.m */,
 				0E675707157BD45200690B98 /* CandidateViewController.h */,
@@ -478,6 +488,30 @@
 			name = "User Interface Resources";
 			sourceTree = "<group>";
 		};
+		6831FB4A1561FC920093AFB3 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				6863C1B5154F6B0B004015E0 /* MBPlayerSession.h */,
+				6863C1B6154F6B0B004015E0 /* MBPlayerSession.m */,
+				6831FB471561FBCA0093AFB3 /* MBAuthentication.h */,
+				6831FB481561FBCA0093AFB3 /* MBAuthentication.m */,
+				6831FB4B1561FF3A0093AFB3 /* MBAuthenticationInfo.h */,
+				6831FB4C1561FF3A0093AFB3 /* MBAuthenticationInfo.m */,
+				6831FB4E1561FF480093AFB3 /* MBAuthenticationCredentials.h */,
+				6831FB4F1561FF480093AFB3 /* MBAuthenticationCredentials.m */,
+			);
+			name = Authentication;
+			sourceTree = "<group>";
+		};
+		689CDB82156DC017008E5648 /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				689CDB86156DC664008E5648 /* SFHFKeychainUtils.h */,
+				689CDB87156DC664008E5648 /* SFHFKeychainUtils.m */,
+			);
+			name = Keychain;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -498,25 +532,6 @@
 			productName = "Mad Ballots";
 			productReference = 0EE3D61214FEB63500E4A0CE /* Mad Ballots.app */;
 			productType = "com.apple.product-type.application";
-		};
-		0EE3D63514FEB63500E4A0CE /* Mad BallotsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0EE3D64B14FEB63500E4A0CE /* Build configuration list for PBXNativeTarget "Mad BallotsTests" */;
-			buildPhases = (
-				0EE3D63114FEB63500E4A0CE /* Sources */,
-				0EE3D63214FEB63500E4A0CE /* Frameworks */,
-				0EE3D63314FEB63500E4A0CE /* Resources */,
-				0EE3D63414FEB63500E4A0CE /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0EE3D63C14FEB63500E4A0CE /* PBXTargetDependency */,
-			);
-			name = "Mad BallotsTests";
-			productName = "Mad BallotsTests";
-			productReference = 0EE3D63614FEB63500E4A0CE /* Mad BallotsTests.octest */;
-			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -545,7 +560,6 @@
 			projectRoot = "";
 			targets = (
 				0EE3D61114FEB63500E4A0CE /* Mad Ballots */,
-				0EE3D63514FEB63500E4A0CE /* Mad BallotsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -579,6 +593,13 @@
 			remoteRef = 0E7BC28D152AAC5F00BCE387 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		68493D901546302C0051DF1C /* RestKitResources.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RestKitResources.bundle;
+			remoteRef = 68493D8F1546302C0051DF1C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -604,31 +625,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0EE3D63314FEB63500E4A0CE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0EE3D64214FEB63500E4A0CE /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		0EE3D63414FEB63500E4A0CE /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0EE3D60E14FEB63500E4A0CE /* Sources */ = {
@@ -680,11 +677,6 @@
 			isa = PBXTargetDependency;
 			name = RestKit;
 			targetProxy = 0E7BC28F152AAD5900BCE387 /* PBXContainerItemProxy */;
-		};
-		0EE3D63C14FEB63500E4A0CE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0EE3D61114FEB63500E4A0CE /* Mad Ballots */;
-			targetProxy = 0EE3D63B14FEB63500E4A0CE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -738,6 +730,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
+				SYMROOT = build;
 			};
 			name = Debug;
 		};
@@ -757,6 +750,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
+				SYMROOT = build;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -770,7 +764,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mad Ballots/Mad Ballots-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/RestKit/Build/RestKit\"";
+				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/RestKit/Build/Headers/RestKit\"/**";
 				INFOPLIST_FILE = "Mad Ballots/Mad Ballots-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -794,7 +788,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mad Ballots/Mad Ballots-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/RestKit/Build/RestKit\"";
+				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/RestKit/Build/Headers/RestKit\"/**";
 				INFOPLIST_FILE = "Mad Ballots/Mad Ballots-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -806,40 +800,6 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		0EE3D64C14FEB63500E4A0CE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Mad Ballots.app/Mad Ballots";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Mad Ballots/Mad Ballots-Prefix.pch";
-				INFOPLIST_FILE = "Mad BallotsTests/Mad BallotsTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		0EE3D64D14FEB63500E4A0CE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Mad Ballots.app/Mad Ballots";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Mad Ballots/Mad Ballots-Prefix.pch";
-				INFOPLIST_FILE = "Mad BallotsTests/Mad BallotsTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -860,15 +820,6 @@
 			buildConfigurations = (
 				0EE3D64914FEB63500E4A0CE /* Debug */,
 				0EE3D64A14FEB63500E4A0CE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		0EE3D64B14FEB63500E4A0CE /* Build configuration list for PBXNativeTarget "Mad BallotsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0EE3D64C14FEB63500E4A0CE /* Debug */,
-				0EE3D64D14FEB63500E4A0CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

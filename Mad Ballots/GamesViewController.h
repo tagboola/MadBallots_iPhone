@@ -14,10 +14,15 @@
 @interface GamesViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, RKObjectLoaderDelegate>{
     NSArray *gamesArray;
     NSArray *sectionTitleArray;
+    IBOutlet UILabel *welcomeLabel;
+    IBOutlet UIBarButtonItem *loginLogoutButton;
 }
 
 @property (nonatomic,retain) NSArray *gamesArray;
 @property (nonatomic,retain) NSArray *sectionTitleArray;
+
+-(IBAction)logout:(id)sender;
+-(void)refreshUI;
 
 
 

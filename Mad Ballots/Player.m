@@ -14,7 +14,10 @@
 @synthesize email;
 @synthesize username;
 @synthesize name;
+@synthesize password;
+@synthesize passwordConfirmation;
 @synthesize facebookId;
+@synthesize persistenceToken;
 
 +(RKObjectMapping*) getObjectMapping{
     RKObjectMapping *playerMapping = [RKObjectMapping mappingForClass:[Player class]];
@@ -22,7 +25,9 @@
     [playerMapping mapKeyPath:@"email" toAttribute:@"email"];
     [playerMapping mapKeyPath:@"username" toAttribute:@"username"];
     [playerMapping mapKeyPath:@"name" toAttribute:@"name"];
-    [playerMapping mapKeyPath:@"facebook_id" toAttribute:@"facebookId"];
+    [playerMapping mapKeyPath:@"password" toAttribute:@"password"];
+    [playerMapping mapKeyPath:@"password_confirmation" toAttribute:@"passwordConfirmation"];
+    [playerMapping mapKeyPath:@"persistence_token" toAttribute:@"persistenceToken"];
 
     return playerMapping;
 }

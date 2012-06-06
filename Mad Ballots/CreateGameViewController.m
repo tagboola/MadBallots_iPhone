@@ -11,6 +11,8 @@
 #import "Game.h"
 #import "PlayerRequestViewController.h"
 #import "Contestant.h"
+#import "AppDelegate.h"
+#import "Facebook.h"
 
 @implementation CreateGameViewController
 @synthesize numberOfPlayersAlreadyInvited;
@@ -26,6 +28,7 @@
 @synthesize roundTableViewCell;
 @synthesize usernameTableViewCell;
 @synthesize facebookTableViewCell;
+@synthesize facebookTableViewCellLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -68,11 +71,26 @@
     [self updateButtons];
 }
 
+-(void)invitePlayersToGame:(Game *)aGame{
+    for(int ii=0 ;ii < [playersToBeInvited count];ii++){
+        Player *player = [playersToBeInvited objectAtIndex:ii];
+        Contestant *newContestant = [[Contestant alloc] init];
+        newContestant.gameId = [aGame gameId];
+        newContestant.playerId = [player playerId];
+        newContestant.status = @"0";
+        [[RKObjectManager sharedManager] postObject:newContestant delegate:NULL];
+    }
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //Enable/disable the invite facebook button
+    //facebookTableViewCell. = ([AppDelegate facebook].isSessionValid) ? YES : NO;
+    
     if(!playersToBeInvited){
         playersToBeInvited = [NSMutableArray array];
     }
@@ -115,7 +133,8 @@
     }
     
     [self.playerInviteTextField resignFirstResponder];
-    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"players.json?username=%@",self.playerInviteTextField.text] objectMapping:[Player getObjectMapping] delegate:self];
+    NSString * resourcePath = [NSString stringWithFormat:@"players.json?username=%@",[self.playerInviteTextField text]];
+    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:resourcePath delegate:self]; //loadObjectsAtResourcePath:resourcePath objectMapping:[Player getObjectMapping] delegate:self];
     
 }
 
@@ -134,6 +153,8 @@
     }
     return YES;
 }
+
+
 
 -(IBAction)createGameButtonClicked:(id) sender{
     if(![self isGameValid])
@@ -177,8 +198,16 @@
         return roundTableViewCell;
     else if(indexPath.section == 1 && indexPath.row == 0)
         return usernameTableViewCell;
-    else if(indexPath.section == 1 && indexPath.row == 1)
+    else if(indexPath.section == 1 && indexPath.row == 1){
+        if (![AppDelegate facebook].isSessionValid){
+            facebookTableViewCell.userInteractionEnabled = NO;
+            facebookTableViewCellLabel.textColor = [UIColor grayColor];
+        }else{
+            facebookTableViewCell.userInteractionEnabled = YES;
+            facebookTableViewCellLabel.textColor = [UIColor blackColor];
+        }
         return facebookTableViewCell;
+    }
     
     static NSString *CellIdentifier = @"InvitedPlayersCell";
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -229,7 +258,9 @@
             [self invitePlayer:player];
         }else
             [[[UIAlertView alloc] initWithTitle:@"Username not found" message:@"Please try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-    }else{
+    }else if ([[objectLoader.targetObject class] isEqual:[Game class]]){ //It's a game
+        //ADD THE PLAYERS AS CONTESTANTS
+        [self invitePlayersToGame:(Game *)objectLoader.targetObject];
         [self.navigationController popViewControllerAnimated:YES];
     }
 

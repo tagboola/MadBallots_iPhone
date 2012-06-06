@@ -262,6 +262,7 @@
         if([(Contestant*)objectLoader.sourceObject hasRejectedInvite])
             [self.navigationController popViewControllerAnimated:YES];
         else{
+            //self.contestants = [NSMutableArray arrayWithArray:objects];
             [self hideToolbar:acceptGameInvitationToolbar];
             for(Contestant *gameContestant in gameContestants){
                 if([gameContestant.contestantId isEqualToString:contestant.contestantId])
