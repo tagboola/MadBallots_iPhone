@@ -70,7 +70,7 @@
 }
 
 -(void)invitePlayersToGame:(Game *)aGame{
-    for(int ii=0 ;ii < [playersToBeInvited count];ii++){
+    for(int ii=numberOfPlayersAlreadyInvited ;ii < [playersToBeInvited count];ii++){
         Player *player = [playersToBeInvited objectAtIndex:ii];
         Contestant *newContestant = [[Contestant alloc] init];
         newContestant.gameId = [aGame gameId];
@@ -126,7 +126,7 @@
 
 
 -(IBAction)inviteButtonClicked:(id) sender{
-    if([self.playerInviteTextField.text isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:USERNAME_KEY]]){
+    if([self.playerInviteTextField.text isEqualToString:[[AppDelegate currentPlayer] username]]){
         [[[UIAlertView alloc] initWithTitle:@"You can't invite yourself" message:@"Please enter another username" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         return;
     }
