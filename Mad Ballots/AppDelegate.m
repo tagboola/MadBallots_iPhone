@@ -389,7 +389,7 @@
         
 #pragma mark RKRequestQueueDelegate methods
 - (void)requestQueue:(RKRequestQueue *)queue willSendRequest:(RKRequest *)request{
-    NSLog(@"Will send reqeust");
+    //NSLog(@"Will send reqeust");
 }
 - (void)requestQueue:(RKRequestQueue *)queue didCancelRequest:(RKRequest *)request{}
 - (void)requestQueue:(RKRequestQueue *)queue didFailRequest:(RKRequest *)request withError:(NSError *)error{}
