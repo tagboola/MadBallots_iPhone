@@ -179,7 +179,7 @@
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects
 {
-    NSLog(@"Load collection of Contestants: %@", objects);
+    //NSLog(@"Load collection of Contestants: %@", objects);
     if([objects count] > 0)
         self.gamesArray = [NSArray arrayWithObjects:[NSMutableArray array],[NSMutableArray array], nil];
     

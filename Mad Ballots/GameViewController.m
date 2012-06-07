@@ -118,7 +118,8 @@
 {
     [super viewDidAppear:animated];
     NSString *path = [NSString stringWithFormat:@"games/%@/contestants.json", contestant.gameId,contestant.contestantId];
-    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:path objectMapping:[Contestant getObjectMapping] delegate:self];
+    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:path delegate:self];
+    //[[RKObjectManager sharedManager] loadObjectsAtResourcePath:path objectMapping:[Contestant getObjectMapping] delegate:self];
     if([self.contestant isInvitation])
         [self showToolbar:self.acceptGameInvitationToolbar];
      
@@ -222,7 +223,7 @@
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects
 {
-    NSLog(@"Load collection of Contestants: %@", objects);
+    //NSLog(@"Load collection of Contestants: %@", objects);
     //TODO: Duplicated Code
     if([objectLoader.resourcePath isEqualToString:[NSString stringWithFormat:@"games/%@/contestants.json", contestant.gameId,contestant.contestantId]]){
         self.contestants = [NSMutableArray arrayWithArray:objects];
@@ -231,7 +232,7 @@
         if([self.contestant.game iAmOwner] && ![self.contestant.game hasGameStarted] && [self allContestantsResponded] && [contestants count] >= MINIMUM_NUMBER_OF_INVITES)
             [self showToolbar:startGameToolbar];
         if( ([self.contestant.game iAmOwner]) && ([contestants count] < MINIMUM_NUMBER_OF_INVITES+1) )
-            [[[UIAlertView alloc] initWithTitle:@"Invite more friends!" message:[NSString stringWithFormat:@"You need atleast %d players to start a game", MINIMUM_NUMBER_OF_INVITES+1] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            [[[UIAlertView alloc] initWithTitle:@"Invite more friends!" message:[NSString stringWithFormat:@"You need at least %d players to start a game", MINIMUM_NUMBER_OF_INVITES+1] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         //TODO: If everyone can invite, must check to see if this is just an invitation before inviting other players
         [self updateButtons];
     }
