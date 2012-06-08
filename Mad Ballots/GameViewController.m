@@ -151,14 +151,10 @@
 -(IBAction)rejectGameInvitation:(id)sender
 {
     contestant.status = @"-1";
-    RKObjectMappingProvider *mapper = [[RKObjectMappingProvider alloc] init];
-    RKObjectRouter *router = [[RKObjectRouter alloc] init];
-    [mapper registerMapping:[Contestant getPostObjectMapping] withRootKeyPath:@"contestant"];
-    [router routeClass:[Contestant class] toResourcePath:[NSString stringWithFormat:@"/contestants/%@.json", contestant.contestantId] forMethod:RKRequestMethodPUT];
-    [RKObjectManager sharedManager].mappingProvider = mapper;
-    [RKObjectManager sharedManager].router = router;
     [[RKObjectManager sharedManager] putObject:contestant delegate:self];
 } 
+
+
 -(BOOL) allContestantsResponded{
     for(Contestant *gameContestant in self.contestants){
         if([gameContestant isInvitation])
