@@ -180,14 +180,15 @@
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects
 {
     //NSLog(@"Load collection of Contestants: %@", objects);
+    self.gamesArray = [NSArray arrayWithObjects:[NSMutableArray array],[NSMutableArray array], nil];
     if([objects count] > 0)
-        self.gamesArray = [NSArray arrayWithObjects:[NSMutableArray array],[NSMutableArray array], nil];
-    
-    for(Contestant *contestant in objects){
-        if([contestant isInvitation])
-            [[self.gamesArray objectAtIndex:0] addObject:contestant];
-        else
-            [[self.gamesArray objectAtIndex:1] addObject:contestant];
+    {    
+        for(Contestant *contestant in objects){
+            if([contestant isInvitation])
+                [[self.gamesArray objectAtIndex:0] addObject:contestant];
+            else
+                [[self.gamesArray objectAtIndex:1] addObject:contestant];
+        }
     }
     [self.tableView reloadData];
 }
