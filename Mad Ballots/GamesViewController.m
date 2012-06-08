@@ -142,8 +142,9 @@
     
     Contestant *contestant = [[self.gamesArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     cell.textLabel.text = contestant.game.name;
-    cell.detailTextLabel.text = [contestant getGameStatus];
-    cell.detailTextLabel.numberOfLines = 2;
+    NSString *hostString = ([contestant.gameOwner isEqualToString:[[AppDelegate currentPlayer] username]]) ? @"ME!" : contestant.gameOwner;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Hosted By: %@\r%@", hostString, [contestant getGameStatus]];
+    cell.detailTextLabel.numberOfLines = 3;
     cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
     cell.detailTextLabel.minimumFontSize = 12;
     if([contestant isActionNeeded])
