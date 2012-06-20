@@ -8,7 +8,6 @@
 
 #import "PlayerRequestViewController.h"
 #import "AppDelegate.h"
-#import "UIImageView+WebCache.h"
 #import "SFHFKeychainUtils.h"
 #import "Player.h"
 #import "CreateGameViewController.h"
@@ -108,7 +107,10 @@ static NSString * const CHECKED = @"checked";
 
 -(IBAction)addSelectedPlayers:(id)sender{
     for(NSDictionary *facebookDictionary in selectedPlayersArray){
-        [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/players.json?facebook_id=%@",[facebookDictionary objectForKey:ID]] objectMapping:[Player getObjectMapping] delegate:self];
+        //TODO: Search for authorizations instead of player
+        [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/players.json?facebook_id=%@",[facebookDictionary objectForKey:ID]] delegate:self];
+        
+         //[[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/players.json?facebook_id=%@",[facebookDictionary objectForKey:ID]] objectMapping:[Player getObjectMapping] delegate:self];
     }
 }
 
@@ -156,7 +158,8 @@ static NSString * const CHECKED = @"checked";
     else
         cell.accessoryType = UITableViewCellAccessoryNone;
     cell.textLabel.text = [element objectForKey:NAME];
-    [cell.imageView setImageWithURL:[NSURL URLWithString:[element objectForKey:IMAGE_URL]] placeholderImage:[UIImage imageNamed:@"default_list_user.png"]];
+    //TODO: Add image support
+    cell.imageView.image = [UIImage imageNamed:@"defaut_list_user.png"];
 
 	return cell;
 }

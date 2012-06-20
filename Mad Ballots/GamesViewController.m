@@ -28,8 +28,10 @@
 }
 
 -(void) loadGames{
-    NSString *contestantsPath = [NSString stringWithFormat:@"players/%@/contestants.json",[AppDelegate currentPlayer].playerId];
-    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:contestantsPath delegate:self];
+    if([AppDelegate currentPlayer].playerId){
+        NSString *contestantsPath = [NSString stringWithFormat:@"players/%@/contestants.json",[AppDelegate currentPlayer].playerId];
+        [[RKObjectManager sharedManager] loadObjectsAtResourcePath:contestantsPath delegate:self];
+    }
 }
 
 #pragma mark - View lifecycle
@@ -55,7 +57,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self navigationController].toolbarHidden = FALSE;
+    //[self navigationController].toolbarHidden = FALSE;
     [self refreshUI];
 }
 
@@ -93,6 +95,16 @@
 
 -(IBAction)logout:(id)sender
 {
+    if ([AppDelegate getInstance].currentPlayer){
+//        welcomeLabel.text = [NSString stringWithFormat:@"Welcome, %@", [AppDelegate getInstance].currentPlayer.name];
+//        loginLogoutButton.title = @"Logout";
+        self.gamesArray = [NSArray array];
+        AppDelegate * app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        [app logout:sender];
+    }else{
+//        loginLogoutButton.title = @"Login";
+        [AppDelegate showLogin];
+    }
     [[AppDelegate getInstance] logout:sender];
 }
 
@@ -103,12 +115,12 @@
     if ([AppDelegate getInstance].currentPlayer){
         welcomeLabel.text = [NSString stringWithFormat:@"Welcome, %@", [AppDelegate getInstance].currentPlayer.name];
         loginLogoutButton.title = @"Logout";
-        loginLogoutButton.target = [AppDelegate getInstance];
-        loginLogoutButton.action = @selector(logout:);
+//        loginLogoutButton.target = [AppDelegate getInstance];
+//        loginLogoutButton.action = @selector(logout:);
     }else{
         loginLogoutButton.title = @"Login";
-        loginLogoutButton.target = [AppDelegate class];
-        loginLogoutButton.action = @selector(showLogin:);
+//        loginLogoutButton.target = [AppDelegate class];
+//        loginLogoutButton.action = @selector(showLogin:);
     }
     [self loadGames];
     

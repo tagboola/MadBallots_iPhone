@@ -7,21 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Contestant.h"
+#import "Candidate.h"
 #import "ScrollViewWithPaging.h"
 
 @interface CandidateViewController : UIViewController <UITextFieldDelegate>{
-    Contestant *contestant;
+    Candidate *candidate;
     IBOutlet UILabel *nameLabel;
     IBOutlet UITextField *valueTextField;
     IBOutlet UIImageView *imageView;
 }
 @property (nonatomic,unsafe_unretained) id <ScrollViewWithPagingDelegate> delegate;
-@property (nonatomic,retain) Contestant *contestant;
+@property (nonatomic,retain) Candidate *candidate;
 @property (nonatomic,retain) IBOutlet UILabel *nameLabel;
 @property (nonatomic,retain) IBOutlet UITextField *valueTextField;
 @property (nonatomic,retain) IBOutlet UIImageView *imageView;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andContestant:(Contestant*)theContestant;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andCandidate:(Candidate*)theCandidate;
 
 @end

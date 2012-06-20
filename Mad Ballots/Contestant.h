@@ -10,9 +10,9 @@
 #import "RestKit.h"
 #import "Game.h"
 #import "Round.h"
-#import "Card.h"
 #import "Player.h"
-
+#import "Card.h"
+#import "Ticket.h"
 
 
 @interface Contestant : NSObject{

@@ -11,12 +11,14 @@
 #import "Game.h"
 #import "Player.h"
 #import "Contestant.h"
+#import "Candidate.h"
 #import "GamesViewController.h"
 #import "MBAuthentication.h"
 #import "MBAuthenticationInfo.h"
 #import "MBAuthenticationCredentials.h"
 #import "MBPlayerSession.h"
 #import "SFHFKeychainUtils.h"
+#import "Ballot.h"
 
 
 
@@ -64,16 +66,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    
-    //Set up default user settings
-    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-    [standardDefaults setObject:@"5" forKey:USER_ID_KEY];
-    [standardDefaults setObject:@"test" forKey:PASSWORD_KEY];
-    [standardDefaults setObject:@"tunde4" forKey:USERNAME_KEY];
-    [standardDefaults setObject:@"tunde4" forKey:NAME_KEY];
-    [standardDefaults setObject:@"tunde4@gmail.com" forKey:EMAIL_KEY];
-    [standardDefaults synchronize];
+    //TODO: Application crashes if reachability fails
+    [self initHttpClient];
     
     //Try to create a session with the stored PToken. We'll set it to "" if we can't find one.
     //If we receive a 401 error (token not valid), we'll display the login
@@ -185,7 +179,7 @@
 
 
 -(void) fbDidLogin {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     //[defaults setObject:[facebook accessToken] forKey:FACEBOOK_ACCESS_TOKEN_KEY];
     //[defaults setObject:[facebook expirationDate] forKey:FACEBOOK_EXIPIRATION_DATE_KEY];
     //[defaults synchronize];
@@ -294,14 +288,17 @@
     [provider registerMapping:[MBAuthentication getObjectMapping] withRootKeyPath:@"omniauth.auth"];
     [provider registerMapping:[MBPlayerSession getObjectMapping] withRootKeyPath:@"player_session"];
     [provider registerMapping:[Contestant getObjectMapping] withRootKeyPath:@"contestant"];
+    [provider registerMapping:[Candidate getObjectMapping] withRootKeyPath:@"candidate"];
+    [provider registerMapping:[Ballot getObjectMapping] withRootKeyPath:@"ballot"];
+    [provider registerMapping:[Ticket getObjectMapping] withRootKeyPath:@"ticket"];
+    [provider registerMapping:[Round getObjectMapping] withRootKeyPath:@"round"];
     //[provider addObjectMapping:[Round getObjectMapping]];
     //[provider addObjectMapping:[Player getObjectMapping]];
     
     
     //Setup Provider Serializations
-    RKObjectMapping *contestantSerializationMapping = [Contestant getSerializationMapping];
-    contestantSerializationMapping.rootKeyPath = @"contestant";
-    [provider setSerializationMapping:contestantSerializationMapping forClass:[Contestant class]];
+    [provider setSerializationMapping:[Contestant getSerializationMapping] forClass:[Contestant class]];
+    [provider setSerializationMapping:[Candidate getSerializationMapping] forClass:[Candidate class]];
     //[provider setSerializationMapping:[[Game getObjectMapping] inverseMapping] forClass:[Game class]];
     
     manager.mappingProvider = provider;
@@ -310,13 +307,17 @@
     //Setup Routes
     RKObjectRouter *router = [RKObjectManager sharedManager].router;
     [router routeClass:[Game class] toResourcePath:@"/games.json" forMethod:RKRequestMethodPOST];
-    //[router routeClass:[Player class] toResourcePath:@"players/:playerId"];
+    [router routeClass:[Candidate class] toResourcePath:@"/candidates/:candidateId\\.json" forMethod:RKRequestMethodPUT];
     [router routeClass:[Player class] toResourcePath:@"/players.json" forMethod:RKRequestMethodPOST];
     [router routeClass:[MBAuthentication class] toResourcePath:@"/authentications" forMethod:RKRequestMethodPOST];
     [router routeClass:[MBPlayerSession class] toResourcePath:@"/player_sessions" forMethod:RKRequestMethodPOST];
-    [router routeClass:[Contestant class] toResourcePathPattern:@"/contestants/:contestantId\\.json" forMethod:RKRequestMethodPUT];
+    [router routeClass:[Contestant class] toResourcePath:@"/contestants/:contestantId\\.json" forMethod:RKRequestMethodPUT];
     [router routeClass:[Contestant class] toResourcePath:@"players/:playerId/contestants.json" forMethod:RKRequestMethodGET];
     [router routeClass:[Contestant class] toResourcePath:@"/contestants.json" forMethod:RKRequestMethodPOST];
+    [router routeClass:[Ballot class] toResourcePath:@"/ballots.json" forMethod:RKRequestMethodPOST];
+    [router routeClass:[Round class] toResourcePath:@"/rounds.json" forMethod:RKRequestMethodPOST];
+    [router routeClass:[Round class] toResourcePath:@"/rounds/:roundId\\.json" forMethod:RKRequestMethodPUT];
+
     [RKObjectManager setSharedManager:manager];
         
 }

@@ -66,6 +66,11 @@
     [self changePage:self.pageControl.currentPage];
 }
 
+- (void)refreshOverviewController {
+    UITableViewController *tableViewController = [viewControllers objectAtIndex:0];
+    [tableViewController.tableView reloadData];
+}
+
 #pragma Mark - ScrollViewWithPaging Delegate methods
 -(void)changePage:(int)page{
     self.pageControl.currentPage = page;
@@ -75,6 +80,8 @@
     frame.size = self.scrollView.frame.size;
     [self.scrollView scrollRectToVisible:frame animated:YES];
     pageControlBeingUsed = YES;
+    if(page == 0)
+        [self refreshOverviewController];
 }
 
 -(void)nextPage{
@@ -93,6 +100,8 @@
     if(!pageControlBeingUsed){
         CGFloat pageWidth = self.scrollView.frame.size.width;
         int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+        if(page == 0 && self.pageControl.currentPage != page)
+            [self refreshOverviewController];
         self.pageControl.currentPage = page;
     }
 }

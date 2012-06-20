@@ -36,7 +36,8 @@
 
 
 -(void)loginToFacebook:(id)sender;
--(void)initHttpClientWithUsername:(NSString *)username password:(NSString*)password;
+-(void)initHttpClient;
+-(void)initializeFacebookSession;
 -(void)logout:(id)sender;
 
 

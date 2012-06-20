@@ -80,6 +80,8 @@
         newContestant.status = @"0";
         [[RKObjectManager sharedManager] postObject:newContestant delegate:NULL];
     }
+    [self.navigationController popViewControllerAnimated:YES];
+
 }
 
 #pragma mark - View lifecycle
@@ -159,6 +161,10 @@
 -(IBAction)createGameButtonClicked:(id) sender{
     if(![self isGameValid])
         return;
+    if(game){
+        [self invitePlayersToGame:game];
+        return;
+    }
     Game *newGame = [[Game alloc] init];
     newGame.name = self.nameTextField.text;
     newGame.ownerId = [[NSUserDefaults standardUserDefaults] objectForKey:USER_ID_KEY];
@@ -261,7 +267,9 @@
     }else if ([[objectLoader.targetObject class] isEqual:[Game class]]){ //It's a game
         //ADD THE PLAYERS AS CONTESTANTS
         [self invitePlayersToGame:(Game *)objectLoader.targetObject];
-        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if([[objectLoader.targetObject class] isEqual:[Player class]]){
+        
     }
 
 }

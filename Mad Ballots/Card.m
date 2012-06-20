@@ -23,16 +23,19 @@
     [objectMapping mapKeyPath:@"id" toAttribute:@"cardId"];
     [objectMapping mapKeyPath:@"round_id" toAttribute:@"roundId"];
     [objectMapping mapKeyPath:@"contestant_id" toAttribute:@"contestantId"];
-    [objectMapping mapKeyPath:@"vote_status" toAttribute:@"voteStatus"];
     [objectMapping mapKeyPath:@"card_status" toAttribute:@"cardStatus"];
+    [objectMapping mapKeyPath:@"vote_status" toAttribute:@"voteStatus"];
+    [objectMapping mapKeyPath:@"state" toAttribute:@"state"];
     return objectMapping;
 }
 
 -(BOOL) isCardFilled{
     return [cardStatus isEqualToString:@"1"];
 }
+
 -(BOOL) isVoteCast{
-    return [cardStatus isEqualToString:@"1"];
+    return [voteStatus isEqualToString:@"1"];
 }
+
 
 @end

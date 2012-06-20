@@ -30,5 +30,6 @@
 
 -(BOOL) areCardsFilled;
 -(BOOL) areVotesCast;
+-(BOOL) isRoundOver;
 
 @end

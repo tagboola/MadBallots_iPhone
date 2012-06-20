@@ -1,30 +1,28 @@
 //
-//  CandidateViewController.m
+//  BallotOverviewController.m
 //  Mad Ballots
 //
-//  Created by Tunde Agboola on 5/31/12.
+//  Created by Tunde Agboola on 6/6/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "CandidateOverviewController.h"
+#import "TicketOverviewViewController.h"
 #import "Candidate.h"
+#import "Contestant.h"
 
-#define TABLEVIEW_CELL_HEIGHT 88
-
-@implementation CandidateOverviewController
+@implementation TicketOverviewViewController
 
 @synthesize delegate;
+@synthesize tickets;
 @synthesize candidates;
-@synthesize tableView;
-
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        UITableView *newTableView = [[UITableView alloc] initWithFrame:CGRectZero style:style];
-        self.tableView = newTableView;
+        self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:style];
+        self.view = self.tableView;
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
     }
@@ -87,37 +85,35 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [candidates count];
+    return [tickets count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"CardCell";
+    static NSString *CellIdentifier = @"BallotOverviewCell";
     
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CardTableViewCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    Candidate *candidate = [candidates objectAtIndex:indexPath.row];
-    UILabel *label = (UILabel *)[cell viewWithTag:1];
-    label.text = candidate.player.name;
-    UILabel *valueLabel = (UILabel*)[cell viewWithTag:4];
-    valueLabel.text = candidate.value ? candidate.value : @"";
-    UIImageView *imageView = (UIImageView*) [cell viewWithTag:3];
-    //TODO: Add image support
-    imageView.image = [UIImage imageNamed:@"default_list_user.png"];
     
+    // Configure the cell...
+    Ticket *ticket = [tickets objectAtIndex:indexPath.row];
+    cell.textLabel.text = ticket.player.name;
+    Candidate *candidate = [candidates objectForKey:ticket.contestantId];
+    if(candidate)
+        cell.detailTextLabel.text = candidate.value;
     return cell;
-        
 }
 
 /*
@@ -161,13 +157,10 @@
 
 #pragma mark - Table view delegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return TABLEVIEW_CELL_HEIGHT;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [delegate changePage:indexPath.row+1];    
+    [delegate changePage:indexPath.row];
+
 }
 
 @end

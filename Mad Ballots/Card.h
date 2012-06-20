@@ -30,4 +30,5 @@
 -(BOOL) isCardFilled;
 -(BOOL) isVoteCast;
 
+
 @end

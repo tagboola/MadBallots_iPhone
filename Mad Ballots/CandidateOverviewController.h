@@ -1,5 +1,5 @@
 //
-//  CardViewController.h
+//  CandidateOverviewController.h
 //  Mad Ballots
 //
 //  Created by Tunde Agboola on 5/31/12.
@@ -10,12 +10,11 @@
 #import "CardViewController.h"
 
 @interface CandidateOverviewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>{
-    NSArray *contestants;
-    IBOutlet UITableView *tableView;
+    NSArray *candidates;
+    UITableView *tableview;
 }
 @property (nonatomic, unsafe_unretained) id <ScrollViewWithPagingDelegate> delegate;
-@property (nonatomic, retain) NSArray *contestants;
-@property (nonatomic, retain) IBOutlet UITableView *tableView;
-
+@property (nonatomic, retain) NSArray *candidates;
+@property (nonatomic, retain) UITableView *tableview;
 
 @end

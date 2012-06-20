@@ -8,13 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "RestKit.h"
-
+#import "Player.h"
 
 @interface Candidate : NSObject{
     NSString *candidateId;
     NSString *contestantId;
     NSString *cardId;
     NSString *value;
+    Player *player;
 }
 
 
@@ -22,7 +23,10 @@
 @property (nonatomic, retain) NSString *contestantId;
 @property (nonatomic, retain) NSString *cardId;
 @property (nonatomic, retain) NSString *value;
+@property (nonatomic, retain) Player *player;
+
 
 +(RKObjectMapping*)getObjectMapping;
++(RKObjectMapping*)getSerializationMapping;
 
 @end
