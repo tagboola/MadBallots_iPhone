@@ -37,4 +37,8 @@
     return [voteStatus isEqualToString:@"1"];
 }
 
+-(BOOL) isRoundOver{
+    return [self areCardsFilled] && [self areVotesCast];
+}
+
 @end

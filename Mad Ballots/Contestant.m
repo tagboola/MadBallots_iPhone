@@ -28,8 +28,8 @@
     [contestantMapping mapKeyPath:@"game_id" toAttribute:@"gameId"];
     [contestantMapping mapKeyPath:@"player_id" toAttribute:@"playerId"];
     [contestantMapping mapKeyPath:@"game" toRelationship:@"game" withMapping:[Game getObjectMapping]];
-    //[contestantMapping mapKeyPath:@"active_card" toRelationship:@"card" withMapping:[Card getObjectMapping]];
-    //[contestantMapping mapKeyPath:@"current_round" toRelationship:@"round" withMapping:[Round getObjectMapping]];
+    [contestantMapping mapKeyPath:@"active_card" toRelationship:@"card" withMapping:[Card getObjectMapping]];
+    [contestantMapping mapKeyPath:@"current_round" toRelationship:@"round" withMapping:[Round getObjectMapping]];
     [contestantMapping mapKeyPath:@"player" toRelationship:@"player" withMapping:[Player getObjectMapping]];
     [contestantMapping mapKeyPath:@"status" toAttribute:@"status"];
     [contestantMapping mapKeyPath:@"game_owner" toAttribute:@"gameOwner"];
@@ -50,6 +50,7 @@
 
 +(RKObjectMapping*) getSerializationMapping{
     RKObjectMapping *serializationMapping = [[Contestant getPostObjectMapping] inverseMapping];
+    serializationMapping.rootKeyPath = @"contestant";
     return serializationMapping;
 }
 
@@ -68,7 +69,8 @@
         return @"Cast your vote!";
     else if(![round areVotesCast])
         return @"Waiting for votes to be cast...";
-    
+    else 
+        return @"Waiting to start the next round...";
     return @"";
 }
 
@@ -85,7 +87,6 @@
         return YES;
     else if(![round areVotesCast])
         return NO;
-    
     return NO;    
 }
 
@@ -114,5 +115,10 @@
 -(BOOL) hasRejectedInvite{
     return [status isEqualToString:@"-1"];
 }
+
+-(BOOL) hasGameStarted{
+    return round != nil;
+}
+
 
 @end

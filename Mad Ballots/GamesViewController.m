@@ -13,7 +13,6 @@
 #import "Contestant.h"
 
 
-#define TABLEVIEW_CELL_HEIGHT 88
 
 @implementation GamesViewController
 
@@ -29,8 +28,10 @@
 }
 
 -(void) loadGames{
-    NSString *contestantsPath = [NSString stringWithFormat:@"players/%@/contestants.json",[AppDelegate currentPlayer].playerId];
-    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:contestantsPath delegate:self];
+    if([AppDelegate currentPlayer].playerId){
+        NSString *contestantsPath = [NSString stringWithFormat:@"players/%@/contestants.json",[AppDelegate currentPlayer].playerId];
+        [[RKObjectManager sharedManager] loadObjectsAtResourcePath:contestantsPath delegate:self];
+    }
 }
 
 #pragma mark - View lifecycle
@@ -56,7 +57,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self navigationController].toolbarHidden = FALSE;
+    //[self navigationController].toolbarHidden = FALSE;
     [self refreshUI];
 }
 
@@ -84,10 +85,9 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showGameViewController"]) {
         GameViewController *gameView = [segue destinationViewController];
-        NSIndexPath *indexPath = [self.tableView 
-                                    indexPathForSelectedRow];
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         Contestant *contestant = [[self.gamesArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-       gameView.contestant = contestant;
+        gameView.contestant = contestant;
     }
     
 }
@@ -95,6 +95,16 @@
 
 -(IBAction)logout:(id)sender
 {
+    if ([AppDelegate getInstance].currentPlayer){
+//        welcomeLabel.text = [NSString stringWithFormat:@"Welcome, %@", [AppDelegate getInstance].currentPlayer.name];
+//        loginLogoutButton.title = @"Logout";
+        self.gamesArray = [NSArray array];
+        AppDelegate * app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        [app logout:sender];
+    }else{
+//        loginLogoutButton.title = @"Login";
+        [AppDelegate showLogin];
+    }
     [[AppDelegate getInstance] logout:sender];
 }
 
@@ -105,12 +115,12 @@
     if ([AppDelegate getInstance].currentPlayer){
         welcomeLabel.text = [NSString stringWithFormat:@"Welcome, %@", [AppDelegate getInstance].currentPlayer.name];
         loginLogoutButton.title = @"Logout";
-        loginLogoutButton.target = [AppDelegate getInstance];
-        loginLogoutButton.action = @selector(logout:);
+//        loginLogoutButton.target = [AppDelegate getInstance];
+//        loginLogoutButton.action = @selector(logout:);
     }else{
         loginLogoutButton.title = @"Login";
-        loginLogoutButton.target = [AppDelegate class];
-        loginLogoutButton.action = @selector(showLogin:);
+//        loginLogoutButton.target = [AppDelegate class];
+//        loginLogoutButton.action = @selector(showLogin:);
     }
     [self loadGames];
     
@@ -163,7 +173,7 @@
 #pragma mark UITableViewDelegate methods
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return TABLEVIEW_CELL_HEIGHT;
+    return 88;
 }
 
 // Override to support conditional editing of the table view.
@@ -196,6 +206,8 @@
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error{
     NSLog(@"Object Loader failed with error: %@", [error localizedDescription]);
+    //TODO Check error message and show appropriate message
+    [[[UIAlertView alloc] initWithTitle:@"Unable to load games" message:@"Please check network connection and try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 }
 
 

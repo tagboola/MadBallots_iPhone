@@ -12,7 +12,7 @@
 
 @interface GameViewController : UIViewController <UITableViewDataSource,UITableViewDelegate, RKObjectLoaderDelegate>{
     Contestant *contestant;
-    NSMutableArray *contestants;
+    NSMutableArray *gameContestants;
     IBOutlet UIToolbar *acceptGameInvitationToolbar;
     IBOutlet UIToolbar *startGameToolbar;
     IBOutlet UIButton *fillCardButton;
@@ -26,7 +26,7 @@
 @property (nonatomic,retain) IBOutlet UIToolbar *acceptGameInvitationToolbar;
 @property (nonatomic,retain) IBOutlet UIToolbar *startGameToolbar;
 @property (nonatomic,retain) Contestant *contestant;
-@property (nonatomic,retain) NSMutableArray *contestants;
+@property (nonatomic,retain) NSMutableArray *gameContestants;
 @property (nonatomic,retain) IBOutlet UIButton *fillCardButton;
 @property (nonatomic,retain) IBOutlet UIButton *voteButton;
 @property (nonatomic,retain) IBOutlet UILabel *gameNameLabel;
@@ -38,6 +38,7 @@
 
 -(IBAction)acceptGameInvitation:(id)sender;
 -(IBAction)rejectGameInvitation:(id)sender;
+-(IBAction)startGame:(id)sender;
 
 
 

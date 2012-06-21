@@ -8,10 +8,9 @@
 
 #import "PlayerRequestViewController.h"
 #import "AppDelegate.h"
-#import "UIImageView+WebCache.h"
 #import "SFHFKeychainUtils.h"
 #import "Player.h"
-#import "CreateGameController.h"
+#import "CreateGameViewController.h"
 
 #define MAX_NUMBER_OF_INVITES MAXIMUM_NUMBER_OF_INVITES - [self.invitedPlayers count]
 
@@ -108,7 +107,10 @@ static NSString * const CHECKED = @"checked";
 
 -(IBAction)addSelectedPlayers:(id)sender{
     for(NSDictionary *facebookDictionary in selectedPlayersArray){
-        [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/players.json?facebook_id=%@",[facebookDictionary objectForKey:ID]] objectMapping:[Player getObjectMapping] delegate:self];
+        //TODO: Search for authorizations instead of player
+        [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/players.json?facebook_id=%@",[facebookDictionary objectForKey:ID]] delegate:self];
+        
+         //[[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/players.json?facebook_id=%@",[facebookDictionary objectForKey:ID]] objectMapping:[Player getObjectMapping] delegate:self];
     }
 }
 
@@ -156,7 +158,8 @@ static NSString * const CHECKED = @"checked";
     else
         cell.accessoryType = UITableViewCellAccessoryNone;
     cell.textLabel.text = [element objectForKey:NAME];
-    [cell.imageView setImageWithURL:[NSURL URLWithString:[element objectForKey:IMAGE_URL]] placeholderImage:[UIImage imageNamed:@"default_list_user.png"]];
+    //TODO: Add image support
+    cell.imageView.image = [UIImage imageNamed:@"defaut_list_user.png"];
 
 	return cell;
 }
@@ -289,7 +292,7 @@ static NSString * const CHECKED = @"checked";
     NSLog(@"Loaded collection of Players: %@", objects);
     if([objects count] > 0){
         Player *player = [objects objectAtIndex:0];
-        CreateGameController *createGameView = [[self.navigationController viewControllers] objectAtIndex:([[self.navigationController viewControllers] count]-2)];
+        CreateGameViewController *createGameView = [[self.navigationController viewControllers] objectAtIndex:([[self.navigationController viewControllers] count]-2)];
         [createGameView invitePlayer:player];
     }
     RKRequestQueue *queue = [[RKObjectManager sharedManager] requestQueue]; 

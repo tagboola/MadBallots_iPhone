@@ -31,9 +31,6 @@
     return [ownerId isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:USER_ID_KEY]];
 }
 
--(BOOL) hasGameStarted{
-    return currentGameId != nil;
-}
 
 
 
