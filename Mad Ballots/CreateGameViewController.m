@@ -47,18 +47,14 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)updateButtons{
-    BOOL invitationsAllowed = [playersToBeInvited count] < MAXIMUM_NUMBER_OF_INVITES;
-    self.inviteButton.userInteractionEnabled = invitationsAllowed;
-    self.facebookTableViewCell.userInteractionEnabled = invitationsAllowed;
-    self.playerInviteTextField.userInteractionEnabled = invitationsAllowed;
+- (void)allowPlayerInvitations:(BOOL)allowed {
+    self.inviteButton.userInteractionEnabled = allowed;
+    self.facebookTableViewCell.userInteractionEnabled = allowed;
+    self.playerInviteTextField.userInteractionEnabled = allowed;
 }
 
 - (void)invitePlayer:(Player *)player{
-    if([playersToBeInvited count] >= MAXIMUM_NUMBER_OF_INVITES){
-        [self updateButtons];
-        return;
-    }
+    //TODO: Protect the array from exceding the maximum number of invites
     for(Player *invitedPlayer in self.playersToBeInvited){
         if([invitedPlayer.username isEqualToString:player.username]){
             if(self.navigationController.visibleViewController == self)
@@ -68,7 +64,9 @@
     }
     [self.playersToBeInvited addObject:player];
     [self.tableView reloadData];
-    [self updateButtons];
+    if([self.playersToBeInvited count] == MAXIMUM_NUMBER_OF_INVITES){
+        [self allowPlayerInvitations:NO];
+    }
 }
 
 -(void)invitePlayersToGame:(Game *)aGame{
@@ -80,8 +78,6 @@
         newContestant.status = @"0";
         [[RKObjectManager sharedManager] postObject:newContestant delegate:NULL];
     }
-    [self.navigationController popViewControllerAnimated:YES];
-
 }
 
 #pragma mark - View lifecycle
@@ -117,7 +113,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];    
+    [super viewWillAppear:animated];
+    
     [self.tableView reloadData];
 }
 
@@ -161,27 +158,16 @@
 -(IBAction)createGameButtonClicked:(id) sender{
     if(![self isGameValid])
         return;
-    if(game){
-        [self invitePlayersToGame:game];
-        return;
+    if(!game){ //CREATE A NEW GAME
+        Game *newGame = [[Game alloc] init];
+        newGame.name = self.nameTextField.text;
+        newGame.ownerId = [[NSUserDefaults standardUserDefaults] objectForKey:USER_ID_KEY];
+        newGame.numberOfRounds = self.numOfRoundsTextField.text;
+        [[RKObjectManager sharedManager] postObject:newGame delegate:self];
+    }else{ //GAME ALREADY EXISTS - JUST INVITING PLAYERS
+        [self invitePlayersToGame:[self game]];
     }
-    Game *newGame = [[Game alloc] init];
-    newGame.name = self.nameTextField.text;
-    newGame.ownerId = [[NSUserDefaults standardUserDefaults] objectForKey:USER_ID_KEY];
-    newGame.numberOfRounds = self.numOfRoundsTextField.text;
-    NSString *resourcePath = @"/games.json?playerIds=";
-    for(int ii=numberOfPlayersAlreadyInvited ;ii < [playersToBeInvited count];ii++){
-        Player *player = [playersToBeInvited objectAtIndex:ii];
-        resourcePath = [resourcePath stringByAppendingString:[NSString stringWithFormat:@"%@,",player.playerId]];
-    }
-    resourcePath = [resourcePath substringToIndex:(resourcePath.length-1)];
-    if(game)
-        resourcePath = [resourcePath stringByAppendingFormat:@"&gameId=%@",game.gameId];
     
-    RKObjectRouter *router = [[RKObjectRouter alloc] init];
-    [router routeClass:[Game class] toResourcePath:resourcePath forMethod:RKRequestMethodPOST];
-    [RKObjectManager sharedManager].router = router;
-    [[RKObjectManager sharedManager] postObject:newGame delegate:self];
 }
 
 
@@ -227,14 +213,12 @@
         cell.imageView.image = nil;
         return cell;
     }
+    //TODO show invited players image
     Player *player = [playersToBeInvited objectAtIndex:indexPath.row];
     cell.textLabel.text = player.username;
     if(indexPath.row <= numberOfPlayersAlreadyInvited - 1)
         cell.textLabel.textColor = [UIColor grayColor];
     cell.accessoryType =  UITableViewCellAccessoryCheckmark;
-    //TODO show invited players image
-    cell.imageView.image = [UIImage imageNamed:@"default_list_user.png"];
-    
     
     return cell;
 }
@@ -248,9 +232,10 @@
     if(indexPath.row <= numberOfPlayersAlreadyInvited - 1)
         return;
     if(indexPath.section == 2 && [playersToBeInvited count] > indexPath.row){
-        [playersToBeInvited removeObjectAtIndex:indexPath.row];    
+        [playersToBeInvited removeObjectAtIndex:indexPath.row];
+        if([playersToBeInvited count] == MAXIMUM_NUMBER_OF_INVITES - 1)
+            [self allowPlayerInvitations:YES];        
         [self.tableView reloadData];
-        [self updateButtons];
     }
 }
 
@@ -267,11 +252,9 @@
     }else if ([[objectLoader.targetObject class] isEqual:[Game class]]){ //It's a game
         //ADD THE PLAYERS AS CONTESTANTS
         [self invitePlayersToGame:(Game *)objectLoader.targetObject];
+        [self.navigationController popViewControllerAnimated:YES];
     }
-    else if([[objectLoader.targetObject class] isEqual:[Player class]]){
-        
-    }
-
+    
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error{

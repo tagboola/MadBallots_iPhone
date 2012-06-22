@@ -237,17 +237,31 @@
 
 - (void)respondToGameInvitation
 {
-    contestant.status = @"-1";
-    [[RKObjectManager sharedManager] putObject:contestant delegate:self];
-} 
-
-
--(BOOL) allContestantsResponded{
-    for(Contestant *gameContestant in self.contestants){
-        if([gameContestant isInvitation])
-            return false;
-    }
-    return true;
+    RKObjectMappingProvider *mapper = [[RKObjectMappingProvider alloc] init];
+    RKObjectRouter *router = [[RKObjectRouter alloc] init];
+    [mapper registerMapping:[Contestant getPostObjectMapping] withRootKeyPath:@"contestant"];
+    [router routeClass:[Contestant class] toResourcePath:[NSString stringWithFormat:@"/contestants/%@.json", contestant.contestantId] forMethod:RKRequestMethodPUT];
+    [RKObjectManager sharedManager].mappingProvider = mapper;
+    [RKObjectManager sharedManager].router = router;
+    [[RKObjectManager sharedManager] putObject:contestant usingBlock:^(RKObjectLoader *loader) {
+        Contestant *newContestant = (Contestant*)loader.sourceObject;
+        loader.onDidLoadObjects = ^(NSArray *objects){
+            if([newContestant hasRejectedInvite])
+                [self.navigationController popViewControllerAnimated:YES];
+            else{
+                [self hideToolbar:acceptGameInvitationToolbar];
+                for(Contestant *gameContestant in gameContestants){
+                    if([gameContestant.contestantId isEqualToString:contestant.contestantId])
+                        gameContestant.status = @"1";
+                }
+                [self.tableView reloadData];
+            }
+            [self updateUI];
+        };
+        loader.onDidFailWithError = ^(NSError *error){
+            NSLog(@"Error putting contestant:%@",[error localizedDescription]);
+        };
+    }];
 }
 
 -(IBAction)acceptGameInvitation:(id)sender
