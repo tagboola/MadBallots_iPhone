@@ -297,7 +297,10 @@
     
     
     //Setup Provider Serializations
-    [provider setSerializationMapping:[Contestant getSerializationMapping] forClass:[Contestant class]];
+    RKObjectMapping *contestantSerializationMapping = [Contestant getSerializationMapping];
+    contestantSerializationMapping.rootKeyPath = @"contestant";
+    [provider setSerializationMapping:contestantSerializationMapping forClass:[Contestant class]];
+    //[provider setSerializationMapping:[Contestant getSerializationMapping] forClass:[Contestant class]];
     [provider setSerializationMapping:[Candidate getSerializationMapping] forClass:[Candidate class]];
     //[provider setSerializationMapping:[[Game getObjectMapping] inverseMapping] forClass:[Game class]];
     
@@ -311,7 +314,8 @@
     [router routeClass:[Player class] toResourcePath:@"/players.json" forMethod:RKRequestMethodPOST];
     [router routeClass:[MBAuthentication class] toResourcePath:@"/authentications" forMethod:RKRequestMethodPOST];
     [router routeClass:[MBPlayerSession class] toResourcePath:@"/player_sessions" forMethod:RKRequestMethodPOST];
-    [router routeClass:[Contestant class] toResourcePath:@"/contestants/:contestantId\\.json" forMethod:RKRequestMethodPUT];
+    [router routeClass:[Contestant class] toResourcePathPattern:@"/contestants/:contestantId\\.json" forMethod:RKRequestMethodPUT];
+    //[router routeClass:[Contestant class] toResourcePath:@"/contestants/:contestantId\\.json" forMethod:RKRequestMethodPUT];
     [router routeClass:[Contestant class] toResourcePath:@"players/:playerId/contestants.json" forMethod:RKRequestMethodGET];
     [router routeClass:[Contestant class] toResourcePath:@"/contestants.json" forMethod:RKRequestMethodPOST];
     [router routeClass:[Ballot class] toResourcePath:@"/ballots.json" forMethod:RKRequestMethodPOST];
