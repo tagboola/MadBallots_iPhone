@@ -159,7 +159,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [delegate changePage:indexPath.row];
+    [delegate changePage:indexPath.row+1];
 
 }
 
