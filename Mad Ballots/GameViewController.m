@@ -232,7 +232,7 @@
         [self closeRound];
         return;
     }
-    [self closeRound];
+    [self startNewRound];
 }
 
 - (void)respondToGameInvitation
