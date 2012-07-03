@@ -5,7 +5,13 @@ NSString * const PASSWORD_KEY = @"password";
 NSString * const NAME_KEY = @"name";
 NSString * const EMAIL_KEY = @"email";
 NSString * const FACEBOOK_ID_KEY = @"facebookId";
-NSString * const BASE_URL = @"http://localhost:3000";
+#if TARGET_IPHONE_SIMULATOR
+ NSString * const BASE_URL = @"http://localhost:3000";
+#else
+ NSString * const BASE_URL = @"http://24.60.153.138:3000";
+#endif
+
+
 NSString * const DEFAULT_NUMBER_OF_ROUNDS = @"10";
 
 //Facebook Constants
