@@ -18,6 +18,7 @@
 @synthesize passwordConfirmation;
 @synthesize facebookId;
 @synthesize persistenceToken;
+@synthesize appleDeviceToken;
 
 +(RKObjectMapping*) getObjectMapping{
     RKObjectMapping *playerMapping = [RKObjectMapping mappingForClass:[Player class]];
@@ -28,6 +29,8 @@
     [playerMapping mapKeyPath:@"password" toAttribute:@"password"];
     [playerMapping mapKeyPath:@"password_confirmation" toAttribute:@"passwordConfirmation"];
     [playerMapping mapKeyPath:@"persistence_token" toAttribute:@"persistenceToken"];
+    [playerMapping mapKeyPath:@"apple_device_id" toAttribute:@"appleDeviceToken"];
+
 
     return playerMapping;
 }

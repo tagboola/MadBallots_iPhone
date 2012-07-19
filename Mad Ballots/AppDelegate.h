@@ -11,22 +11,27 @@
 #import "RestKit.h"
 #import "Player.h"
 #import "MBRootNavigationController.h"
+#import "MBNotificationProcessor.h"
 
 @class Player;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,FBSessionDelegate,FBRequestDelegate,RKObjectLoaderDelegate, RKRequestQueueDelegate>{
     Facebook *facebook;
     Player *currentPlayer;
-    MBRootNavigationController *rootNavController;
+    UINavigationController *rootNavController;
     BOOL isAuthenticated;
+    NSData *deviceToken;
+    MBNotificationProcessor *notificationProcessor;
 
 }
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic,retain) Facebook *facebook;
 @property (nonatomic, retain) Player *currentPlayer;
-@property (nonatomic, retain) MBRootNavigationController *rootNavController;
+@property (nonatomic, retain) UINavigationController *rootNavController;
+@property (nonatomic, retain) NSData *deviceToken;
 @property BOOL isAuthenticated;
+@property (nonatomic, retain) MBNotificationProcessor *notificationProcessor;
 
 +(AppDelegate *)getInstance;
 +(Player *)currentPlayer;
@@ -42,5 +47,6 @@
 
 
 -(void)requestPlayerSession;
+-(void)submitDeviceTokenForPlayer:(Player *)aPlayer;
 
 @end

@@ -23,3 +23,8 @@ NSString * const FACEBOOK_EXIPIRATION_DATE_KEY = @"FBExpirationDateKey";
 NSString * const MAD_BALLOTS_AUTH_PROVIDER_STRING = @"mad_ballots";
 NSString * const FACEBOOK_AUTH_PROVIDER_STRING = @"facebook";
 NSString * const LOGOUT_RESPONSE_STRING = @"Successfully logged out";
+
+
+NSString * const MB_NOTIFICATION_ACTION_IDENTIFIER_VOTE = @"vote";
+NSString * const MB_NOTIFICATION_ACTION_IDENTIFIER_FILL_CARD = @"fill_card";
+NSString * const MB_NOTIFICATION_ACTION_IDENTIFIER_RSVP = @"rsvp";

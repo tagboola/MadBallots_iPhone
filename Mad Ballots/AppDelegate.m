@@ -13,12 +13,20 @@
 #import "Contestant.h"
 #import "Candidate.h"
 #import "GamesViewController.h"
+#import "GameViewController.h"
+#import "CardViewController.h"
+#import "VoteViewController.h"
 #import "MBAuthentication.h"
 #import "MBAuthenticationInfo.h"
 #import "MBAuthenticationCredentials.h"
+#import "MBNotificationActionHandler.h"
+#import "MBNotificationActionVote.h"
+#import "MBNotificationActionFillCard.h"
+#import "MBNotificationActionRSVP.h"
 #import "MBPlayerSession.h"
 #import "SFHFKeychainUtils.h"
 #import "Ballot.h"
+
 
 
 
@@ -29,6 +37,8 @@
 @synthesize currentPlayer;
 @synthesize rootNavController;
 @synthesize isAuthenticated;
+@synthesize deviceToken;
+@synthesize notificationProcessor;
 
 
 
@@ -66,9 +76,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+        
     //TODO: Application crashes if reachability fails
     [self initHttpClient];
     
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert)];
+
     //Try to create a session with the stored PToken. We'll set it to "" if we can't find one.
     //If we receive a 401 error (token not valid), we'll display the login
     [self requestPlayerSession];
@@ -78,9 +91,9 @@
 
     // Override point for customization after application launch.
     rootNavController = (UINavigationController *)self.window.rootViewController;
-    GamesViewController *gvc = (GamesViewController*)rootNavController.topViewController;
-    
 
+    
+    
     return YES;
 }
 							
@@ -172,7 +185,31 @@
 }
 
 
+#pragma mark Apple Remote Notification delegate methods
 
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
+    self.deviceToken = devToken;
+}
+
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
+    NSLog(@"Error in registration. Error: %@", err);
+    self.deviceToken = NULL;
+}
+
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    BOOL showDialog = NO;
+    self.notificationProcessor = [[MBNotificationProcessor alloc] initWithNotification:userInfo];
+    UIApplicationState appState = [[UIApplication sharedApplication] applicationState];
+    if (appState == UIApplicationStateActive){
+        showDialog = YES;
+    }
+    [self.notificationProcessor processNotificationWithDialog:showDialog];
+    
+}
+
+  
+  
 // Pre iOS 4.2 support
 
 #pragma mark FBSessionDelegate
@@ -312,6 +349,7 @@
     [router routeClass:[Game class] toResourcePath:@"/games.json" forMethod:RKRequestMethodPOST];
     [router routeClass:[Candidate class] toResourcePath:@"/candidates/:candidateId\\.json" forMethod:RKRequestMethodPUT];
     [router routeClass:[Player class] toResourcePath:@"/players.json" forMethod:RKRequestMethodPOST];
+    [router routeClass:[Player class] toResourcePath:@"/players/:playerId" forMethod:RKRequestMethodPUT];
     [router routeClass:[MBAuthentication class] toResourcePath:@"/authentications" forMethod:RKRequestMethodPOST];
     [router routeClass:[MBPlayerSession class] toResourcePath:@"/player_sessions" forMethod:RKRequestMethodPOST];
     [router routeClass:[Contestant class] toResourcePathPattern:@"/contestants/:contestantId\\.json" forMethod:RKRequestMethodPUT];
@@ -347,6 +385,17 @@
             [[NSUserDefaults standardUserDefaults] synchronize];
             [SFHFKeychainUtils storeUsername:player.playerId andPassword:player.persistenceToken forServiceName:@"mb_ptoken" updateExisting:YES error:NULL];
             [(GamesViewController *)rootNavController.topViewController refreshUI];
+            
+            [self submitDeviceTokenForPlayer:self.currentPlayer];
+            
+            NSString *deviceTokenString = [NSString stringWithFormat:@"%@", self.deviceToken];
+            NSString *formattedDeviceTokenString = [deviceTokenString substringWithRange:NSMakeRange(1, [deviceTokenString length] - 2)];
+            if ([formattedDeviceTokenString isEqualToString:@"null"])
+                formattedDeviceTokenString =@"796ed65c f80dbeae 2f9858f1 60b7e46d cca6d1ad 9a8d59af a13d0369 e65a8f6b";
+            self.currentPlayer.appleDeviceToken = formattedDeviceTokenString;          
+            //Update the Player's appleDeviceID
+            [[RKObjectManager sharedManager] putObject:self.currentPlayer delegate:NULL];            
+            
             [AppDelegate dismissLogin];
         }else{ //Handle the error?
             
@@ -354,6 +403,19 @@
     }
     
 }
+
+
+
+-(void)submitDeviceTokenForPlayer:(Player *)aPlayer{
+    NSString *deviceTokenString = [NSString stringWithFormat:@"%@", self.deviceToken];
+    NSString *formattedDeviceTokenString = [deviceTokenString substringWithRange:NSMakeRange(1, [deviceTokenString length] - 2)];
+    if ([formattedDeviceTokenString isEqualToString:@"null"])
+        formattedDeviceTokenString =@"796ed65c f80dbeae 2f9858f1 60b7e46d cca6d1ad 9a8d59af a13d0369 e65a8f6b";
+    aPlayer.appleDeviceToken = formattedDeviceTokenString;          
+    //Update the Player's appleDeviceID
+    [[RKObjectManager sharedManager] putObject:aPlayer delegate:NULL];   
+}
+
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error{
     NSLog(@"Object Loader failed with error: %@", [error localizedDescription]);
