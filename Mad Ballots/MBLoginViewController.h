@@ -13,8 +13,8 @@
 
 @interface MBLoginViewController : UITableViewController <RKObjectLoaderDelegate,FBRequestDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (unsafe_unretained, nonatomic) IBOutlet UITextField *usernameTextField;
+@property (unsafe_unretained, nonatomic) IBOutlet UITextField *passwordTextField;
 
 - (IBAction)login:(UIButton *)sender;
 - (IBAction)loginWithFacebook:(UIButton *)sender;

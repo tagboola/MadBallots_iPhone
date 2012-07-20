@@ -20,6 +20,7 @@
     NSString *passwordConfirmation;
     NSString *facebookId;
     NSString *persistenceToken;
+    NSString *appleDeviceToken;
 }
 
 @property (nonatomic,retain) NSString *playerId;
@@ -30,6 +31,7 @@
 @property (nonatomic,retain) NSString *passwordConfirmation;
 @property (nonatomic,retain) NSString *facebookId;
 @property (nonatomic,retain) NSString *persistenceToken;
+@property (nonatomic,retain) NSString *appleDeviceToken;
 
 
 +(RKObjectMapping*)getObjectMapping;

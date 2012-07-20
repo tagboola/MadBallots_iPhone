@@ -259,17 +259,12 @@
         [self closeRound];
         return;
     }
-    [self closeRound];
+    [self startNewRound];
 }
 
 - (void)respondToGameInvitation
 {
-    RKObjectMappingProvider *mapper = [[RKObjectMappingProvider alloc] init];
-    RKObjectRouter *router = [[RKObjectRouter alloc] init];
-    [mapper registerMapping:[Contestant getPostObjectMapping] withRootKeyPath:@"contestant"];
-    [router routeClass:[Contestant class] toResourcePath:[NSString stringWithFormat:@"/contestants/%@.json", contestant.contestantId] forMethod:RKRequestMethodPUT];
-    [RKObjectManager sharedManager].mappingProvider = mapper;
-    [RKObjectManager sharedManager].router = router;
+
     [[RKObjectManager sharedManager] putObject:contestant usingBlock:^(RKObjectLoader *loader) {
         Contestant *newContestant = (Contestant*)loader.sourceObject;
         loader.onDidLoadObjects = ^(NSArray *objects){

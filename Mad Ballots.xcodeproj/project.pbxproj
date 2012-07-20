@@ -61,6 +61,11 @@
 		0EFD327915A9EF1300785BC3 /* TicketResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EFD327715A9EF1300785BC3 /* TicketResultViewController.xib */; };
 		0EFD32CE15A9FB9D00785BC3 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EFD32CD15A9FB9D00785BC3 /* libCorePlot-CocoaTouch.a */; };
 		681188E9154F762D007B323B /* MBPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 681188E8154F762D007B323B /* MBPlayerViewController.m */; };
+		682FBBA015B3C4080094B4CC /* MBNotificationActionVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 682FBB9F15B3C4080094B4CC /* MBNotificationActionVote.m */; };
+		682FBBA315B663940094B4CC /* MBNotificationActionFillCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 682FBBA215B663930094B4CC /* MBNotificationActionFillCard.m */; };
+		682FBBA615B665FE0094B4CC /* MBNotificationActionRSVP.m in Sources */ = {isa = PBXBuildFile; fileRef = 682FBBA515B665FD0094B4CC /* MBNotificationActionRSVP.m */; };
+		682FBBA915B667670094B4CC /* MBNotificationAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 682FBBA815B667660094B4CC /* MBNotificationAction.m */; };
+		682FBBAC15B798B10094B4CC /* MBNotificationProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 682FBBAB15B798B00094B4CC /* MBNotificationProcessor.m */; };
 		6831FB491561FBCA0093AFB3 /* MBAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 6831FB481561FBCA0093AFB3 /* MBAuthentication.m */; };
 		6831FB4D1561FF3A0093AFB3 /* MBAuthenticationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6831FB4C1561FF3A0093AFB3 /* MBAuthenticationInfo.m */; };
 		6831FB501561FF480093AFB3 /* MBAuthenticationCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 6831FB4F1561FF480093AFB3 /* MBAuthenticationCredentials.m */; };
@@ -187,7 +192,7 @@
 		0EBA0D5315797CBC00BB55BC /* underline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = underline.png; sourceTree = "<group>"; };
 		0ED13895157FC24E00F400BF /* ScrollViewWithPaging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewWithPaging.h; sourceTree = "<group>"; };
 		0ED13896157FC24E00F400BF /* ScrollViewWithPaging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewWithPaging.m; sourceTree = "<group>"; };
-		0EE3D61214FEB63500E4A0CE /* Mad Ballots.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mad Ballots.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0EE3D61214FEB63500E4A0CE /* madballots.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = madballots.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EE3D61614FEB63500E4A0CE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0EE3D61814FEB63500E4A0CE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0EE3D61A14FEB63500E4A0CE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -295,6 +300,17 @@
 		0EFD32CD15A9FB9D00785BC3 /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libCorePlot-CocoaTouch.a"; path = "Mad Ballots/libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
 		681188E7154F762D007B323B /* MBPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPlayerViewController.h; sourceTree = "<group>"; };
 		681188E8154F762D007B323B /* MBPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPlayerViewController.m; sourceTree = "<group>"; };
+		682FBB9D15B3C3840094B4CC /* MBNotificationActionHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBNotificationActionHandler.h; sourceTree = "<group>"; };
+		682FBB9E15B3C4080094B4CC /* MBNotificationActionVote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBNotificationActionVote.h; sourceTree = "<group>"; };
+		682FBB9F15B3C4080094B4CC /* MBNotificationActionVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBNotificationActionVote.m; sourceTree = "<group>"; };
+		682FBBA115B663930094B4CC /* MBNotificationActionFillCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBNotificationActionFillCard.h; sourceTree = "<group>"; };
+		682FBBA215B663930094B4CC /* MBNotificationActionFillCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBNotificationActionFillCard.m; sourceTree = "<group>"; };
+		682FBBA415B665FD0094B4CC /* MBNotificationActionRSVP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBNotificationActionRSVP.h; sourceTree = "<group>"; };
+		682FBBA515B665FD0094B4CC /* MBNotificationActionRSVP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBNotificationActionRSVP.m; sourceTree = "<group>"; };
+		682FBBA715B667660094B4CC /* MBNotificationAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBNotificationAction.h; sourceTree = "<group>"; };
+		682FBBA815B667660094B4CC /* MBNotificationAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBNotificationAction.m; sourceTree = "<group>"; };
+		682FBBAA15B798AF0094B4CC /* MBNotificationProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBNotificationProcessor.h; sourceTree = "<group>"; };
+		682FBBAB15B798B00094B4CC /* MBNotificationProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBNotificationProcessor.m; sourceTree = "<group>"; };
 		6831FB471561FBCA0093AFB3 /* MBAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBAuthentication.h; sourceTree = "<group>"; };
 		6831FB481561FBCA0093AFB3 /* MBAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBAuthentication.m; sourceTree = "<group>"; };
 		6831FB4B1561FF3A0093AFB3 /* MBAuthenticationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBAuthenticationInfo.h; sourceTree = "<group>"; };
@@ -355,6 +371,7 @@
 		0E23E96A152EA5240027E9A0 /* Game Models */ = {
 			isa = PBXGroup;
 			children = (
+				682FBB9915B373D40094B4CC /* Notifications */,
 				6831FB4A1561FC920093AFB3 /* Authentication */,
 				0EE3D66314FECBB300E4A0CE /* Game.h */,
 				0EE3D66414FECBB300E4A0CE /* Game.m */,
@@ -412,7 +429,7 @@
 		0EE3D61314FEB63500E4A0CE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0EE3D61214FEB63500E4A0CE /* Mad Ballots.app */,
+				0EE3D61214FEB63500E4A0CE /* madballots.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -676,7 +693,7 @@
 			);
 			name = "Mad Ballots";
 			productName = "Mad Ballots";
-			productReference = 0EE3D61214FEB63500E4A0CE /* Mad Ballots.app */;
+			productReference = 0EE3D61214FEB63500E4A0CE /* madballots.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -858,7 +875,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeremy Clark (GZRMM2DK3Y)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -873,6 +890,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B3889FE7-AED4-4AD6-90F4-B814C4E9A066";
 				SDKROOT = iphoneos;
 				SYMROOT = build;
 			};
@@ -884,7 +902,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeremy Clark (GZRMM2DK3Y)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -893,6 +911,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B3889FE7-AED4-4AD6-90F4-B814C4E9A066";
 				SDKROOT = iphoneos;
 				SYMROOT = build;
 				VALIDATE_PRODUCT = YES;
@@ -902,7 +921,7 @@
 		0EE3D64914FEB63500E4A0CE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeremy Clark (GZRMM2DK3Y)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
@@ -912,14 +931,15 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"/**";
 				INFOPLIST_FILE = "Mad Ballots/Mad Ballots-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Mad Ballots/facebook-ios-sdk\"",
 					"\"$(SRCROOT)/Mad Ballots\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PRODUCT_NAME = madballots;
+				PROVISIONING_PROFILE = "B3889FE7-AED4-4AD6-90F4-B814C4E9A066";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -927,7 +947,7 @@
 		0EE3D64A14FEB63500E4A0CE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeremy Clark (GZRMM2DK3Y)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
@@ -937,14 +957,15 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"/**";
 				INFOPLIST_FILE = "Mad Ballots/Mad Ballots-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Mad Ballots/facebook-ios-sdk\"",
 					"\"$(SRCROOT)/Mad Ballots\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PRODUCT_NAME = madballots;
+				PROVISIONING_PROFILE = "B3889FE7-AED4-4AD6-90F4-B814C4E9A066";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -284,6 +284,8 @@
         [SFHFKeychainUtils storeUsername:player.playerId andPassword:player.persistenceToken forServiceName:@"mb_ptoken" updateExisting:YES error:NULL];
     }      
     
+    [[AppDelegate getInstance] submitDeviceTokenForPlayer:player];
+    
     [self dismissModalViewControllerAnimated:YES];    
 
 }
