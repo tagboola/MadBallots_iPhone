@@ -15,14 +15,12 @@
     NSString *gameId;
     NSString *ownerId;
     NSString *numberOfRounds;
-    NSString *currentGameId;
 }
 
 @property (nonatomic,retain) NSString *name;
 @property (nonatomic,retain) NSString *gameId;
 @property (nonatomic,retain) NSString *ownerId;
 @property (nonatomic,retain) NSString *numberOfRounds;
-@property (nonatomic,retain) NSString *currentGameId;
 
 +(RKObjectMapping*)getObjectMapping;
 -(BOOL) iAmOwner;

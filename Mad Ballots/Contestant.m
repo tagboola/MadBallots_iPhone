@@ -21,6 +21,7 @@
 @synthesize currentRoundCount;
 @synthesize player;
 @synthesize score;
+@synthesize previousRoundScore;
 
 +(RKObjectMapping*) getObjectMapping{
     RKObjectMapping *contestantMapping = [RKObjectMapping mappingForClass:[Contestant class]];
@@ -35,6 +36,7 @@
     [contestantMapping mapKeyPath:@"game_owner" toAttribute:@"gameOwner"];
     [contestantMapping mapKeyPath:@"current_round_count" toAttribute:@"currentRoundCount"];
     [contestantMapping mapKeyPath:@"score" toAttribute:@"score"];
+    [contestantMapping mapKeyPath:@"previous_round_score" toAttribute:@"previousRoundScore"];
 
     return contestantMapping;
 }

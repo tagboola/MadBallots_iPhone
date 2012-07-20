@@ -23,7 +23,9 @@
 @synthesize categoryLabel;
 @synthesize roundLabel;
 @synthesize gameContestants;
+@synthesize rounds;
 @synthesize tableView;
+@synthesize previousRoundStatusLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil    
 {
@@ -48,7 +50,9 @@
     //TODO:Add remove game button
     self.fillCardButton.userInteractionEnabled = self.contestant.card != nil && ![self.contestant.round areCardsFilled];
     //TODO:Change button to Edit Card if card is already filled
-    self.voteButton.userInteractionEnabled = (self.contestant.card != nil) && ![self.contestant.card isVoteCast];
+    //self.voteButton.userInteractionEnabled = (self.contestant.card != nil) && ![self.contestant.card isVoteCast];
+    self.voteButton.userInteractionEnabled = YES;
+
     self.navigationItem.rightBarButtonItem.enabled = self.gameContestants && [self.contestant.game iAmOwner] && ![self.contestant hasGameStarted] && ([self.gameContestants count] <  MAXIMUM_NUMBER_OF_INVITES+1);
 
 }
@@ -104,7 +108,17 @@
     }
     else if([[segue identifier] isEqualToString:@"showTicketViewController"]){
         VoteViewController *voteView = [segue destinationViewController];
-        voteView.contestant = self.contestant;
+        voteView.round = self.contestant.round;
+        voteView.contestantId = self.contestant.contestantId;
+        voteView.cardId = self.contestant.card.cardId;
+    }else if([[segue identifier] isEqualToString:@"showPreviousRoundResults"]){
+        if(self.rounds){
+            NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"roundId" ascending:YES];
+            self.rounds = [self.rounds sortedArrayUsingDescriptors:[NSArray arrayWithObject:descriptor]];
+            VoteViewController *voteView = [segue destinationViewController];
+            voteView.round = [self.rounds objectAtIndex:1];
+            voteView.contestantId = self.contestant.contestantId;
+        }
     }
     
 }
@@ -124,6 +138,9 @@
     [super viewDidLoad];
  
     [self updateUI];
+    if(![self.contestant.previousRoundScore isEqualToString:@"-1"])
+    self.previousRoundStatusLabel.text = [NSString stringWithFormat:@"You received %@ points last round",self.contestant.previousRoundScore];
+    
     //TODO: Allows other users to invite friends as well?? (Field on game objects)
     //TODO: Only invite users before the game starts?
 }
@@ -169,9 +186,19 @@
         };
 
     }];
+    //TODO: Refresh Contestant object
+    path = [NSString stringWithFormat:@"/games/%@/rounds.json", contestant.gameId];
+    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:path usingBlock:^(RKObjectLoader *loader) {
+        loader.onDidLoadObjects = ^(NSArray* objects) {
+            self.rounds = objects;
+        };
+        loader.onDidFailWithError = ^(NSError *error){
+            NSLog(@"Error loading contestants:%@",[error localizedDescription]);
+        };
+        
+    }];
 
     [self refreshContestant];
-    
     if([self.contestant isInvitation])
         [self showToolbar:self.acceptGameInvitationToolbar];
      

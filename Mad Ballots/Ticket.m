@@ -16,7 +16,8 @@
 @synthesize voteStatus;
 @synthesize state;
 @synthesize player;
-
+@synthesize winners;
+//
 
 +(RKObjectMapping*) getObjectMapping{
     RKObjectMapping *objectMapping = [RKObjectMapping mappingForClass:[Ticket class]];
@@ -26,6 +27,8 @@
     [objectMapping mapKeyPath:@"vote_status" toAttribute:@"voteStatus"];
     [objectMapping mapKeyPath:@"state" toAttribute:@"state"];
     [objectMapping mapKeyPath:@"player" toRelationship:@"player" withMapping:[Player getObjectMapping]];
+    [objectMapping mapKeyPath:@"winner.candidate" toRelationship:@"winners" withMapping:[Candidate getObjectMapping]];
+
     return objectMapping;
 }
 

@@ -7,10 +7,12 @@
 //
 
 #import "TicketViewController.h"
+#import "Ballot.h"
 
 
 @implementation TicketViewController
 
+@synthesize votes;
 @synthesize delegate;
 @synthesize ticket;
 @synthesize candidates;
@@ -27,6 +29,108 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+}
+
+- (void) reloadData{
+    [tableView reloadData];
+    //Testing plots
+    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/tickets/%@/ballots.json",ticket.ticketId] usingBlock:^(RKObjectLoader *loader) {
+
+        loader.onDidLoadObjects = ^(NSArray * objects){
+            self.votes = [NSMutableArray arrayWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0],nil];
+//            int maxVotes = -1;
+//            int maxIndex;
+            for(Ballot *ballot in objects){
+                for(int ii = 0; ii < [candidates count]; ii++){
+                    Candidate *candidate = [candidates objectAtIndex:ii];
+                    if([ballot.candidateId isEqualToString:candidate.candidateId]){
+                        NSNumber *vote = [votes objectAtIndex:ii];
+                        vote = [NSNumber numberWithInt:([vote integerValue]+1)];
+                        [votes replaceObjectAtIndex:ii withObject:vote];
+                    }
+                    
+                }
+            }
+//            Candidate *winner = [candidates objectAtIndex:maxIndex];
+//            [self.candidates setValue:winner forKey:ticket.contestantId];
+            CPTGraphHostingView *hostingView = [[CPTGraphHostingView alloc] initWithFrame:self.tableView.bounds];
+            hostingView.backgroundColor = [UIColor grayColor];
+            graph = [[CPTXYGraph alloc] initWithFrame: hostingView.bounds];
+            
+            hostingView.hostedGraph = graph;
+            graph.plotAreaFrame.paddingLeft	  = 30.0;
+            graph.plotAreaFrame.paddingRight  = 50.0;
+            graph.plotAreaFrame.paddingTop = 10.0;
+
+            
+            CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
+            plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0)
+                                                            length:CPTDecimalFromFloat([candidates count])];
+            plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0)
+                                                            length:CPTDecimalFromFloat([candidates count])];
+            
+            // Line styles
+            CPTMutableLineStyle *axisLineStyle = [CPTMutableLineStyle lineStyle];
+            axisLineStyle.lineWidth = 3.0;
+            
+            CPTMutableLineStyle *majorTickLineStyle = [axisLineStyle mutableCopy];
+            majorTickLineStyle.lineWidth = 3.0;
+            majorTickLineStyle.lineCap	 = kCGLineCapRound;
+            
+            CPTMutableLineStyle *minorTickLineStyle = [axisLineStyle mutableCopy];
+            minorTickLineStyle.lineWidth = 2.0;
+            minorTickLineStyle.lineCap	 = kCGLineCapRound;
+            
+            // Text styles
+            CPTMutableTextStyle *axisTitleTextStyle = [CPTMutableTextStyle textStyle];
+            axisTitleTextStyle.fontName = @"Marker Felt";
+            axisTitleTextStyle.fontSize = 14.0;
+            
+            
+            CPTXYAxisSet *axisSet = (CPTXYAxisSet *)graph.axisSet;
+            axisSet.xAxis.labelingPolicy = CPTAxisLabelingPolicyNone;
+            axisSet.xAxis.majorIntervalLength = CPTDecimalFromInt([candidates count]);
+            axisSet.xAxis.titleTextStyle	= axisTitleTextStyle;
+
+            NSMutableArray *labels = [NSMutableArray array];
+            int maxLabelHeight = 0;
+            for(int ii = 0; ii < [candidates count]; ii++){
+                Candidate *candidate = [candidates objectAtIndex:ii];
+                CPTAxisLabel *label; 
+                label = [[CPTAxisLabel alloc] initWithText:candidate.value textStyle:axisSet.xAxis.labelTextStyle];
+                
+                label.tickLocation = CPTDecimalFromFloat(ii+.5);
+                label.offset = 5;
+                [labels addObject:label];
+                maxLabelHeight = label.contentLayer.bounds.size.width+label.offset > maxLabelHeight ? label.contentLayer.bounds.size.width+label.offset : maxLabelHeight;
+            }
+            
+            graph.plotAreaFrame.paddingBottom = maxLabelHeight;
+            axisSet.xAxis.axisLabels = [NSSet setWithArray:labels];
+            axisSet.xAxis.labelRotation = M_PI/4;
+            axisSet.yAxis.labelingPolicy = CPTAxisLabelingPolicyFixedInterval;
+            NSNumberFormatter *yAxisFormatter = [[NSNumberFormatter alloc] init];
+            [yAxisFormatter setMaximumFractionDigits:0];
+            axisSet.yAxis.labelFormatter = yAxisFormatter;
+            axisSet.yAxis.minorTicksPerInterval = 0;
+            axisSet.yAxis.majorIntervalLength = CPTDecimalFromInt(1);
+            axisSet.yAxis.majorTickLineStyle = majorTickLineStyle;
+            
+            
+            CPTBarPlot *barPlot = [CPTBarPlot tubularBarPlotWithColor:[CPTColor greenColor] horizontalBars:NO];
+            barPlot.barOffset = CPTDecimalFromFloat(0.5);
+            barPlot.identifier = @"Graph";
+            barPlot.dataSource = self;
+            [graph addPlot:barPlot];
+            [self.tableView addSubview:hostingView];
+            
+        };
+        loader.onDidFailWithError = ^(NSError *error){
+            NSLog(@"Error loading ballots for ticket:%@",[error localizedDescription]);
+        };
+    }];
+    
+
 }
 
 #pragma mark - View lifecycle
@@ -161,7 +265,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     selectedIndex = indexPath.row;
-    [candidateHash setObject:[candidates objectAtIndex:selectedIndex] forKey:ticket.contestantId];
+    NSSet *set = [NSSet setWithObject:[candidates objectAtIndex:selectedIndex]];
+    [candidateHash setObject:set forKey:ticket.contestantId];
     [self.tableView reloadData];
 }
 
@@ -177,5 +282,27 @@
 //- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error{
 //    NSLog(@"Object Loader failed with error: %@", [error localizedDescription]);
 //}
+
+#pragma mark Bar Plot data source methods
+
+-(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum 
+			   recordIndex:(NSUInteger)index;
+{
+    NSNumber *vote = [votes objectAtIndex:index];
+    switch (fieldEnum) {
+        case CPTScatterPlotFieldX:
+            return [NSNumber numberWithInt:index];
+            break;
+        case CPTScatterPlotFieldY:
+            return vote;
+            break;
+        default:
+            return [NSNumber numberWithInteger:-1];
+    }
+}
+
+- (NSUInteger) numberOfRecordsForPlot:(CPTPlot *)plot{
+    return [candidates count];
+}
 
 @end

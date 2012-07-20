@@ -14,7 +14,6 @@
 @synthesize gameId;
 @synthesize ownerId; 
 @synthesize numberOfRounds;
-@synthesize currentGameId;
 
 +(RKObjectMapping*) getObjectMapping{
     RKObjectMapping *gameMapping = [RKObjectMapping mappingForClass:[Game class]];
@@ -22,7 +21,6 @@
     [gameMapping mapKeyPath:@"id" toAttribute:@"gameId"];
     [gameMapping mapKeyPath:@"owner_id" toAttribute:@"ownerId"];
     [gameMapping mapKeyPath:@"num_rounds" toAttribute:@"numberOfRounds"];
-    [gameMapping mapKeyPath:@"current_round" toAttribute:@"currentGameId"];
     return gameMapping;
 }
 
