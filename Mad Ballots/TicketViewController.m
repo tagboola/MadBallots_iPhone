@@ -11,7 +11,7 @@
 
 
 @implementation TicketViewController
-
+@synthesize isShowingResults;
 @synthesize votes;
 @synthesize delegate;
 @synthesize ticket;
@@ -33,7 +33,8 @@
 
 - (void) reloadData{
     [tableView reloadData];
-    //Testing plots
+    if(!isShowingResults)
+        return;
     [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/tickets/%@/ballots.json",ticket.ticketId] usingBlock:^(RKObjectLoader *loader) {
 
         loader.onDidLoadObjects = ^(NSArray * objects){

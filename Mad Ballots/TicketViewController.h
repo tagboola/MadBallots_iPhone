@@ -14,10 +14,9 @@
 #import "CorePlotHeaders/CorePlot-CocoaTouch.h"
 
 @interface TicketViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,CPTBarPlotDataSource>{
-    //Plot variables
+    BOOL isShowingResults;
     CPTXYGraph *graph;
     NSMutableArray *votes;
-    
     Ticket *ticket;
     NSMutableArray *candidates;
     int selectedIndex;
@@ -26,7 +25,8 @@
     IBOutlet UILabel *titleLabel;
     IBOutlet UIImageView *imageView;
 }
-@property (nonatomic, unsafe_unretained) id <ScrollViewWithPagingDelegate> delegate;
+@property(nonatomic, unsafe_unretained) id <ScrollViewWithPagingDelegate> delegate;
+@property(nonatomic,assign)BOOL isShowingResults;
 @property(nonatomic,retain) NSMutableArray *votes;
 @property(nonatomic,retain) Ticket *ticket;
 @property(nonatomic,retain) NSMutableArray *candidates;

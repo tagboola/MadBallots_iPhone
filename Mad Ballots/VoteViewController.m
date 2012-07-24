@@ -57,6 +57,7 @@
     for(int ii=0;ii < [tickets count]; ii++){
         Ticket *ticket = [tickets objectAtIndex:ii];
         ticketView = [[TicketViewController alloc] initWithNibName:@"TicketViewController" bundle:nil];
+        ticketView.isShowingResults = showResults;
         ticketView.delegate = self;
         ticketView.ticket = ticket;
         if(ticket.winners){
@@ -107,9 +108,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.round = [[Round alloc] init];
-    self.round.roundId = @"1";
-    self.round.category = @"Insect";
     self.titleLabel.text = [NSString stringWithFormat:@"What %@ is...",round.category];
 
     [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/rounds/%@/tickets.json",round.roundId] usingBlock:^(RKObjectLoader *loader) {
@@ -148,7 +146,8 @@
     for(Ticket *ticket in tickets){
         ballot.ticketId = ticket.ticketId;
         ballot.contestantId = contestantId;
-        ballot.candidateId = ((Candidate*)[candidates objectForKey:ticket.contestantId]).candidateId;
+        NSSet *set = [candidates objectForKey:ticket.contestantId];
+        ballot.candidateId = ((Candidate*)[set anyObject]).candidateId;
         [[RKObjectManager sharedManager] postObject:ballot usingBlock:^(RKObjectLoader *loader) {
             loader.onDidLoadObjects = ^(NSArray * objects){
                 RKRequestQueue *queue = [[RKObjectManager sharedManager] requestQueue]; 

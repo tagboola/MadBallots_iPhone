@@ -55,7 +55,7 @@
                         
                         //3) Configure the "action" controller for the target game screen
                         VoteViewController *voteViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"voteViewController"];
-                        voteViewController.contestant = targetContestant;
+                        voteViewController.contestantId = targetContestant.contestantId;
                         
                         
                         //Set the view controller stack on the nav controller

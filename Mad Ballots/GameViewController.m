@@ -113,7 +113,7 @@
         voteView.cardId = self.contestant.card.cardId;
     }else if([[segue identifier] isEqualToString:@"showPreviousRoundResults"]){
         if(self.rounds){
-            NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"roundId" ascending:YES];
+            NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"roundId" ascending:NO];
             self.rounds = [self.rounds sortedArrayUsingDescriptors:[NSArray arrayWithObject:descriptor]];
             VoteViewController *voteView = [segue destinationViewController];
             voteView.round = [self.rounds objectAtIndex:1];
@@ -172,6 +172,8 @@
     [[RKObjectManager sharedManager] loadObjectsAtResourcePath:path usingBlock:^(RKObjectLoader *loader) {
         loader.onDidLoadObjects = ^(NSArray* objects) {
             self.gameContestants = [NSMutableArray arrayWithArray:objects];
+            NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"score" ascending:NO];
+            self.gameContestants = [NSMutableArray arrayWithArray:[self.gameContestants sortedArrayUsingDescriptors:[NSArray arrayWithObject:descriptor]]];
             [self.tableView reloadData];
             //TODO: Do we start when all users have repsonded or when minimum number of users have responded??
             if([self.contestant.game iAmOwner] && ![self.contestant hasGameStarted] && [self haveAllContestantsResponded] && [gameContestants count] >= MINIMUM_NUMBER_OF_INVITES)
