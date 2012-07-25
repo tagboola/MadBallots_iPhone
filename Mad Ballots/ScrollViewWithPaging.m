@@ -31,6 +31,19 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+-(void)setupUI{
+    pageControl.numberOfPages = viewControllers.count;
+    pageControl.currentPage = 0;
+    pageControlBeingUsed = NO;
+    scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width*pageControl.numberOfPages, self.scrollView.frame.size.height);
+    scrollView.contentOffset = CGPointMake(0, 0);
+    for(int ii = 0; ii < [viewControllers count]; ii++){
+        UIViewController *viewController = [viewControllers objectAtIndex:ii];
+        viewController.view.frame = CGRectMake(self.scrollView.frame.size.width * ii, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+        [self.scrollView addSubview:viewController.view];
+    }
+}
+
 #pragma mark - View lifecycle
 
 /*

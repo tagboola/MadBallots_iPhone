@@ -13,6 +13,7 @@
 @interface GameViewController : UIViewController <UITableViewDataSource,UITableViewDelegate, RKObjectLoaderDelegate>{
     Contestant *contestant;
     NSMutableArray *gameContestants;
+    NSArray *rounds;
     IBOutlet UIToolbar *acceptGameInvitationToolbar;
     IBOutlet UIToolbar *startGameToolbar;
     IBOutlet UIButton *fillCardButton;
@@ -21,18 +22,22 @@
     IBOutlet UILabel *categoryLabel;
     IBOutlet UILabel *roundLabel;
     IBOutlet UITableView *tableView;
+    IBOutlet UILabel *previousRoundStatusLabel;
 }
 
 @property (nonatomic,retain) IBOutlet UIToolbar *acceptGameInvitationToolbar;
 @property (nonatomic,retain) IBOutlet UIToolbar *startGameToolbar;
 @property (nonatomic,retain) Contestant *contestant;
 @property (nonatomic,retain) NSMutableArray *gameContestants;
+@property (nonatomic,retain) NSArray *rounds;
 @property (nonatomic,retain) IBOutlet UIButton *fillCardButton;
 @property (nonatomic,retain) IBOutlet UIButton *voteButton;
 @property (nonatomic,retain) IBOutlet UILabel *gameNameLabel;
 @property (nonatomic,retain) IBOutlet UILabel *categoryLabel;
 @property (nonatomic,retain) IBOutlet UILabel *roundLabel;
 @property (nonatomic,retain) IBOutlet UITableView *tableView;
+@property (nonatomic,retain) IBOutlet UILabel *previousRoundStatusLabel;
+
 
 
 

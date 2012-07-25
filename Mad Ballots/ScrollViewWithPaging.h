@@ -27,6 +27,7 @@
 @property (nonatomic,retain) IBOutlet UIPageControl *pageControl;
 
 -(IBAction)changePage;
+-(void)setupUI;
 
 @end
 

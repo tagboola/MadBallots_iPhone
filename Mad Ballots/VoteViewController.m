@@ -16,9 +16,11 @@
 
 @implementation VoteViewController
 
+@synthesize round;
+@synthesize contestantId;
+@synthesize cardId;
 @synthesize tickets;
 @synthesize viewControllerHash;
-@synthesize contestant;
 @synthesize candidates;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -34,52 +36,57 @@
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
     // Release any cached data, images, etc that aren't in use.
 }
 
--(void) setupUI{
-    viewControllerHash = [NSMutableDictionary dictionary];
+-(void) loadViewControllers{
     
+    self.viewControllerHash = [NSMutableDictionary dictionary];
     self.candidates = [[NSMutableDictionary alloc] init];
-    pageControl.numberOfPages = tickets.count + 1;
-    pageControl.currentPage = 0;
-    pageControlBeingUsed = NO;
-    scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width*pageControl.numberOfPages, self.scrollView.frame.size.height);
-    scrollView.contentOffset = CGPointMake(0, 0);
-    TicketOverviewViewController *firstView = [[TicketOverviewViewController alloc] initWithStyle:UITableViewStylePlain];
-    firstView.tickets = tickets;
-    firstView.candidates = candidates;
-    firstView.delegate = self;
-    firstView.view.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
-    firstView.tableView.frame = firstView.view.frame;
-    [self.scrollView addSubview:firstView.view];
     viewControllers = [NSMutableArray array];
+    BOOL showResults = false;
+    if([round isRoundOver]){
+        self.navigationItem.rightBarButtonItem = nil;
+        showResults = true;
+    }
+
+    TicketOverviewViewController *firstView = [[TicketOverviewViewController alloc] initWithStyle:UITableViewStylePlain showResults:YES tickets:tickets candidates:candidates delegate:self];
     [viewControllers addObject:firstView];
+    
     TicketViewController *ticketView;
     for(int ii=0;ii < [tickets count]; ii++){
         Ticket *ticket = [tickets objectAtIndex:ii];
         ticketView = [[TicketViewController alloc] initWithNibName:@"TicketViewController" bundle:nil];
+        ticketView.isShowingResults = showResults;
         ticketView.delegate = self;
         ticketView.ticket = ticket;
+        if(ticket.winners){
+            [self.candidates setObject:ticket.winners forKey:ticket.contestantId];
+        }
         ticketView.candidateHash = self.candidates;
-        ticketView.view.frame = CGRectMake(self.scrollView.frame.size.width * (ii+1), 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
-        [self.scrollView addSubview:ticketView.view];
         [viewControllers addObject:ticketView];
         [viewControllerHash setObject:ticketView forKey:ticket.contestantId];
     }
-    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/rounds/%@/candidates.json",contestant.round.roundId] usingBlock:^(RKObjectLoader *loader) {
+    
+    [super setupUI];
+    
+    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/rounds/%@/candidates.json",round.roundId] usingBlock:^(RKObjectLoader *loader) {
         //TODO: Optimize this
         loader.onDidLoadObjects = ^(NSArray * objects){
             TicketViewController *ticketView;
             for(Candidate *candidate in objects){
-                if(![candidate.cardId isEqualToString:contestant.card.cardId]){
+                if(![candidate.cardId isEqualToString:cardId]){
                     ticketView = [viewControllerHash objectForKey:candidate.contestantId];
                     [ticketView.candidates addObject:candidate];
                 }
             }
-            for(TicketViewController *ballotView in viewControllers)
+            //TODO: Refactor - TicketOverviewController involved in this
+            for(TicketViewController *ballotView in viewControllers){
+            if([ballotView class] == [TicketViewController class])
+                [ballotView reloadData];
+            else
                 [ballotView.tableView reloadData];
+            }
         };
         loader.onDidFailWithError = ^(NSError *error){
             NSLog(@"Error loading candidates for round:%@",[error localizedDescription]);
@@ -101,12 +108,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.titleLabel.text = [NSString stringWithFormat:@"What %@ is...",contestant.round.category];
+    self.titleLabel.text = [NSString stringWithFormat:@"What %@ is...",round.category];
 
-    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/rounds/%@/tickets.json",contestant.round.roundId] usingBlock:^(RKObjectLoader *loader) {
+    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/rounds/%@/tickets.json",round.roundId] usingBlock:^(RKObjectLoader *loader) {
         loader.onDidLoadObjects = ^(NSArray * objects){
             tickets = objects;
-            [self setupUI];
+            [self loadViewControllers];
         };
         loader.onDidFailWithError = ^(NSError *error){
             NSLog(@"Error loading candidates for round:%@", [error localizedDescription]);
@@ -138,8 +145,9 @@
     Ballot *ballot = [[Ballot alloc] init];
     for(Ticket *ticket in tickets){
         ballot.ticketId = ticket.ticketId;
-        ballot.contestantId = contestant.contestantId;
-        ballot.candidateId = ((Candidate*)[candidates objectForKey:ticket.contestantId]).candidateId;
+        ballot.contestantId = contestantId;
+        NSSet *set = [candidates objectForKey:ticket.contestantId];
+        ballot.candidateId = ((Candidate*)[set anyObject]).candidateId;
         [[RKObjectManager sharedManager] postObject:ballot usingBlock:^(RKObjectLoader *loader) {
             loader.onDidLoadObjects = ^(NSArray * objects){
                 RKRequestQueue *queue = [[RKObjectManager sharedManager] requestQueue]; 

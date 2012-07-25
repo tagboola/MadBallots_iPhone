@@ -11,12 +11,16 @@
 #import "Contestant.h"
 
 @interface VoteViewController : ScrollViewWithPaging{
-    Contestant *contestant;
+    Round *round;
+    NSString *contestantId;
+    NSString *cardId;
     NSArray *tickets;
     NSMutableDictionary *viewControllerHash;
     NSMutableDictionary *candidates;
 }
-@property (nonatomic,retain) Contestant *contestant;
+@property (nonatomic,retain) Round *round;
+@property (nonatomic,retain) NSString *contestantId;
+@property (nonatomic,retain) NSString *cardId;
 @property (nonatomic,retain) NSArray *tickets;
 @property (nonatomic,retain) NSMutableDictionary *viewControllerHash;
 @property (nonatomic,retain) NSMutableDictionary *candidates;

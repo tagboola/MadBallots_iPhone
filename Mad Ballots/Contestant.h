@@ -22,6 +22,7 @@
     NSString *status;
     Game *game;
     Round *round;
+    NSString *previousRoundScore;
     Card *card;
     Player *player;
     NSString *gameOwner;
@@ -35,6 +36,7 @@
 @property (nonatomic,retain) NSString *status;
 @property (nonatomic,retain) Game *game;
 @property (nonatomic,retain) Round *round;
+@property (nonatomic,retain) NSString *previousRoundScore;
 @property (nonatomic,retain) Card *card;
 @property (nonatomic,retain) Player *player;
 @property (nonatomic,retain) NSString *gameOwner;

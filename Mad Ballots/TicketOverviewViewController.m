@@ -16,6 +16,16 @@
 @synthesize tickets;
 @synthesize candidates;
 
+
+- (id)initWithStyle:(UITableViewStyle)style showResults:(BOOL)showResults tickets:(NSArray*)theTickets candidates:(NSMutableDictionary*)theCandidates delegate:(ScrollViewWithPaging*)theDelegate
+{
+    isShowingResults = showResults;
+    self.tickets = theTickets;
+    self.candidates = theCandidates;
+    self.delegate = theDelegate;
+    return [self initWithStyle:style];
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -110,9 +120,19 @@
     // Configure the cell...
     Ticket *ticket = [tickets objectAtIndex:indexPath.row];
     cell.textLabel.text = ticket.player.name;
-    Candidate *candidate = [candidates objectForKey:ticket.contestantId];
-    if(candidate)
-        cell.detailTextLabel.text = candidate.value;
+    NSSet *selectedCandidates = [candidates objectForKey:ticket.contestantId];
+    
+    if(selectedCandidates){
+        if(isShowingResults){
+            cell.detailTextLabel.textColor = [UIColor greenColor];
+        }
+        if([selectedCandidates count] > 1){
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d candidates selected for this ticket",[selectedCandidates count]];
+        }else{
+            Candidate *candidate = [selectedCandidates anyObject];
+            cell.detailTextLabel.text = candidate.value;
+        }
+    }
     return cell;
 }
 
@@ -159,7 +179,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [delegate changePage:indexPath.row + 1];
+    [delegate changePage:indexPath.row+1];
 
 }
 

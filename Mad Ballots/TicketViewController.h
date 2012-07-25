@@ -11,8 +11,12 @@
 #import "ScrollViewWithPaging.h"
 #import "Contestant.h"
 #import "Candidate.h"
+#import "CorePlotHeaders/CorePlot-CocoaTouch.h"
 
-@interface TicketViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>{
+@interface TicketViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,CPTBarPlotDataSource>{
+    BOOL isShowingResults;
+    CPTXYGraph *graph;
+    NSMutableArray *votes;
     Ticket *ticket;
     NSMutableArray *candidates;
     int selectedIndex;
@@ -21,12 +25,16 @@
     IBOutlet UILabel *titleLabel;
     IBOutlet UIImageView *imageView;
 }
-@property (nonatomic, unsafe_unretained) id <ScrollViewWithPagingDelegate> delegate;
+@property(nonatomic, unsafe_unretained) id <ScrollViewWithPagingDelegate> delegate;
+@property(nonatomic,assign)BOOL isShowingResults;
+@property(nonatomic,retain) NSMutableArray *votes;
 @property(nonatomic,retain) Ticket *ticket;
 @property(nonatomic,retain) NSMutableArray *candidates;
 @property(nonatomic,retain) NSMutableDictionary *candidateHash;
 @property(nonatomic,retain) IBOutlet UITableView *tableView;
 @property(nonatomic,retain) IBOutlet UILabel *titleLabel;
 @property(nonatomic,retain) IBOutlet UIImageView *imageView;
+
+- (void) reloadData;
 
 @end

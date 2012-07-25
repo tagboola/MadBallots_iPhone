@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "RestKit.h"
 #import "Player.h"
+#import "Candidate.h"
 
 @interface Ticket : NSObject{
     NSString *ticketId;
@@ -17,6 +18,8 @@
     NSString *state;
     NSString *voteStatus;
     Player *player;
+    NSSet *winners;
+
 }
 
 @property (nonatomic,retain) NSString *ticketId;
@@ -25,6 +28,7 @@
 @property (nonatomic,retain) NSString *state;
 @property (nonatomic,retain) NSString *voteStatus;
 @property (nonatomic,retain) Player *player;
+@property (nonatomic,retain) NSSet *winners;
 
 
 +(RKObjectMapping*) getObjectMapping;
