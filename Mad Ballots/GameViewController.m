@@ -139,8 +139,9 @@
  
     [self updateUI];
     if(![self.contestant.previousRoundScore isEqualToString:@"-1"])
-    self.previousRoundStatusLabel.text = [NSString stringWithFormat:@"You received %@ points last round",self.contestant.previousRoundScore];
-    
+        self.previousRoundStatusLabel.text = [NSString stringWithFormat:@"You received %@ points last round",self.contestant.previousRoundScore];
+    else
+        self.previousRoundStatusLabel.text = @"";
     //TODO: Allows other users to invite friends as well?? (Field on game objects)
     //TODO: Only invite users before the game starts?
 }
@@ -169,8 +170,11 @@
     [super viewDidAppear:animated];
     //TODO: Refresh Contestant object
     NSString *path = [NSString stringWithFormat:@"games/%@/contestants.json", contestant.gameId,contestant.contestantId];
+    if(!self.gameContestants)
+        [self startLoading:@"Loading scores..."];
     [[RKObjectManager sharedManager] loadObjectsAtResourcePath:path usingBlock:^(RKObjectLoader *loader) {
         loader.onDidLoadObjects = ^(NSArray* objects) {
+            [self stopLoading];
             self.gameContestants = [NSMutableArray arrayWithArray:objects];
             NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"score" ascending:NO];
             self.gameContestants = [NSMutableArray arrayWithArray:[self.gameContestants sortedArrayUsingDescriptors:[NSArray arrayWithObject:descriptor]]];
@@ -184,6 +188,7 @@
             [self updateUI];
         };
         loader.onDidFailWithError = ^(NSError *error){
+            [self stopLoading];
             NSLog(@"Error loading contestants:%@",[error localizedDescription]);
         };
 

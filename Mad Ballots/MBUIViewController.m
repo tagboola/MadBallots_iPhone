@@ -1,18 +1,18 @@
 //
-//  TicketResultViewController.m
+//  MBUIViewController.m
 //  Mad Ballots
 //
-//  Created by Tunde Agboola on 7/8/12.
+//  Created by Tunde Agboola on 7/24/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "TicketResultViewController.h"
+#import "MBUIViewController.h"
 
-@interface TicketResultViewController ()
+@interface MBUIViewController ()
 
 @end
 
-@implementation TicketResultViewController
+@implementation MBUIViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,19 +26,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+	// Do any additional setup after loading the view.
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark - Loading functions
+
+-(void)startLoading:(NSString*)labelText{
+    if(isLoading)
+        return;
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = labelText;
+    isLoading = true;
+}
+
+-(void)stopLoading{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    isLoading = false;
 }
 
 @end

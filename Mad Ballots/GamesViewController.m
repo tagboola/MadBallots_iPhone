@@ -29,6 +29,8 @@
 
 -(void) loadGames{
     if([AppDelegate currentPlayer].playerId){
+        if ([[gamesArray objectAtIndex:0] count] == 0 && [[gamesArray objectAtIndex:1] count] == 0)
+            [self startLoading:@"Loading games..."];
         NSString *contestantsPath = [NSString stringWithFormat:@"players/%@/contestants.json",[AppDelegate currentPlayer].playerId];
         [[RKObjectManager sharedManager] loadObjectsAtResourcePath:contestantsPath delegate:self];
     }
@@ -190,7 +192,7 @@
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects
 {
-    //NSLog(@"Load collection of Contestants: %@", objects);
+    [self stopLoading];
     self.gamesArray = [NSArray arrayWithObjects:[NSMutableArray array],[NSMutableArray array], nil];
     if([objects count] > 0)
     {    
@@ -206,6 +208,7 @@
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error{
     NSLog(@"Object Loader failed with error: %@", [error localizedDescription]);
+    [self stopLoading];
     //TODO Check error message and show appropriate message
     [[[UIAlertView alloc] initWithTitle:@"Unable to load games" message:@"Please check network connection and try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 }

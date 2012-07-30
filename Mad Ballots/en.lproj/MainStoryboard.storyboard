@@ -26,7 +26,7 @@
             </objects>
             <point key="canvasLocation" x="-925" y="-268"/>
         </scene>
-        <!--Games View Controller - Master-->
+        <!--Games View Controller - Games-->
         <scene sceneID="18">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17" sceneMemberID="firstResponder"/>
@@ -142,7 +142,7 @@
                                         <rect key="frame" x="0.0" y="55" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Rounds" lineBreakMode="tailTruncation" minimumFontSize="10" id="J1d-Cv-r0D">
@@ -710,7 +710,7 @@
             </objects>
             <point key="canvasLocation" x="394" y="316"/>
         </scene>
-        <!--Card View Controller-->
+        <!--Card View Controller - Card-->
         <scene sceneID="IBd-ec-Fvb">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hZy-oI-Mr9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -753,7 +753,7 @@
             </objects>
             <point key="canvasLocation" x="919" y="-729"/>
         </scene>
-        <!--Vote View Controller-->
+        <!--Vote View Controller - Vote-->
         <scene sceneID="YoG-Wi-7ZW">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vxa-kR-Q7l" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -802,7 +802,7 @@
             </objects>
             <point key="canvasLocation" x="919" y="-132"/>
         </scene>
-        <!--Game View Controller-->
+        <!--Game View Controller - Game-->
         <scene sceneID="Y9k-CP-lkp">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NWP-Fh-llj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -995,7 +995,7 @@
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="CreateGameViewController" superclassName="UITableViewController">
+        <class className="CreateGameViewController" superclassName="MBUITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateGameViewController.h"/>
             <relationships>
                 <relationship kind="action" name="createGameButtonClicked:"/>
@@ -1013,7 +1013,7 @@
                 <relationship kind="outlet" name="usernameTableViewCell" candidateClass="UITableViewCell"/>
             </relationships>
         </class>
-        <class className="GameViewController" superclassName="UIViewController">
+        <class className="GameViewController" superclassName="MBUIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GameViewController.h"/>
             <relationships>
                 <relationship kind="action" name="acceptGameInvitation:"/>
@@ -1030,7 +1030,7 @@
                 <relationship kind="outlet" name="voteButton" candidateClass="UIButton"/>
             </relationships>
         </class>
-        <class className="GamesViewController" superclassName="UITableViewController">
+        <class className="GamesViewController" superclassName="MBUITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GamesViewController.h"/>
             <relationships>
                 <relationship kind="action" name="logout:"/>
@@ -1038,7 +1038,7 @@
                 <relationship kind="outlet" name="welcomeLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="MBLoginViewController" superclassName="UITableViewController">
+        <class className="MBLoginViewController" superclassName="MBUITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MBLoginViewController.h"/>
             <relationships>
                 <relationship kind="action" name="createAccount:" candidateClass="UIButton"/>
@@ -1048,7 +1048,7 @@
                 <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
             </relationships>
         </class>
-        <class className="MBPlayerViewController" superclassName="UITableViewController">
+        <class className="MBPlayerViewController" superclassName="MBUITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MBPlayerViewController.h"/>
             <relationships>
                 <relationship kind="action" name="cancel:"/>
@@ -1064,13 +1064,19 @@
         <class className="MBRootNavigationController" superclassName="UINavigationController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MBRootNavigationController.h"/>
         </class>
-        <class className="PlayerRequestViewController" superclassName="UITableViewController">
+        <class className="MBUITableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MBUITableViewController.h"/>
+        </class>
+        <class className="MBUIViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MBUIViewController.h"/>
+        </class>
+        <class className="PlayerRequestViewController" superclassName="MBUITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PlayerRequestViewController.h"/>
             <relationships>
                 <relationship kind="action" name="addSelectedPlayers:"/>
             </relationships>
         </class>
-        <class className="ScrollViewWithPaging" superclassName="UIViewController">
+        <class className="ScrollViewWithPaging" superclassName="MBUIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ScrollViewWithPaging.h"/>
             <relationships>
                 <relationship kind="action" name="changePage"/>
@@ -1092,7 +1098,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="eRa-bv-8AU"/>
         <segue reference="N0C-vv-ogs"/>
+        <segue reference="xSL-Lo-voV"/>
     </inferredMetricsTieBreakers>
 </document>

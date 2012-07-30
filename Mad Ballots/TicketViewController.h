@@ -13,7 +13,7 @@
 #import "Candidate.h"
 #import "CorePlotHeaders/CorePlot-CocoaTouch.h"
 
-@interface TicketViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,CPTBarPlotDataSource>{
+@interface TicketViewController : MBUIViewController <UITableViewDelegate, UITableViewDataSource,CPTBarPlotDataSource>{
     BOOL isShowingResults;
     CPTXYGraph *graph;
     NSMutableArray *votes;

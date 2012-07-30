@@ -89,6 +89,7 @@
     if(![self playerIsValid])
         return;
     
+    [self startLoading:@"Creating player..."];
     //Create an authentication
     MBAuthentication * auth = [[MBAuthentication alloc] init];
     auth.provider = MAD_BALLOTS_AUTH_PROVIDER_STRING;
@@ -183,8 +184,8 @@
 #pragma mark RKObjectLoaderDelegate methods
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-    
     NSLog(@"Did create player: %@", objects);
+    [self stopLoading];
     Player *player = [objects objectAtIndex:0];
     if (player){
         [AppDelegate getInstance].currentPlayer = player;
@@ -199,6 +200,7 @@
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error{
+    [self stopLoading];
     NSLog(@"Object Loader failed with error: %@", [error localizedDescription]);    
 }
 

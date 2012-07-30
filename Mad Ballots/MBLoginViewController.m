@@ -157,6 +157,7 @@
     if (![self loginValid])
         return;
     
+    [self startLoading:@"Logging in..."];
     //Create an authentication
     MBAuthentication * auth = [[MBAuthentication alloc] init];
     auth.provider = MAD_BALLOTS_AUTH_PROVIDER_STRING;
@@ -210,6 +211,7 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     BOOL handled = [[AppDelegate facebook] handleOpenURL:url];
+    [self startLoading:@"Logging in..."];
     [self fbDidLogin];
     return handled; 
 }
@@ -266,6 +268,7 @@
 
 - (void)request:(FBRequest*)request didFailWithError:(NSError *)error{
     NSLog(@"Facebook Request failed with error: %@",[error localizedDescription]);
+    [self stopLoading];
 }
 
 
@@ -283,15 +286,15 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         [SFHFKeychainUtils storeUsername:player.playerId andPassword:player.persistenceToken forServiceName:@"mb_ptoken" updateExisting:YES error:NULL];
     }      
-    
+    [self stopLoading];
     [[AppDelegate getInstance] submitDeviceTokenForPlayer:player];
-    
     [self dismissModalViewControllerAnimated:YES];    
 
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error{
     NSLog(@"Object Loader failed with error: %@", [error localizedDescription]);
+    [self stopLoading];
     //TODO: Tell current view to refresh
     
 }

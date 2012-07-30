@@ -126,6 +126,7 @@
 
 
 -(IBAction)inviteButtonClicked:(id) sender{
+    [self startLoading:@"Searching..."];
     if([self.playerInviteTextField.text isEqualToString:[[AppDelegate currentPlayer] username]]){
         [[[UIAlertView alloc] initWithTitle:@"You can't invite yourself" message:@"Please enter another username" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         return;
@@ -159,12 +160,14 @@
     if(![self isGameValid])
         return;
     if(!game){ //CREATE A NEW GAME
+        [self startLoading:@"Creating game..."];
         Game *newGame = [[Game alloc] init];
         newGame.name = self.nameTextField.text;
         newGame.ownerId = [[NSUserDefaults standardUserDefaults] objectForKey:USER_ID_KEY];
         newGame.numberOfRounds = self.numOfRoundsTextField.text;
         [[RKObjectManager sharedManager] postObject:newGame delegate:self];
     }else{ //GAME ALREADY EXISTS - JUST INVITING PLAYERS
+        [self startLoading:@"Inviting players..."];
         [self invitePlayersToGame:[self game]];
     }
     
@@ -242,6 +245,7 @@
 #pragma mark RKObjectLoaderDelegate methods
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
+    [self stopLoading];
     NSLog(@"Loaded collection of Players: %@", objects);
     if([objectLoader.resourcePath isEqualToString:[NSString stringWithFormat:@"players.json?username=%@",self.playerInviteTextField.text]]){
         if([objects count] > 0){
@@ -258,6 +262,7 @@
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error{
+    [self stopLoading];
     NSLog(@"Object Loader failed with error: %@", [error localizedDescription]);
     if([objectLoader.resourcePath isEqualToString:[NSString stringWithFormat:@"players.json?username=%@",self.playerInviteTextField.text]]){
         //TODO: Duplicated Code

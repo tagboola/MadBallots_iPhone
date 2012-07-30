@@ -16,19 +16,19 @@
 		0E0F6DD815BE280300043247 /* MBNotificationActionRSVP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F6DD115BE280300043247 /* MBNotificationActionRSVP.m */; };
 		0E0F6DD915BE280300043247 /* MBNotificationActionVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F6DD315BE280300043247 /* MBNotificationActionVote.m */; };
 		0E0F6DDA15BE280300043247 /* MBNotificationProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F6DD515BE280300043247 /* MBNotificationProcessor.m */; };
+		0E0F6DDF15BF7F3100043247 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F6DDE15BF7F3100043247 /* MBProgressHUD.m */; };
+		0E0F6DE515BF89D700043247 /* MBUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F6DE415BF89D600043247 /* MBUIViewController.m */; };
+		0E0F6DE815BF8A0C00043247 /* MBUITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F6DE715BF8A0B00043247 /* MBUITableViewController.m */; };
 		0E23E960152E3FA70027E9A0 /* CreateGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E23E95E152E3FA70027E9A0 /* CreateGameViewController.m */; };
 		0E23E965152E85230027E9A0 /* tableview_x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E23E963152E85230027E9A0 /* tableview_x.png */; };
 		0E23E966152E85230027E9A0 /* tableview_x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E23E964152E85230027E9A0 /* tableview_x@2x.png */; };
 		0E23E969152EA51E0027E9A0 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E23E968152EA51E0027E9A0 /* Player.m */; };
 		0E2F6E4115890B39001901C0 /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2F6E4015890B39001901C0 /* Ticket.m */; };
 		0E2F6E4415895161001901C0 /* Ballot.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2F6E4315895160001901C0 /* Ballot.m */; };
-		0E4406EC157866BA00D7D8A3 /* CandidateOverviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4406EA157866B800D7D8A3 /* CandidateOverviewController.m */; };
 		0E4406F01578682800D7D8A3 /* TicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4406EF1578682700D7D8A3 /* TicketViewController.m */; };
 		0E61959C157FEB25003F1672 /* TicketOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E61959B157FEB25003F1672 /* TicketOverviewViewController.m */; };
 		0E61959F157FEB69003F1672 /* VoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E61959E157FEB69003F1672 /* VoteViewController.m */; };
 		0E675702157A987500690B98 /* Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E675701157A987500690B98 /* Candidate.m */; };
-		0E67570A157BD45300690B98 /* CandidateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E675708157BD45200690B98 /* CandidateViewController.m */; };
-		0E67570E157BD49800690B98 /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E67570D157BD49800690B98 /* CardViewController.m */; };
 		0E764D71153219100025F490 /* PlayerRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E764D70153219100025F490 /* PlayerRequestViewController.m */; };
 		0E764D8215321EA20025F490 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0E764D7515321EA20025F490 /* FBDialog.bundle */; };
 		0E764D8315321EA20025F490 /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E764D7B15321EA20025F490 /* libfacebook_ios_sdk.a */; };
@@ -62,7 +62,6 @@
 		0EE3D66514FECBB300E4A0CE /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D66414FECBB300E4A0CE /* Game.m */; };
 		0EF7163215801C8700B70954 /* Contestant.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7163115801C8700B70954 /* Contestant.m */; };
 		0EF96F2515851E6E00A53CA0 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF96F1A15851DBA00A53CA0 /* libRestKit.a */; };
-		0EFD327815A9EF1300785BC3 /* TicketResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFD327615A9EF1300785BC3 /* TicketResultViewController.m */; };
 		0EFD327915A9EF1300785BC3 /* TicketResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EFD327715A9EF1300785BC3 /* TicketResultViewController.xib */; };
 		0EFD32CE15A9FB9D00785BC3 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EFD32CD15A9FB9D00785BC3 /* libCorePlot-CocoaTouch.a */; };
 		681188E9154F762D007B323B /* MBPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 681188E8154F762D007B323B /* MBPlayerViewController.m */; };
@@ -138,6 +137,12 @@
 		0E0F6DD315BE280300043247 /* MBNotificationActionVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBNotificationActionVote.m; sourceTree = "<group>"; };
 		0E0F6DD415BE280300043247 /* MBNotificationProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBNotificationProcessor.h; sourceTree = "<group>"; };
 		0E0F6DD515BE280300043247 /* MBNotificationProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBNotificationProcessor.m; sourceTree = "<group>"; };
+		0E0F6DDD15BF7F3100043247 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		0E0F6DDE15BF7F3100043247 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		0E0F6DE315BF89D600043247 /* MBUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBUIViewController.h; sourceTree = "<group>"; };
+		0E0F6DE415BF89D600043247 /* MBUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBUIViewController.m; sourceTree = "<group>"; };
+		0E0F6DE615BF8A0B00043247 /* MBUITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBUITableViewController.h; sourceTree = "<group>"; };
+		0E0F6DE715BF8A0B00043247 /* MBUITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBUITableViewController.m; sourceTree = "<group>"; };
 		0E23E95D152E3FA70027E9A0 /* CreateGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGameViewController.h; sourceTree = "<group>"; };
 		0E23E95E152E3FA70027E9A0 /* CreateGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGameViewController.m; sourceTree = "<group>"; };
 		0E23E963152E85230027E9A0 /* tableview_x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableview_x.png; sourceTree = "<group>"; };
@@ -148,8 +153,6 @@
 		0E2F6E4015890B39001901C0 /* Ticket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ticket.m; sourceTree = "<group>"; };
 		0E2F6E4215895160001901C0 /* Ballot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ballot.h; sourceTree = "<group>"; };
 		0E2F6E4315895160001901C0 /* Ballot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ballot.m; sourceTree = "<group>"; };
-		0E4406E9157866B700D7D8A3 /* CandidateOverviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CandidateOverviewController.h; sourceTree = "<group>"; };
-		0E4406EA157866B800D7D8A3 /* CandidateOverviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CandidateOverviewController.m; sourceTree = "<group>"; };
 		0E4406EE1578682700D7D8A3 /* TicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketViewController.h; sourceTree = "<group>"; };
 		0E4406EF1578682700D7D8A3 /* TicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketViewController.m; sourceTree = "<group>"; };
 		0E61959A157FEB25003F1672 /* TicketOverviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketOverviewViewController.h; sourceTree = "<group>"; };
@@ -158,10 +161,6 @@
 		0E61959E157FEB69003F1672 /* VoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoteViewController.m; sourceTree = "<group>"; };
 		0E675700157A987500690B98 /* Candidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Candidate.h; sourceTree = "<group>"; };
 		0E675701157A987500690B98 /* Candidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Candidate.m; sourceTree = "<group>"; };
-		0E675707157BD45200690B98 /* CandidateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CandidateViewController.h; sourceTree = "<group>"; };
-		0E675708157BD45200690B98 /* CandidateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CandidateViewController.m; sourceTree = "<group>"; };
-		0E67570C157BD49800690B98 /* CardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardViewController.h; sourceTree = "<group>"; };
-		0E67570D157BD49800690B98 /* CardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardViewController.m; sourceTree = "<group>"; };
 		0E764D6F153219100025F490 /* PlayerRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerRequestViewController.h; sourceTree = "<group>"; };
 		0E764D70153219100025F490 /* PlayerRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerRequestViewController.m; sourceTree = "<group>"; };
 		0E764D7315321EA20025F490 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
@@ -226,8 +225,6 @@
 		0EF7163015801C8700B70954 /* Contestant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contestant.h; sourceTree = "<group>"; };
 		0EF7163115801C8700B70954 /* Contestant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contestant.m; sourceTree = "<group>"; };
 		0EF96F0E15851DBA00A53CA0 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
-		0EFD327515A9EF1300785BC3 /* TicketResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketResultViewController.h; sourceTree = "<group>"; };
-		0EFD327615A9EF1300785BC3 /* TicketResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketResultViewController.m; sourceTree = "<group>"; };
 		0EFD327715A9EF1300785BC3 /* TicketResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TicketResultViewController.xib; sourceTree = "<group>"; };
 		0EFD327E15A9FB9D00785BC3 /* _CPTConstraintsFixed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CPTConstraintsFixed.h; sourceTree = "<group>"; };
 		0EFD327F15A9FB9D00785BC3 /* _CPTConstraintsRelative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CPTConstraintsRelative.h; sourceTree = "<group>"; };
@@ -351,6 +348,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E0F6DDC15BF7F0900043247 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				0E0F6DDD15BF7F3100043247 /* MBProgressHUD.h */,
+				0E0F6DDE15BF7F3100043247 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		0E23E962152E83C60027E9A0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -463,8 +470,9 @@
 				0EE3D61D14FEB63500E4A0CE /* Supporting Files */,
 				0E23E962152E83C60027E9A0 /* Resources */,
 				0E764D7215321EA20025F490 /* facebook-ios-sdk */,
-				0EE3D62514FEB63500E4A0CE /* AppDelegate.h */,
+				0E0F6DDC15BF7F0900043247 /* MBProgressHUD */,
 				0EE3D62614FEB63500E4A0CE /* AppDelegate.m */,
+				0EE3D62514FEB63500E4A0CE /* AppDelegate.h */,
 				0E7BC1F6152A1B3100BCE387 /* Constant.h */,
 				0E7BC1F7152A1B3100BCE387 /* Constant.m */,
 				0E23E96A152EA5240027E9A0 /* Game Models */,
@@ -509,9 +517,6 @@
 				68C27FF31550D37200B1A503 /* MBLoginViewController.m */,
 				0EE3D62B14FEB63500E4A0CE /* GamesViewController.h */,
 				0EE3D62C14FEB63500E4A0CE /* GamesViewController.m */,
-				0E675707157BD45200690B98 /* CandidateViewController.h */,
-				0E675708157BD45200690B98 /* CandidateViewController.m */,
-				0E67570C157BD49800690B98 /* CardViewController.h */,
 				0E0F6DCB15BE280300043247 /* MBNotificationAction.h */,
 				0E0F6DCC15BE280300043247 /* MBNotificationAction.m */,
 				0E0F6DCD15BE280300043247 /* MBNotificationActionFillCard.h */,
@@ -523,15 +528,10 @@
 				0E0F6DD315BE280300043247 /* MBNotificationActionVote.m */,
 				0E0F6DD415BE280300043247 /* MBNotificationProcessor.h */,
 				0E0F6DD515BE280300043247 /* MBNotificationProcessor.m */,
-				0E67570D157BD49800690B98 /* CardViewController.m */,
 				0E23E95D152E3FA70027E9A0 /* CreateGameViewController.h */,
 				0E23E95E152E3FA70027E9A0 /* CreateGameViewController.m */,
-				0E4406E9157866B700D7D8A3 /* CandidateOverviewController.h */,
-				0E4406EA157866B800D7D8A3 /* CandidateOverviewController.m */,
 				0E4406EE1578682700D7D8A3 /* TicketViewController.h */,
 				0E4406EF1578682700D7D8A3 /* TicketViewController.m */,
-				0EFD327515A9EF1300785BC3 /* TicketResultViewController.h */,
-				0EFD327615A9EF1300785BC3 /* TicketResultViewController.m */,
 				0E61959A157FEB25003F1672 /* TicketOverviewViewController.h */,
 				0E61959B157FEB25003F1672 /* TicketOverviewViewController.m */,
 				0E61959D157FEB69003F1672 /* VoteViewController.h */,
@@ -548,6 +548,10 @@
 				681188E8154F762D007B323B /* MBPlayerViewController.m */,
 				68BEF4CB1564AC060094DC1C /* MBRootNavigationController.h */,
 				68BEF4CC1564AC060094DC1C /* MBRootNavigationController.m */,
+				0E0F6DE315BF89D600043247 /* MBUIViewController.h */,
+				0E0F6DE415BF89D600043247 /* MBUIViewController.m */,
+				0E0F6DE615BF8A0B00043247 /* MBUITableViewController.h */,
+				0E0F6DE715BF8A0B00043247 /* MBUITableViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -815,11 +819,8 @@
 				0E23E960152E3FA70027E9A0 /* CreateGameViewController.m in Sources */,
 				0E23E969152EA51E0027E9A0 /* Player.m in Sources */,
 				0E764D71153219100025F490 /* PlayerRequestViewController.m in Sources */,
-				0E4406EC157866BA00D7D8A3 /* CandidateOverviewController.m in Sources */,
 				0E4406F01578682800D7D8A3 /* TicketViewController.m in Sources */,
 				0E675702157A987500690B98 /* Candidate.m in Sources */,
-				0E67570A157BD45300690B98 /* CandidateViewController.m in Sources */,
-				0E67570E157BD49800690B98 /* CardViewController.m in Sources */,
 				0ED13897157FC24E00F400BF /* ScrollViewWithPaging.m in Sources */,
 				0E61959C157FEB25003F1672 /* TicketOverviewViewController.m in Sources */,
 				0E61959F157FEB69003F1672 /* VoteViewController.m in Sources */,
@@ -837,12 +838,14 @@
 				0E2F6E4115890B39001901C0 /* Ticket.m in Sources */,
 				0E2F6E4415895161001901C0 /* Ballot.m in Sources */,
 				0E84B836158A537B006B9AE5 /* TableViewTextField.m in Sources */,
-				0EFD327815A9EF1300785BC3 /* TicketResultViewController.m in Sources */,
 				0E0F6DD615BE280300043247 /* MBNotificationAction.m in Sources */,
 				0E0F6DD715BE280300043247 /* MBNotificationActionFillCard.m in Sources */,
 				0E0F6DD815BE280300043247 /* MBNotificationActionRSVP.m in Sources */,
 				0E0F6DD915BE280300043247 /* MBNotificationActionVote.m in Sources */,
 				0E0F6DDA15BE280300043247 /* MBNotificationProcessor.m in Sources */,
+				0E0F6DDF15BF7F3100043247 /* MBProgressHUD.m in Sources */,
+				0E0F6DE515BF89D700043247 /* MBUIViewController.m in Sources */,
+				0E0F6DE815BF8A0C00043247 /* MBUITableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

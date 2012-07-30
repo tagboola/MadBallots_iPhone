@@ -11,7 +11,7 @@
 
 
 
-@interface GamesViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, RKObjectLoaderDelegate>{
+@interface GamesViewController : MBUITableViewController <UITableViewDelegate, UITableViewDataSource, RKObjectLoaderDelegate>{
     NSArray *gamesArray;
     NSArray *sectionTitleArray;
     IBOutlet UILabel *welcomeLabel;

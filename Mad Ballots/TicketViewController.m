@@ -36,11 +36,10 @@
     if(!isShowingResults)
         return;
     [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/tickets/%@/ballots.json",ticket.ticketId] usingBlock:^(RKObjectLoader *loader) {
-
+        [self startLoading:@"Loading results..."];
         loader.onDidLoadObjects = ^(NSArray * objects){
+            [self stopLoading];
             self.votes = [NSMutableArray arrayWithObjects:[NSNumber numberWithInt:0], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0],nil];
-//            int maxVotes = -1;
-//            int maxIndex;
             for(Ballot *ballot in objects){
                 for(int ii = 0; ii < [candidates count]; ii++){
                     Candidate *candidate = [candidates objectAtIndex:ii];
@@ -52,8 +51,6 @@
                     
                 }
             }
-//            Candidate *winner = [candidates objectAtIndex:maxIndex];
-//            [self.candidates setValue:winner forKey:ticket.contestantId];
             CPTGraphHostingView *hostingView = [[CPTGraphHostingView alloc] initWithFrame:self.tableView.bounds];
             hostingView.backgroundColor = [UIColor grayColor];
             graph = [[CPTXYGraph alloc] initWithFrame: hostingView.bounds];
@@ -127,6 +124,7 @@
             
         };
         loader.onDidFailWithError = ^(NSError *error){
+            [self stopLoading];
             NSLog(@"Error loading ballots for ticket:%@",[error localizedDescription]);
         };
     }];
@@ -146,7 +144,6 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     selectedIndex = -1;
-//    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/rounds/%@/candidates.json?query=candidates.contestant_id=%@",contestant.round.roundId,contestant.contestantId]  delegate:self];
     self.candidates = [NSMutableArray array];
     self.titleLabel.text = ticket.player.name;
     //TODO: Put player's image 
@@ -268,7 +265,9 @@
     selectedIndex = indexPath.row;
     NSSet *set = [NSSet setWithObject:[candidates objectAtIndex:selectedIndex]];
     [candidateHash setObject:set forKey:ticket.contestantId];
-    [self.tableView reloadData];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    [delegate nextPage];
 }
 
 #pragma mark Object loader delegate methods
