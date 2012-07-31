@@ -25,6 +25,8 @@
 @synthesize passwordTextField;
 @synthesize confirmPasswordTextField;
 @synthesize commitButton;
+@synthesize cancelButton;
+@synthesize scrollView;
 
 
 
@@ -46,6 +48,17 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self  
+                                             selector:@selector(keyboardNotification:)  
+                                                 name:UIKeyboardWillShowNotification  
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self  
+                                             selector:@selector(keyboardNotification:)  
+                                                 name:UIKeyboardWillHideNotification  
+                                               object:nil];  
+    
 }
 
 - (void)viewDidUnload
@@ -81,6 +94,30 @@
 }
 
 
+- (void)keyboardNotification:(NSNotification*)notification {
+    CGRect keyboardBegin, keyboardEnd;
+    NSDictionary *userInfo = [notification userInfo];  
+    NSValue *keyboardFrameBegin = [userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey];
+    [keyboardFrameBegin getValue:&keyboardBegin];
+    NSValue *keyboardFrameEnd = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    [keyboardFrameEnd getValue:&keyboardEnd];
+    
+    /*TODO: This can be more specific, if we only extend the content height by the value of the difference between the top of the keyboard and the bottom of the lowest control*/
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame]; 
+    //NSInteger cancelButtonBottom = (cancelButton.frame.origin.y + cancelButton.frame.size.height);
+    scrollView.contentSize = CGSizeMake(applicationFrame.size.width, applicationFrame.size.height + (emailTextField.frame.origin.y - 5) );
+    
+}  
+
+#pragma mark - UITextFieldDelegate methods
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    [scrollView setContentOffset:CGPointMake(0, textField.frame.origin.y - 5) animated:YES];
+    return YES;
+}
+
+
 
 #pragma mark - Actions
 
@@ -111,6 +148,9 @@
 {
     [self dismissModalViewControllerAnimated:YES];
 }
+
+
+
 
 
 

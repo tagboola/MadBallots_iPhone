@@ -16,12 +16,14 @@
     NSArray *sectionTitleArray;
     IBOutlet UILabel *welcomeLabel;
     IBOutlet UIBarButtonItem *loginLogoutButton;
+    IBOutlet UIBarButtonItem *newGameButton;
 }
 
 @property (nonatomic,retain) NSArray *gamesArray;
 @property (nonatomic,retain) NSArray *sectionTitleArray;
 
 -(IBAction)logout:(id)sender;
+-(IBAction)createNewGame:(id)sender;
 -(void)refreshUI;
 
 

@@ -11,24 +11,25 @@
 #import "MBAuthentication.h"
 #import "MBAuthenticationInfo.h"
 #import "MBAuthenticationCredentials.h"
+#import "MBPlayerViewController.h"
 #import "SFHFKeychainUtils.h"
 
-@interface MBLoginViewController ()
-
-@end
 
 @implementation MBLoginViewController
 @synthesize usernameTextField;
 @synthesize passwordTextField;
+@synthesize scrollView;
 
-- (id)initWithStyle:(UITableViewStyle)style
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
     return self;
 }
+
 
 - (void)viewDidLoad
 {
@@ -39,7 +40,21 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self  
+                                             selector:@selector(keyboardNotification:)  
+                                                 name:UIKeyboardWillShowNotification  
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self  
+                                             selector:@selector(keyboardNotification:)  
+                                                 name:UIKeyboardWillHideNotification  
+                                               object:nil];  
+    
+    
 }
+
+
 
 - (void)viewDidUnload
 {
@@ -54,6 +69,23 @@
 {
 	return YES;
 }
+
+
+- (void)keyboardNotification:(NSNotification*)notification {
+    CGRect keyboardBegin, keyboardEnd;
+    NSDictionary *userInfo = [notification userInfo];  
+    NSValue *keyboardFrameBegin = [userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey];
+    [keyboardFrameBegin getValue:&keyboardBegin];
+    NSValue *keyboardFrameEnd = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    [keyboardFrameEnd getValue:&keyboardEnd];
+
+    /*TODO: This can be more specific, if we only extend the content height by the value of the difference between the top of the keyboard and the bottom of the lowest control*/
+    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame]; 
+    scrollView.contentSize = CGSizeMake(applicationFrame.size.width, applicationFrame.size.height + (applicationFrame.size.height - keyboardEnd.origin.y) );
+    
+
+}  
+
 
 #pragma mark - Table view data source
 /*
@@ -181,6 +213,9 @@
 
 
 - (IBAction)createAccount:(UIButton *)sender {
+    MBPlayerViewController *vc = [[MBPlayerViewController alloc] initWithNibName:@"MBPlayerView" bundle:nil]; //   [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    [vc setModalPresentationStyle:UIModalPresentationFullScreen];
+    [self presentModalViewController:vc animated:YES];
 }
 
 
