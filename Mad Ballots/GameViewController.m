@@ -26,6 +26,7 @@
 @synthesize rounds;
 @synthesize tableView;
 @synthesize previousRoundStatusLabel;
+@synthesize addPlayerButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil    
 {
@@ -86,7 +87,7 @@
 }
 
 
-
+/*
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"invitePlayers"]) {
         CreateGameViewController *createGameView = [segue destinationViewController];
@@ -122,6 +123,7 @@
     }
     
 }
+ */
 
 -(BOOL) haveAllContestantsResponded{
     for(Contestant *gameContestant in self.gameContestants){
@@ -140,6 +142,7 @@
     [self updateUI];
     if(![self.contestant.previousRoundScore isEqualToString:@"-1"])
     self.previousRoundStatusLabel.text = [NSString stringWithFormat:@"You received %@ points last round",self.contestant.previousRoundScore];
+    self.navigationController.navigationBar.topItem.rightBarButtonItem = addPlayerButton;
     
     //TODO: Allows other users to invite friends as well?? (Field on game objects)
     //TODO: Only invite users before the game starts?

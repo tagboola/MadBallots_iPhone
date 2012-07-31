@@ -23,6 +23,7 @@
     IBOutlet UILabel *roundLabel;
     IBOutlet UITableView *tableView;
     IBOutlet UILabel *previousRoundStatusLabel;
+    IBOutlet UIBarButtonItem *addPlayerButton;
 }
 
 @property (nonatomic,retain) IBOutlet UIToolbar *acceptGameInvitationToolbar;
@@ -37,6 +38,8 @@
 @property (nonatomic,retain) IBOutlet UILabel *roundLabel;
 @property (nonatomic,retain) IBOutlet UITableView *tableView;
 @property (nonatomic,retain) IBOutlet UILabel *previousRoundStatusLabel;
+@property (nonatomic,retain) IBOutlet UIBarButtonItem *addPlayerButton;
+
 
 
 

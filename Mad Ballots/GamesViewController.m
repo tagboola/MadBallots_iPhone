@@ -98,6 +98,7 @@
 #endif
 
 
+
 -(IBAction)createNewGame:(id)sender
 {
     NSLog(@"new game");
@@ -187,6 +188,9 @@
 
 
 
+
+
+
 #pragma mark UITableViewDelegate methods
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -200,6 +204,13 @@
     return NO;
 }
 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    GameViewController *gameView = [[GameViewController alloc] initWithNibName:@"MBGameView" bundle:nil];
+    Contestant *contestant = [[self.gamesArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    gameView.contestant = contestant;
+    [self.navigationController pushViewController:gameView animated:YES];    
+}
 
 
 
