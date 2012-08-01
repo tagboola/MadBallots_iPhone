@@ -183,6 +183,30 @@
 
 #pragma mark Table view data source
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 3;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSInteger rowCount;
+    switch (section) {
+        case 0:
+            rowCount = 2;
+            break;
+        case 1:
+            rowCount = 2;
+            break;
+        case 2:
+            rowCount = 5;
+            break;
+        default:
+            break;
+    }
+    return rowCount;
+}
+
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0 && indexPath.row == 0)
         return nameTableViewCell;

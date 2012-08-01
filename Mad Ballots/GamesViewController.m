@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "GamesViewController.h"
 #import "GameViewController.h"
+#import "CreateGameViewController.h"
 #import "Game.h"
 #import "Contestant.h"
 
@@ -101,13 +102,18 @@
 
 -(IBAction)createNewGame:(id)sender
 {
-    NSLog(@"new game");
+    //NSLog(@"new game");
     /*(if ([[segue identifier] isEqualToString:@"showGameViewController"]) {
         GameViewController *gameView = [segue destinationViewController];
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         Contestant *contestant = [[self.gamesArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
         gameView.contestant = contestant;
     }*/
+    
+    CreateGameViewController *createGameView = [[CreateGameViewController alloc] initWithNibName:@"CreateGameView" bundle:nil];
+    [self.navigationController pushViewController:createGameView animated:YES];    
+
+    
 }
 
 

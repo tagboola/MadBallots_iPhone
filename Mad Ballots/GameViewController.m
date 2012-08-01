@@ -138,11 +138,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.rightBarButtonItem = addPlayerButton;
+
  
     [self updateUI];
     if(![self.contestant.previousRoundScore isEqualToString:@"-1"])
     self.previousRoundStatusLabel.text = [NSString stringWithFormat:@"You received %@ points last round",self.contestant.previousRoundScore];
-    self.navigationController.navigationBar.topItem.rightBarButtonItem = addPlayerButton;
+    
     
     //TODO: Allows other users to invite friends as well?? (Field on game objects)
     //TODO: Only invite users before the game starts?
