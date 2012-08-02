@@ -78,6 +78,7 @@
         newContestant.status = @"0";
         [[RKObjectManager sharedManager] postObject:newContestant delegate:NULL];
     }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - View lifecycle
@@ -88,6 +89,7 @@
     
     //Enable/disable the invite facebook button
     //facebookTableViewCell. = ([AppDelegate facebook].isSessionValid) ? YES : NO;
+    self.navigationItem.rightBarButtonItem = createGameButton;
     
     if(!playersToBeInvited){
         playersToBeInvited = [NSMutableArray array];
@@ -171,7 +173,7 @@
 }
 
 
-
+/*
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([[segue identifier] isEqualToString:@"showPlayerRequestViewController"]) {
@@ -180,6 +182,7 @@
     } 
     
 }
+ */
 
 #pragma mark Table view data source
 
@@ -265,6 +268,7 @@
     
     if(indexPath.section == 1 && indexPath.row == 1){
         PlayerRequestViewController *prvc = [[PlayerRequestViewController alloc] initWithNibName:@"MBPlayerRequestView" bundle:nil];
+        prvc.invitedPlayers =  [playersToBeInvited copy];
         [self.navigationController pushViewController:prvc animated:YES];
     }
     

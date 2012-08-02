@@ -162,6 +162,7 @@
     self.categoryLabel = nil;
     self.roundLabel = nil;
     self.tableView = nil;
+    self.addPlayerButton = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -226,6 +227,11 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+
+
+#pragma mark Actions
+
 
 - (void) startNewRound{
     Round *round = [[Round alloc] init];
@@ -337,7 +343,21 @@
     }
 }
 
-
+-(IBAction)addPlayers:(id)sender
+{
+    CreateGameViewController *createGameView = [[CreateGameViewController alloc] initWithNibName:@"CreateGameView" bundle:nil]; //[segue destinationViewController];
+    NSMutableArray *invitedContestants = [NSMutableArray array];
+    for(Contestant *gameContestant in gameContestants){
+        if(![gameContestant.playerId isEqualToString:[[NSUserDefaults standardUserDefaults] stringForKey:USER_ID_KEY]]){
+            [invitedContestants addObject:gameContestant.player];
+        }
+    }
+    createGameView.playersToBeInvited = [NSMutableArray array];
+    [createGameView.playersToBeInvited addObjectsFromArray:invitedContestants];
+    createGameView.game = self.contestant.game;
+    createGameView.numberOfPlayersAlreadyInvited = [gameContestants count] - 1;
+    [self.navigationController pushViewController:createGameView animated:YES];
+}
 
 #pragma mark UITableViewDatasource methods
 

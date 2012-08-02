@@ -50,6 +50,7 @@
 -(IBAction)fillCard:(id)sender;
 -(IBAction)castVote:(id)sender;
 -(IBAction)viewResults:(id)sender;
+-(IBAction)addPlayers:(id)sender;
 
 
 

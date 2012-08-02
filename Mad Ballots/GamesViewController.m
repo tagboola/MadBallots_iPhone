@@ -87,6 +87,7 @@
 
 
 #if __IPHONE_5_0
+/*
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showGameViewController"]) {
         GameViewController *gameView = [segue destinationViewController];
@@ -96,6 +97,7 @@
     }
     
 }
+ */
 #endif
 
 
