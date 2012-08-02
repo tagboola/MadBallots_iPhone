@@ -49,7 +49,7 @@
 -(IBAction)startGame:(id)sender;
 -(IBAction)fillCard:(id)sender;
 -(IBAction)castVote:(id)sender;
-
+-(IBAction)viewResults:(id)sender;
 
 
 

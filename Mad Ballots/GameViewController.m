@@ -325,6 +325,17 @@
 }
 
 
+-(IBAction)viewResults:(id)sender
+{
+    if(self.rounds){
+        NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"roundId" ascending:NO];
+        self.rounds = [self.rounds sortedArrayUsingDescriptors:[NSArray arrayWithObject:descriptor]];
+        VoteViewController *voteView = [[VoteViewController alloc] initWithNibName:@"MBVoteView" bundle:nil];
+        voteView.round = [self.rounds objectAtIndex:1];
+        voteView.contestantId = self.contestant.contestantId;
+        [self.navigationController pushViewController:voteView animated:YES];
+    }
+}
 
 
 

@@ -71,6 +71,9 @@
 		6831FB501561FF480093AFB3 /* MBAuthenticationCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 6831FB4F1561FF480093AFB3 /* MBAuthenticationCredentials.m */; };
 		68381ED815C8C7BB007AE448 /* CreateGameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68381ED715C8C7BB007AE448 /* CreateGameView.xib */; };
 		6863C1B7154F6B0B004015E0 /* MBPlayerSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 6863C1B6154F6B0B004015E0 /* MBPlayerSession.m */; };
+		6879808315CA10E7000F424C /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6879808215CA10E7000F424C /* CardView.xib */; };
+		6879808515CA1683000F424C /* MBVoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6879808415CA1683000F424C /* MBVoteView.xib */; };
+		6879808715CA26D4000F424C /* MBPlayerRequestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6879808615CA26D4000F424C /* MBPlayerRequestView.xib */; };
 		689CDB88156DC664008E5648 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 689CDB87156DC664008E5648 /* SFHFKeychainUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		68BEF4CD1564AC070094DC1C /* MBRootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BEF4CC1564AC060094DC1C /* MBRootNavigationController.m */; };
 		68C27FF41550D37200B1A503 /* MBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C27FF31550D37200B1A503 /* MBLoginViewController.m */; };
@@ -325,6 +328,9 @@
 		68381ED715C8C7BB007AE448 /* CreateGameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateGameView.xib; sourceTree = "<group>"; };
 		6863C1B5154F6B0B004015E0 /* MBPlayerSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPlayerSession.h; sourceTree = "<group>"; };
 		6863C1B6154F6B0B004015E0 /* MBPlayerSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPlayerSession.m; sourceTree = "<group>"; };
+		6879808215CA10E7000F424C /* CardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
+		6879808415CA1683000F424C /* MBVoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBVoteView.xib; sourceTree = "<group>"; };
+		6879808615CA26D4000F424C /* MBPlayerRequestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBPlayerRequestView.xib; sourceTree = "<group>"; };
 		689CDB86156DC664008E5648 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		689CDB87156DC664008E5648 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		68BEF4CB1564AC060094DC1C /* MBRootNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBRootNavigationController.h; sourceTree = "<group>"; };
@@ -566,6 +572,7 @@
 			isa = PBXGroup;
 			children = (
 				68EB41CA15C4C73D007C771F /* LoginViewController.xib */,
+				6879808215CA10E7000F424C /* CardView.xib */,
 				68EB41C615C4674C007C771F /* GamesViewController.xib */,
 				0EE3D62814FEB63500E4A0CE /* MainStoryboard.storyboard */,
 				68381ED715C8C7BB007AE448 /* CreateGameView.xib */,
@@ -574,6 +581,8 @@
 				0E84B82F158A352A006B9AE5 /* TicketViewController.xib */,
 				68D669EC15C7736D0084A212 /* MBPlayerView.xib */,
 				68D669EE15C77CB90084A212 /* MBGameView.xib */,
+				6879808415CA1683000F424C /* MBVoteView.xib */,
+				6879808615CA26D4000F424C /* MBPlayerRequestView.xib */,
 			);
 			name = "User Interface Resources";
 			sourceTree = "<group>";
@@ -816,6 +825,9 @@
 				68D669ED15C7736D0084A212 /* MBPlayerView.xib in Resources */,
 				68D669EF15C77CB90084A212 /* MBGameView.xib in Resources */,
 				68381ED815C8C7BB007AE448 /* CreateGameView.xib in Resources */,
+				6879808315CA10E7000F424C /* CardView.xib in Resources */,
+				6879808515CA1683000F424C /* MBVoteView.xib in Resources */,
+				6879808715CA26D4000F424C /* MBPlayerRequestView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

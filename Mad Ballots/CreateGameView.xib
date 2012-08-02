@@ -40,7 +40,6 @@
 				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">10</int>
@@ -126,7 +125,6 @@ AAgACAAIAAEAAQABAAE</bytes>
 								<string key="NSFrame">{{264, 8}, {29, 29}}</string>
 								<reference key="NSSuperview" ref="258414914"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -258,7 +256,6 @@ AAgACAAIAAEAAQABAAE</bytes>
 								<string key="NSFrame">{{75, 7}, {225, 31}}</string>
 								<reference key="NSSuperview" ref="36539478"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -335,7 +332,6 @@ AAgACAAIAAEAAQABAAE</bytes>
 								<string key="NSFrame">{{87, 7}, {187, 31}}</string>
 								<reference key="NSSuperview" ref="693637886"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -392,7 +388,6 @@ AAgACAAIAAEAAQABAAE</bytes>
 								<string key="NSFrame">{{20, 11}, {228, 21}}</string>
 								<reference key="NSSuperview" ref="905330516"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -426,6 +421,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="905330516"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
+				<int key="IBUITag">1</int>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUIAccessoryType">2</int>
 				<reference key="IBUIContentView" ref="905330516"/>

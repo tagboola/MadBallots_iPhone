@@ -262,6 +262,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    if(indexPath.section == 1 && indexPath.row == 1){
+        PlayerRequestViewController *prvc = [[PlayerRequestViewController alloc] initWithNibName:@"MBPlayerRequestView" bundle:nil];
+        [self.navigationController pushViewController:prvc animated:YES];
+    }
+    
     if(indexPath.row <= numberOfPlayersAlreadyInvited - 1)
         return;
     if(indexPath.section == 2 && [playersToBeInvited count] > indexPath.row){
@@ -270,6 +276,7 @@
             [self allowPlayerInvitations:YES];        
         [self.tableView reloadData];
     }
+    
 }
 
 #pragma mark RKObjectLoaderDelegate methods
