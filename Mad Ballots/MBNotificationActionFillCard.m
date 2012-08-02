@@ -50,11 +50,13 @@
                         
                         //Now create the view controller stack for display of the "target" action
                         //2) Conifgure the "target" game controller by loading the gameViewController from the storyboard and setting the "contestant" to the passed in contestant invitation
-                        GameViewController *targetGameViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"gameViewController"];
+                        //GameViewController *targetGameViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"gameViewController"];
+                        GameViewController *targetGameViewController = [[GameViewController alloc] initWithNibName:@"MBGameView" bundle:nil];
                         targetGameViewController.contestant = targetContestant;
                         
                         //3) Configure the "action" controller for the target game screen
-                        CardViewController *cardViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"cardViewController"];
+                        //CardViewController *cardViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"cardViewController"];
+                        CardViewController *cardViewController = [[CardViewController alloc] initWithNibName:@"CardView" bundle:nil];
                         cardViewController.cardId = targetContestant.card.cardId;
                         cardViewController.category = targetContestant.round.category;
                         
