@@ -22,6 +22,7 @@
 @synthesize tickets;
 @synthesize viewControllerHash;
 @synthesize candidates;
+@synthesize submitButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -109,6 +110,7 @@
 {
     [super viewDidLoad];
     self.titleLabel.text = [NSString stringWithFormat:@"What %@ is...",round.category];
+    self.navigationItem.rightBarButtonItem = submitButton;
 
     [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/rounds/%@/tickets.json",round.roundId] usingBlock:^(RKObjectLoader *loader) {
         loader.onDidLoadObjects = ^(NSArray * objects){
@@ -129,6 +131,7 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    self.submitButton = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

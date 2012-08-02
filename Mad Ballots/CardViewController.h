@@ -17,6 +17,7 @@
     NSString *category;
     IBOutlet UITableView *tableView;
     IBOutlet UILabel *titleLabel;
+    IBOutlet UIBarButtonItem *submitButton;
 }
 
 @property (nonatomic,retain) NSArray *candidates;
@@ -24,4 +25,5 @@
 @property (nonatomic,retain) NSString *category;
 @property (nonatomic,retain) IBOutlet UITableView *tableView;
 @property (nonatomic,retain) IBOutlet UILabel *titleLabel;
+@property (nonatomic,retain) IBOutlet UIBarButtonItem *submitButton;
 @end

@@ -20,6 +20,7 @@
 @synthesize category;
 @synthesize tableView;
 @synthesize titleLabel;
+@synthesize submitButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -78,6 +79,8 @@
     [super viewDidLoad];
     self.title = @"Fill Card";
     self.titleLabel.text = [NSString stringWithFormat:@"What %@ is...",category];
+    self.navigationItem.rightBarButtonItem = submitButton;
+
     //TODO:Set title with category information
     [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"cards/%@/candidates.json",cardId] usingBlock:^(RKObjectLoader *loader){
         loader.delegate = self;
@@ -89,6 +92,9 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    self.submitButton = nil;
+    self.tableView = nil;
+    self.titleLabel= nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

@@ -17,6 +17,7 @@
     NSArray *tickets;
     NSMutableDictionary *viewControllerHash;
     NSMutableDictionary *candidates;
+    IBOutlet UIBarButtonItem *submitButton;
 }
 @property (nonatomic,retain) Round *round;
 @property (nonatomic,retain) NSString *contestantId;
@@ -24,7 +25,7 @@
 @property (nonatomic,retain) NSArray *tickets;
 @property (nonatomic,retain) NSMutableDictionary *viewControllerHash;
 @property (nonatomic,retain) NSMutableDictionary *candidates;
-
+@property (nonatomic,retain) IBOutlet UIBarButtonItem *submitButton;
 
 -(IBAction)submitButtonClicked:(id)sender;
 

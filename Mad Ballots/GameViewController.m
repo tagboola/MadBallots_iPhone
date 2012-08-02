@@ -315,6 +315,17 @@
 }
 
 
+-(IBAction)castVote:(id)sender
+{
+    VoteViewController *voteView = [[VoteViewController alloc] initWithNibName:@"MBVoteView" bundle:nil];
+    voteView.round = self.contestant.round;
+    voteView.contestantId = self.contestant.contestantId;
+    voteView.cardId = self.contestant.card.cardId;
+    [self.navigationController pushViewController:voteView animated:YES];
+}
+
+
+
 
 
 #pragma mark UITableViewDatasource methods

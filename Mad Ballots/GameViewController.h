@@ -48,6 +48,7 @@
 -(IBAction)rejectGameInvitation:(id)sender;
 -(IBAction)startGame:(id)sender;
 -(IBAction)fillCard:(id)sender;
+-(IBAction)castVote:(id)sender;
 
 
 
