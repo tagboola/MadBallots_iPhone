@@ -306,6 +306,15 @@
 }
 
 
+-(IBAction)fillCard:(id)sender
+{
+    CardViewController *cardView = [[CardViewController alloc] initWithNibName:@"CardView" bundle:nil];
+    cardView.cardId = self.contestant.card.cardId;
+    cardView.category = self.contestant.round.category;
+    [self.navigationController pushViewController:cardView animated:YES];
+}
+
+
 
 
 #pragma mark UITableViewDatasource methods
