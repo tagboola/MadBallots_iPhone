@@ -187,6 +187,15 @@
     return 3;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 1){
+        return @"Invite Players";
+    }
+    return @"";
+}
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSInteger rowCount;
     switch (section) {
