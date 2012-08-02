@@ -78,6 +78,7 @@
         newContestant.status = @"0";
         [[RKObjectManager sharedManager] postObject:newContestant delegate:NULL];
     }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - View lifecycle
@@ -88,6 +89,7 @@
     
     //Enable/disable the invite facebook button
     //facebookTableViewCell. = ([AppDelegate facebook].isSessionValid) ? YES : NO;
+    self.navigationItem.rightBarButtonItem = createGameButton;
     
     if(!playersToBeInvited){
         playersToBeInvited = [NSMutableArray array];
@@ -171,7 +173,7 @@
 }
 
 
-
+/*
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([[segue identifier] isEqualToString:@"showPlayerRequestViewController"]) {
@@ -180,8 +182,42 @@
     } 
     
 }
+ */
 
 #pragma mark Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 3;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 1){
+        return @"Invite Players";
+    }
+    return @"";
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSInteger rowCount;
+    switch (section) {
+        case 0:
+            rowCount = 2;
+            break;
+        case 1:
+            rowCount = 2;
+            break;
+        case 2:
+            rowCount = 5;
+            break;
+        default:
+            break;
+    }
+    return rowCount;
+}
+
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0 && indexPath.row == 0)
@@ -229,6 +265,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    if(indexPath.section == 1 && indexPath.row == 1){
+        PlayerRequestViewController *prvc = [[PlayerRequestViewController alloc] initWithNibName:@"MBPlayerRequestView" bundle:nil];
+        prvc.invitedPlayers =  [playersToBeInvited copy];
+        [self.navigationController pushViewController:prvc animated:YES];
+    }
+    
     if(indexPath.row <= numberOfPlayersAlreadyInvited - 1)
         return;
     if(indexPath.section == 2 && [playersToBeInvited count] > indexPath.row){
@@ -237,6 +280,7 @@
             [self allowPlayerInvitations:YES];        
         [self.tableView reloadData];
     }
+    
 }
 
 #pragma mark RKObjectLoaderDelegate methods

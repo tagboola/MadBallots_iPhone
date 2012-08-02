@@ -26,6 +26,7 @@
 @synthesize rounds;
 @synthesize tableView;
 @synthesize previousRoundStatusLabel;
+@synthesize addPlayerButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil    
 {
@@ -86,7 +87,7 @@
 }
 
 
-
+/*
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"invitePlayers"]) {
         CreateGameViewController *createGameView = [segue destinationViewController];
@@ -122,6 +123,7 @@
     }
     
 }
+ */
 
 -(BOOL) haveAllContestantsResponded{
     for(Contestant *gameContestant in self.gameContestants){
@@ -136,10 +138,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.rightBarButtonItem = addPlayerButton;
+
  
     [self updateUI];
     if(![self.contestant.previousRoundScore isEqualToString:@"-1"])
     self.previousRoundStatusLabel.text = [NSString stringWithFormat:@"You received %@ points last round",self.contestant.previousRoundScore];
+    
     
     //TODO: Allows other users to invite friends as well?? (Field on game objects)
     //TODO: Only invite users before the game starts?
@@ -157,6 +162,7 @@
     self.categoryLabel = nil;
     self.roundLabel = nil;
     self.tableView = nil;
+    self.addPlayerButton = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -221,6 +227,11 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+
+
+#pragma mark Actions
+
 
 - (void) startNewRound{
     Round *round = [[Round alloc] init];
@@ -301,7 +312,52 @@
 }
 
 
+-(IBAction)fillCard:(id)sender
+{
+    CardViewController *cardView = [[CardViewController alloc] initWithNibName:@"CardView" bundle:nil];
+    cardView.cardId = self.contestant.card.cardId;
+    cardView.category = self.contestant.round.category;
+    [self.navigationController pushViewController:cardView animated:YES];
+}
 
+
+-(IBAction)castVote:(id)sender
+{
+    VoteViewController *voteView = [[VoteViewController alloc] initWithNibName:@"MBVoteView" bundle:nil];
+    voteView.round = self.contestant.round;
+    voteView.contestantId = self.contestant.contestantId;
+    voteView.cardId = self.contestant.card.cardId;
+    [self.navigationController pushViewController:voteView animated:YES];
+}
+
+
+-(IBAction)viewResults:(id)sender
+{
+    if(self.rounds){
+        NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"roundId" ascending:NO];
+        self.rounds = [self.rounds sortedArrayUsingDescriptors:[NSArray arrayWithObject:descriptor]];
+        VoteViewController *voteView = [[VoteViewController alloc] initWithNibName:@"MBVoteView" bundle:nil];
+        voteView.round = [self.rounds objectAtIndex:1];
+        voteView.contestantId = self.contestant.contestantId;
+        [self.navigationController pushViewController:voteView animated:YES];
+    }
+}
+
+-(IBAction)addPlayers:(id)sender
+{
+    CreateGameViewController *createGameView = [[CreateGameViewController alloc] initWithNibName:@"CreateGameView" bundle:nil]; //[segue destinationViewController];
+    NSMutableArray *invitedContestants = [NSMutableArray array];
+    for(Contestant *gameContestant in gameContestants){
+        if(![gameContestant.playerId isEqualToString:[[NSUserDefaults standardUserDefaults] stringForKey:USER_ID_KEY]]){
+            [invitedContestants addObject:gameContestant.player];
+        }
+    }
+    createGameView.playersToBeInvited = [NSMutableArray array];
+    [createGameView.playersToBeInvited addObjectsFromArray:invitedContestants];
+    createGameView.game = self.contestant.game;
+    createGameView.numberOfPlayersAlreadyInvited = [gameContestants count] - 1;
+    [self.navigationController pushViewController:createGameView animated:YES];
+}
 
 #pragma mark UITableViewDatasource methods
 

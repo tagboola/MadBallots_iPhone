@@ -31,7 +31,9 @@
     GamesViewController *gvc = [[rootNavController viewControllers] objectAtIndex:0];
     
     //2) Conifgure the "target" game controller by loading the gameViewController from the storyboard and setting the "contestant" to the passed in contestant invitation
-    GameViewController *targetGameViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"gameViewController"];
+    //GameViewController *targetGameViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"gameViewController"];
+    GameViewController *targetGameViewController = [[GameViewController alloc] initWithNibName:@"MBGameView" bundle:nil];
+
     targetGameViewController.contestant = targetContestant; 
     
     //Set the view controller stack on the nav controller

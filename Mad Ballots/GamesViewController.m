@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "GamesViewController.h"
 #import "GameViewController.h"
+#import "CreateGameViewController.h"
 #import "Game.h"
 #import "Contestant.h"
 
@@ -43,7 +44,8 @@
     self.title = @"Games";
     self.gamesArray = [NSArray arrayWithObjects:[NSMutableArray array],[NSMutableArray array], nil];
     self.sectionTitleArray = [NSArray arrayWithObjects:@"Game Invitations",@"Active Games", nil];
-    
+    self.navigationController.navigationBar.topItem.rightBarButtonItem = loginLogoutButton;
+    self.navigationController.navigationBar.topItem.leftBarButtonItem = newGameButton;
 
 }
 
@@ -82,6 +84,10 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+
+
+#if __IPHONE_5_0
+/*
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showGameViewController"]) {
         GameViewController *gameView = [segue destinationViewController];
@@ -89,6 +95,26 @@
         Contestant *contestant = [[self.gamesArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
         gameView.contestant = contestant;
     }
+    
+}
+ */
+#endif
+
+
+
+-(IBAction)createNewGame:(id)sender
+{
+    //NSLog(@"new game");
+    /*(if ([[segue identifier] isEqualToString:@"showGameViewController"]) {
+        GameViewController *gameView = [segue destinationViewController];
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        Contestant *contestant = [[self.gamesArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        gameView.contestant = contestant;
+    }*/
+    
+    CreateGameViewController *createGameView = [[CreateGameViewController alloc] initWithNibName:@"CreateGameView" bundle:nil];
+    [self.navigationController pushViewController:createGameView animated:YES];    
+
     
 }
 
@@ -170,6 +196,9 @@
 
 
 
+
+
+
 #pragma mark UITableViewDelegate methods
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -183,6 +212,13 @@
     return NO;
 }
 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    GameViewController *gameView = [[GameViewController alloc] initWithNibName:@"MBGameView" bundle:nil];
+    Contestant *contestant = [[self.gamesArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    gameView.contestant = contestant;
+    [self.navigationController pushViewController:gameView animated:YES];    
+}
 
 
 

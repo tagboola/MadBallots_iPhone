@@ -69,10 +69,18 @@
 		6831FB491561FBCA0093AFB3 /* MBAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 6831FB481561FBCA0093AFB3 /* MBAuthentication.m */; };
 		6831FB4D1561FF3A0093AFB3 /* MBAuthenticationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6831FB4C1561FF3A0093AFB3 /* MBAuthenticationInfo.m */; };
 		6831FB501561FF480093AFB3 /* MBAuthenticationCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 6831FB4F1561FF480093AFB3 /* MBAuthenticationCredentials.m */; };
+		68381ED815C8C7BB007AE448 /* CreateGameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68381ED715C8C7BB007AE448 /* CreateGameView.xib */; };
 		6863C1B7154F6B0B004015E0 /* MBPlayerSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 6863C1B6154F6B0B004015E0 /* MBPlayerSession.m */; };
+		6879808315CA10E7000F424C /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6879808215CA10E7000F424C /* CardView.xib */; };
+		6879808515CA1683000F424C /* MBVoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6879808415CA1683000F424C /* MBVoteView.xib */; };
+		6879808715CA26D4000F424C /* MBPlayerRequestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6879808615CA26D4000F424C /* MBPlayerRequestView.xib */; };
 		689CDB88156DC664008E5648 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 689CDB87156DC664008E5648 /* SFHFKeychainUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		68BEF4CD1564AC070094DC1C /* MBRootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BEF4CC1564AC060094DC1C /* MBRootNavigationController.m */; };
 		68C27FF41550D37200B1A503 /* MBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C27FF31550D37200B1A503 /* MBLoginViewController.m */; };
+		68D669ED15C7736D0084A212 /* MBPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68D669EC15C7736D0084A212 /* MBPlayerView.xib */; };
+		68D669EF15C77CB90084A212 /* MBGameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68D669EE15C77CB90084A212 /* MBGameView.xib */; };
+		68EB41C715C4674C007C771F /* GamesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68EB41C615C4674C007C771F /* GamesViewController.xib */; };
+		68EB41CB15C4C73D007C771F /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68EB41CA15C4C73D007C771F /* LoginViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -203,7 +211,7 @@
 		0EBA0D5315797CBC00BB55BC /* underline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = underline.png; sourceTree = "<group>"; };
 		0ED13895157FC24E00F400BF /* ScrollViewWithPaging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewWithPaging.h; sourceTree = "<group>"; };
 		0ED13896157FC24E00F400BF /* ScrollViewWithPaging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewWithPaging.m; sourceTree = "<group>"; };
-		0EE3D61214FEB63500E4A0CE /* Mad Ballots.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Mad Ballots.app"; path = madballots.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0EE3D61214FEB63500E4A0CE /* madballots.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = madballots.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EE3D61614FEB63500E4A0CE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0EE3D61814FEB63500E4A0CE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0EE3D61A14FEB63500E4A0CE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -317,14 +325,22 @@
 		6831FB4C1561FF3A0093AFB3 /* MBAuthenticationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBAuthenticationInfo.m; sourceTree = "<group>"; };
 		6831FB4E1561FF480093AFB3 /* MBAuthenticationCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBAuthenticationCredentials.h; sourceTree = "<group>"; };
 		6831FB4F1561FF480093AFB3 /* MBAuthenticationCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBAuthenticationCredentials.m; sourceTree = "<group>"; };
+		68381ED715C8C7BB007AE448 /* CreateGameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateGameView.xib; sourceTree = "<group>"; };
 		6863C1B5154F6B0B004015E0 /* MBPlayerSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPlayerSession.h; sourceTree = "<group>"; };
 		6863C1B6154F6B0B004015E0 /* MBPlayerSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPlayerSession.m; sourceTree = "<group>"; };
+		6879808215CA10E7000F424C /* CardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
+		6879808415CA1683000F424C /* MBVoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBVoteView.xib; sourceTree = "<group>"; };
+		6879808615CA26D4000F424C /* MBPlayerRequestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBPlayerRequestView.xib; sourceTree = "<group>"; };
 		689CDB86156DC664008E5648 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		689CDB87156DC664008E5648 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		68BEF4CB1564AC060094DC1C /* MBRootNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBRootNavigationController.h; sourceTree = "<group>"; };
 		68BEF4CC1564AC060094DC1C /* MBRootNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBRootNavigationController.m; sourceTree = "<group>"; };
 		68C27FF21550D37200B1A503 /* MBLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBLoginViewController.h; sourceTree = "<group>"; };
 		68C27FF31550D37200B1A503 /* MBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBLoginViewController.m; sourceTree = "<group>"; };
+		68D669EC15C7736D0084A212 /* MBPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBPlayerView.xib; sourceTree = "<group>"; };
+		68D669EE15C77CB90084A212 /* MBGameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBGameView.xib; sourceTree = "<group>"; };
+		68EB41C615C4674C007C771F /* GamesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GamesViewController.xib; sourceTree = "<group>"; };
+		68EB41CA15C4C73D007C771F /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -428,7 +444,7 @@
 		0EE3D61314FEB63500E4A0CE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0EE3D61214FEB63500E4A0CE /* Mad Ballots.app */,
+				0EE3D61214FEB63500E4A0CE /* madballots.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -511,7 +527,6 @@
 				0EE3D62C14FEB63500E4A0CE /* GamesViewController.m */,
 				0E675707157BD45200690B98 /* CandidateViewController.h */,
 				0E675708157BD45200690B98 /* CandidateViewController.m */,
-				0E67570C157BD49800690B98 /* CardViewController.h */,
 				0E0F6DCB15BE280300043247 /* MBNotificationAction.h */,
 				0E0F6DCC15BE280300043247 /* MBNotificationAction.m */,
 				0E0F6DCD15BE280300043247 /* MBNotificationActionFillCard.h */,
@@ -523,6 +538,7 @@
 				0E0F6DD315BE280300043247 /* MBNotificationActionVote.m */,
 				0E0F6DD415BE280300043247 /* MBNotificationProcessor.h */,
 				0E0F6DD515BE280300043247 /* MBNotificationProcessor.m */,
+				0E67570C157BD49800690B98 /* CardViewController.h */,
 				0E67570D157BD49800690B98 /* CardViewController.m */,
 				0E23E95D152E3FA70027E9A0 /* CreateGameViewController.h */,
 				0E23E95E152E3FA70027E9A0 /* CreateGameViewController.m */,
@@ -555,10 +571,18 @@
 		0EE3D65F14FEC50800E4A0CE /* User Interface Resources */ = {
 			isa = PBXGroup;
 			children = (
+				68EB41CA15C4C73D007C771F /* LoginViewController.xib */,
+				6879808215CA10E7000F424C /* CardView.xib */,
+				68EB41C615C4674C007C771F /* GamesViewController.xib */,
 				0EE3D62814FEB63500E4A0CE /* MainStoryboard.storyboard */,
+				68381ED715C8C7BB007AE448 /* CreateGameView.xib */,
 				0E7BC1BC152A0BE600BCE387 /* CardTableViewCell.xib */,
 				0EFD327715A9EF1300785BC3 /* TicketResultViewController.xib */,
 				0E84B82F158A352A006B9AE5 /* TicketViewController.xib */,
+				68D669EC15C7736D0084A212 /* MBPlayerView.xib */,
+				68D669EE15C77CB90084A212 /* MBGameView.xib */,
+				6879808415CA1683000F424C /* MBVoteView.xib */,
+				6879808615CA26D4000F424C /* MBPlayerRequestView.xib */,
 			);
 			name = "User Interface Resources";
 			sourceTree = "<group>";
@@ -703,7 +727,7 @@
 			);
 			name = "Mad Ballots";
 			productName = "Mad Ballots";
-			productReference = 0EE3D61214FEB63500E4A0CE /* Mad Ballots.app */;
+			productReference = 0EE3D61214FEB63500E4A0CE /* madballots.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -796,6 +820,14 @@
 				0EBA0D5515797CBC00BB55BC /* underline.png in Resources */,
 				0E84B830158A352A006B9AE5 /* TicketViewController.xib in Resources */,
 				0EFD327915A9EF1300785BC3 /* TicketResultViewController.xib in Resources */,
+				68EB41C715C4674C007C771F /* GamesViewController.xib in Resources */,
+				68EB41CB15C4C73D007C771F /* LoginViewController.xib in Resources */,
+				68D669ED15C7736D0084A212 /* MBPlayerView.xib in Resources */,
+				68D669EF15C77CB90084A212 /* MBGameView.xib in Resources */,
+				68381ED815C8C7BB007AE448 /* CreateGameView.xib in Resources */,
+				6879808315CA10E7000F424C /* CardView.xib in Resources */,
+				6879808515CA1683000F424C /* MBVoteView.xib in Resources */,
+				6879808715CA26D4000F424C /* MBPlayerRequestView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -950,6 +982,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"/**";
 				INFOPLIST_FILE = "Mad Ballots/Mad Ballots-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Mad Ballots/facebook-ios-sdk\"",
@@ -975,6 +1008,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"/**";
 				INFOPLIST_FILE = "Mad Ballots/Mad Ballots-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Mad Ballots/facebook-ios-sdk\"",

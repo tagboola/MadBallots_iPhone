@@ -17,6 +17,7 @@
 	NSMutableArray *selectedPlayersArray;
     NSArray *invitedPlayers;
     Facebook *facebook;
+    IBOutlet UIBarButtonItem *addPlayersButton;
 }
 
 @property (nonatomic,retain)	NSMutableArray *playersArray;
@@ -24,6 +25,8 @@
 @property (nonatomic,retain)	NSMutableArray *selectedPlayersArray;
 @property (nonatomic,retain)	NSArray *invitedPlayers;
 @property (nonatomic,retain)    Facebook *facebook;
+@property (nonatomic,retain)    IBOutlet UIBarButtonItem *addPlayersButton;
+
 
 -(IBAction)addSelectedPlayers:(id)sender;
 

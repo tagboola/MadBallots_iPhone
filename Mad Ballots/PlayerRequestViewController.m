@@ -22,6 +22,7 @@
 @synthesize selectedPlayersArray;
 @synthesize invitedPlayers;
 @synthesize facebook;
+@synthesize addPlayersButton;
 
 
 static NSString * const ID = @"facebookID";
@@ -55,12 +56,15 @@ static NSString * const CHECKED = @"checked";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationItem.rightBarButtonItem = addPlayersButton;
 
 	self.playersArray = [NSMutableArray array];
 	self.searchPlayersArray = [NSMutableArray array];
     self.selectedPlayersArray = [NSMutableArray arrayWithCapacity:MAXIMUM_NUMBER_OF_INVITES];
     
 }
+
 
 
 /*
@@ -213,6 +217,7 @@ static NSString * const CHECKED = @"checked";
     // For example: self.myOutlet = nil;
     self.playersArray = nil;
     self.searchPlayersArray = nil;
+    self.addPlayersButton = nil;
 }
 
 

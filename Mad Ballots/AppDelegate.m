@@ -16,6 +16,7 @@
 #import "GameViewController.h"
 #import "CardViewController.h"
 #import "VoteViewController.h"
+#import "MBLoginViewController.h"
 #import "MBAuthentication.h"
 #import "MBAuthenticationInfo.h"
 #import "MBAuthenticationCredentials.h"
@@ -60,8 +61,8 @@
 
 +(void)showLogin{
     AppDelegate * app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    //UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    MBLoginViewController *vc = [[MBLoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil]; //   [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     [vc setModalPresentationStyle:UIModalPresentationFullScreen];
     [app.window.rootViewController presentModalViewController:vc animated:YES];
 }
@@ -90,7 +91,16 @@
     [self initializeFacebookSession];
 
     // Override point for customization after application launch.
-    rootNavController = (UINavigationController *)self.window.rootViewController;
+    //rootNavController = (UINavigationController *)self.window.rootViewController;
+    
+    
+
+    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    GamesViewController *gamesViewController = [[GamesViewController alloc] initWithNibName:@"GamesViewController" bundle:nil];
+    self.rootNavController = [[UINavigationController alloc] initWithRootViewController:gamesViewController];
+    self.window.rootViewController = self.rootNavController;
+    [self.window makeKeyAndVisible];
 
     
     
