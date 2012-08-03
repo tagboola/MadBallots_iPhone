@@ -11,7 +11,7 @@
 #import "Facebook.h"
 
 
-@interface MBLoginViewController : UIViewController <RKObjectLoaderDelegate,FBRequestDelegate>
+@interface MBLoginViewController : MBUIViewController <RKObjectLoaderDelegate,FBRequestDelegate>
 
 @property (unsafe_unretained, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (unsafe_unretained, nonatomic) IBOutlet UITextField *passwordTextField;

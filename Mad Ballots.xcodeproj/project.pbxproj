@@ -57,7 +57,6 @@
 		0EE3D62114FEB63500E4A0CE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0EE3D61F14FEB63500E4A0CE /* InfoPlist.strings */; };
 		0EE3D62314FEB63500E4A0CE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D62214FEB63500E4A0CE /* main.m */; };
 		0EE3D62714FEB63500E4A0CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D62614FEB63500E4A0CE /* AppDelegate.m */; };
-		0EE3D62A14FEB63500E4A0CE /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EE3D62814FEB63500E4A0CE /* MainStoryboard.storyboard */; };
 		0EE3D62D14FEB63500E4A0CE /* GamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D62C14FEB63500E4A0CE /* GamesViewController.m */; };
 		0EE3D66514FECBB300E4A0CE /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D66414FECBB300E4A0CE /* Game.m */; };
 		0EF7163215801C8700B70954 /* Contestant.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7163115801C8700B70954 /* Contestant.m */; };
@@ -76,6 +75,7 @@
 		689CDB88156DC664008E5648 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 689CDB87156DC664008E5648 /* SFHFKeychainUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		68BEF4CD1564AC070094DC1C /* MBRootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BEF4CC1564AC060094DC1C /* MBRootNavigationController.m */; };
 		68C27FF41550D37200B1A503 /* MBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C27FF31550D37200B1A503 /* MBLoginViewController.m */; };
+		68C70E6D15CB787000C32BDF /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C70E6C15CB786E00C32BDF /* CardViewController.m */; };
 		68D669ED15C7736D0084A212 /* MBPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68D669EC15C7736D0084A212 /* MBPlayerView.xib */; };
 		68D669EF15C77CB90084A212 /* MBGameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68D669EE15C77CB90084A212 /* MBGameView.xib */; };
 		68EB41C715C4674C007C771F /* GamesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68EB41C615C4674C007C771F /* GamesViewController.xib */; };
@@ -334,6 +334,8 @@
 		68BEF4CC1564AC060094DC1C /* MBRootNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBRootNavigationController.m; sourceTree = "<group>"; };
 		68C27FF21550D37200B1A503 /* MBLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBLoginViewController.h; sourceTree = "<group>"; };
 		68C27FF31550D37200B1A503 /* MBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBLoginViewController.m; sourceTree = "<group>"; };
+		68C70E6B15CB786D00C32BDF /* CardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardViewController.h; sourceTree = "<group>"; };
+		68C70E6C15CB786E00C32BDF /* CardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardViewController.m; sourceTree = "<group>"; };
 		68D669EC15C7736D0084A212 /* MBPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBPlayerView.xib; sourceTree = "<group>"; };
 		68D669EE15C77CB90084A212 /* MBGameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBGameView.xib; sourceTree = "<group>"; };
 		68EB41C615C4674C007C771F /* GamesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GamesViewController.xib; sourceTree = "<group>"; };
@@ -529,12 +531,12 @@
 		0EE3D65D14FEC4F800E4A0CE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				68C70E6B15CB786D00C32BDF /* CardViewController.h */,
+				68C70E6C15CB786E00C32BDF /* CardViewController.m */,
 				68C27FF21550D37200B1A503 /* MBLoginViewController.h */,
 				68C27FF31550D37200B1A503 /* MBLoginViewController.m */,
 				0EE3D62B14FEB63500E4A0CE /* GamesViewController.h */,
 				0EE3D62C14FEB63500E4A0CE /* GamesViewController.m */,
-				0E675707157BD45200690B98 /* CandidateViewController.h */,
-				0E675708157BD45200690B98 /* CandidateViewController.m */,
 				0E0F6DCB15BE280300043247 /* MBNotificationAction.h */,
 				0E0F6DCC15BE280300043247 /* MBNotificationAction.m */,
 				0E0F6DCD15BE280300043247 /* MBNotificationActionFillCard.h */,
@@ -546,8 +548,6 @@
 				0E0F6DD315BE280300043247 /* MBNotificationActionVote.m */,
 				0E0F6DD415BE280300043247 /* MBNotificationProcessor.h */,
 				0E0F6DD515BE280300043247 /* MBNotificationProcessor.m */,
-				0E67570C157BD49800690B98 /* CardViewController.h */,
-				0E67570D157BD49800690B98 /* CardViewController.m */,
 				0E23E95D152E3FA70027E9A0 /* CreateGameViewController.h */,
 				0E23E95E152E3FA70027E9A0 /* CreateGameViewController.m */,
 				0E4406EE1578682700D7D8A3 /* TicketViewController.h */,
@@ -813,7 +813,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EE3D62114FEB63500E4A0CE /* InfoPlist.strings in Resources */,
-				0EE3D62A14FEB63500E4A0CE /* MainStoryboard.storyboard in Resources */,
 				0E7BC1BD152A0BE600BCE387 /* CardTableViewCell.xib in Resources */,
 				0E7BC1C0152A0F5600BCE387 /* default_list_user.png in Resources */,
 				0E7BC1C2152A0F5C00BCE387 /* default_list_user@2x.png in Resources */,
@@ -882,6 +881,7 @@
 				0E0F6DDF15BF7F3100043247 /* MBProgressHUD.m in Sources */,
 				0E0F6DE515BF89D700043247 /* MBUIViewController.m in Sources */,
 				0E0F6DE815BF8A0C00043247 /* MBUITableViewController.m in Sources */,
+				68C70E6D15CB787000C32BDF /* CardViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

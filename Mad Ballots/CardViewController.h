@@ -11,7 +11,7 @@
 #import "RestKit.h"
 
 
-@interface CardViewController : UIViewController <RKObjectLoaderDelegate,UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>{
+@interface CardViewController : MBUIViewController <RKObjectLoaderDelegate,UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>{
     NSArray *candidates;
     NSString *cardId;
     NSString *category;

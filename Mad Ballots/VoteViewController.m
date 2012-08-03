@@ -114,6 +114,8 @@
     self.titleLabel.text = [NSString stringWithFormat:@"What %@ is...",round.category];
     self.navigationItem.rightBarButtonItem = submitButton;
 
+    [self startLoading:@"Loading ballots..."];
+
     [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/rounds/%@/tickets.json",round.roundId] usingBlock:^(RKObjectLoader *loader) {
         loader.onDidLoadObjects = ^(NSArray * objects){
             tickets = objects;
