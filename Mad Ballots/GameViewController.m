@@ -175,8 +175,11 @@
     [super viewDidAppear:animated];
     //TODO: Refresh Contestant object
     NSString *path = [NSString stringWithFormat:@"games/%@/contestants.json", contestant.gameId,contestant.contestantId];
+    if(!self.gameContestants)
+        [self startLoading:@"Loading scores..."];
     [[RKObjectManager sharedManager] loadObjectsAtResourcePath:path usingBlock:^(RKObjectLoader *loader) {
         loader.onDidLoadObjects = ^(NSArray* objects) {
+            [self stopLoading];
             self.gameContestants = [NSMutableArray arrayWithArray:objects];
             NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"score" ascending:NO];
             self.gameContestants = [NSMutableArray arrayWithArray:[self.gameContestants sortedArrayUsingDescriptors:[NSArray arrayWithObject:descriptor]]];
@@ -190,6 +193,7 @@
             [self updateUI];
         };
         loader.onDidFailWithError = ^(NSError *error){
+            [self stopLoading];
             NSLog(@"Error loading contestants:%@",[error localizedDescription]);
         };
 

@@ -61,7 +61,7 @@
         ticketView.isShowingResults = showResults;
         ticketView.delegate = self;
         ticketView.ticket = ticket;
-        if(ticket.winners){
+        if(showResults){
             [self.candidates setObject:ticket.winners forKey:ticket.contestantId];
         }
         ticketView.candidateHash = self.candidates;
@@ -74,6 +74,7 @@
     [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/rounds/%@/candidates.json",round.roundId] usingBlock:^(RKObjectLoader *loader) {
         //TODO: Optimize this
         loader.onDidLoadObjects = ^(NSArray * objects){
+            [self stopLoading];
             TicketViewController *ticketView;
             for(Candidate *candidate in objects){
                 if(![candidate.cardId isEqualToString:cardId]){
@@ -90,6 +91,7 @@
             }
         };
         loader.onDidFailWithError = ^(NSError *error){
+            [self stopLoading];
             NSLog(@"Error loading candidates for round:%@",[error localizedDescription]);
         };
     }];
@@ -118,6 +120,7 @@
             [self loadViewControllers];
         };
         loader.onDidFailWithError = ^(NSError *error){
+            [self stopLoading];
             NSLog(@"Error loading candidates for round:%@", [error localizedDescription]);
         };
     }];

@@ -14,7 +14,7 @@
 -(void)changePage:(int)page;
 @end
 
-@interface ScrollViewWithPaging : UIViewController <UIScrollViewDelegate,ScrollViewWithPagingDelegate>{
+@interface ScrollViewWithPaging : MBUIViewController <UIScrollViewDelegate,ScrollViewWithPagingDelegate>{
     IBOutlet UIScrollView *scrollView;
     IBOutlet UIPageControl *pageControl;
     IBOutlet UILabel *titleLabel;

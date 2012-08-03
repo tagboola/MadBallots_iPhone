@@ -98,7 +98,11 @@
 }
 
 -(void)nextPage{
-    [self changePage:self.pageControl.currentPage+1];
+    int nextPage = self.pageControl.currentPage+1;
+    if(nextPage >= self.pageControl.numberOfPages)
+        [self changePage:0];
+    else
+        [self changePage:nextPage];
 
 }
 

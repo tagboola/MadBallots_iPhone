@@ -10,7 +10,7 @@
 #import "Contestant.h"
 #import "RestKit.h"
 
-@interface GameViewController : UIViewController <UITableViewDataSource,UITableViewDelegate, RKObjectLoaderDelegate>{
+@interface GameViewController : MBUIViewController <UITableViewDataSource,UITableViewDelegate, RKObjectLoaderDelegate>{
     Contestant *contestant;
     NSMutableArray *gameContestants;
     NSArray *rounds;

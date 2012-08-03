@@ -11,7 +11,7 @@
 #import "RestKit.h"
 
 
-@interface PlayerRequestViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate, FBRequestDelegate,RKObjectLoaderDelegate> {
+@interface PlayerRequestViewController : MBUITableViewController <UISearchDisplayDelegate, UISearchBarDelegate, FBRequestDelegate,RKObjectLoaderDelegate> {
 	NSMutableArray *playersArray;
 	NSMutableArray *searchPlayersArray;
 	NSMutableArray *selectedPlayersArray;

@@ -42,6 +42,7 @@ static NSString * const CHECKED = @"checked";
 
 
 -(void) getFacebookFriends{
+    [self startLoading:@"Loading friends..."];
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];;
 	NSString *fb_ID = [prefs objectForKey:FACEBOOK_ID_KEY];
     NSString *fbAccessToken = [SFHFKeychainUtils getPasswordForUsername:fb_ID andServiceName:@"fb_token" error:NULL];
@@ -76,12 +77,6 @@ static NSString * const CHECKED = @"checked";
 
  - (void)viewDidAppear:(BOOL)animated {
      [super viewDidAppear:animated];
-     /*self.facebook = [[Facebook alloc] initWithAppId:FACEBOOK_APP_ID andDelegate:nil];
-     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-     if ([defaults objectForKey:FACEBOOK_ACCESS_TOKEN_KEY] && [defaults objectForKey:FACEBOOK_EXIPIRATION_DATE_KEY]) {
-         facebook.accessToken = [defaults objectForKey:FACEBOOK_ACCESS_TOKEN_KEY];
-         facebook.expirationDate = [defaults objectForKey:FACEBOOK_EXIPIRATION_DATE_KEY];
-     }*/
      if([[AppDelegate facebook] isSessionValid]){
          [self getFacebookFriends];
      }else{
@@ -110,11 +105,11 @@ static NSString * const CHECKED = @"checked";
  */
 
 -(IBAction)addSelectedPlayers:(id)sender{
+    [self startLoading:@"Inviting players..."];
     for(NSDictionary *facebookDictionary in selectedPlayersArray){
         //TODO: Search for authorizations instead of player
         [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/players.json?facebook_id=%@",[facebookDictionary objectForKey:ID]] delegate:self];
-        
-         //[[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/players.json?facebook_id=%@",[facebookDictionary objectForKey:ID]] objectMapping:[Player getObjectMapping] delegate:self];
+    
     }
 }
 
@@ -226,6 +221,7 @@ static NSString * const CHECKED = @"checked";
 
 - (void)request:(FBRequest*)request didLoad:(id)result {
     NSLog(@"%@",result);
+    [self stopLoading];
 	NSArray* users = result;
 	if([users count]>0){
 		NSLog(@"User has %d friends using this app",[users count]);
@@ -254,6 +250,7 @@ static NSString * const CHECKED = @"checked";
  */
 - (void)request:(FBRequest*)request didFailWithError:(NSError*)error{
     NSLog(@"%@",[error description]);
+    [self stopLoading];
     [[[UIAlertView alloc] initWithTitle:@"Connection Error" message:@"Please check network connection and try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 };
 	
@@ -301,16 +298,21 @@ static NSString * const CHECKED = @"checked";
         [createGameView invitePlayer:player];
     }
     RKRequestQueue *queue = [[RKObjectManager sharedManager] requestQueue]; 
-    if(queue.count == 1)
+    if(queue.count == 1){
         [self.navigationController popViewControllerAnimated:YES];
+        [self stopLoading];
+    }
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error{
     //TODO: Display error messsages
     NSLog(@"Object Loader failed with error: %@", [error localizedDescription]);
     RKRequestQueue *queue = [[RKObjectManager sharedManager] requestQueue]; 
-    if(queue.count == 1)
+    if(queue.count == 1){
         [self.navigationController popViewControllerAnimated:YES];
+        [self stopLoading];
+
+    }
 }
 	
 	

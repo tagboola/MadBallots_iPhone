@@ -13,7 +13,7 @@
 
 
 
-@interface CreateGameViewController : UITableViewController <RKObjectLoaderDelegate>{
+@interface CreateGameViewController : MBUITableViewController <RKObjectLoaderDelegate>{
     int numberOfPlayersAlreadyInvited;
     Game *game;
     NSMutableArray *playersToBeInvited;
