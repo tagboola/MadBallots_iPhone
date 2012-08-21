@@ -18,6 +18,7 @@
 
 @synthesize round;
 @synthesize contestantId;
+@synthesize isOwner;
 @synthesize cardId;
 @synthesize tickets;
 @synthesize viewControllerHash;
@@ -51,8 +52,8 @@
         showResults = true;
     }
 
-    TicketOverviewViewController *firstView = [[TicketOverviewViewController alloc] initWithStyle:UITableViewStylePlain showResults:YES tickets:tickets candidates:candidates delegate:self];
-    [viewControllers addObject:firstView];
+//    TicketOverviewViewController *firstView = [[TicketOverviewViewController alloc] initWithStyle:UITableViewStylePlain showResults:YES tickets:tickets candidates:candidates delegate:self];
+//    [viewControllers addObject:firstView];
     
     TicketViewController *ticketView;
     for(int ii=0;ii < [tickets count]; ii++){
@@ -77,17 +78,14 @@
             [self stopLoading];
             TicketViewController *ticketView;
             for(Candidate *candidate in objects){
-                if(![candidate.cardId isEqualToString:cardId]){
+                if(![candidate.cardId isEqualToString:cardId] || isOwner){
                     ticketView = [viewControllerHash objectForKey:candidate.contestantId];
                     [ticketView.candidates addObject:candidate];
                 }
             }
             //TODO: Refactor - TicketOverviewController involved in this
             for(TicketViewController *ballotView in viewControllers){
-            if([ballotView class] == [TicketViewController class])
                 [ballotView reloadData];
-            else
-                [ballotView.tableView reloadData];
             }
         };
         loader.onDidFailWithError = ^(NSError *error){

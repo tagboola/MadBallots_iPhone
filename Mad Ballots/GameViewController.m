@@ -331,6 +331,7 @@
     voteView.round = self.contestant.round;
     voteView.contestantId = self.contestant.contestantId;
     voteView.cardId = self.contestant.card.cardId;
+    voteView.isOwner = [self.contestant.game iAmOwner];
     [self.navigationController pushViewController:voteView animated:YES];
 }
 

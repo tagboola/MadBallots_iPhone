@@ -12,6 +12,7 @@
 
 @interface VoteViewController : ScrollViewWithPaging{
     Round *round;
+    BOOL isOwner;
     NSString *contestantId;
     NSString *cardId;
     NSArray *tickets;
@@ -20,6 +21,7 @@
     IBOutlet UIBarButtonItem *submitButton;
 }
 @property (nonatomic,retain) Round *round;
+@property (nonatomic,assign) BOOL isOwner;
 @property (nonatomic,retain) NSString *contestantId;
 @property (nonatomic,retain) NSString *cardId;
 @property (nonatomic,retain) NSArray *tickets;
