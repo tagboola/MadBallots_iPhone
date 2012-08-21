@@ -87,12 +87,12 @@
 #pragma Mark - ScrollViewWithPaging Delegate methods
 -(void)changePage:(int)page{
     self.pageControl.currentPage = page;
+    pageControlBeingUsed = YES;
     CGRect frame;
     frame.origin.x = self.scrollView.frame.size.width * page;
     frame.origin.y = 0;
     frame.size = self.scrollView.frame.size;
     [self.scrollView scrollRectToVisible:frame animated:YES];
-    pageControlBeingUsed = YES;
     if(page == 0)
         [self refreshOverviewController];
 }
@@ -117,9 +117,10 @@
     if(!pageControlBeingUsed){
         CGFloat pageWidth = self.scrollView.frame.size.width;
         int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-        if(page == 0 && self.pageControl.currentPage != page)
-            [self refreshOverviewController];
-        self.pageControl.currentPage = page;
+        if(page != self.pageControl.currentPage){
+            pageControlBeingUsed = YES;
+            [self changePage:page];
+        }
     }
 }
 
