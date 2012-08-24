@@ -9,9 +9,16 @@
 #import "TicketViewController.h"
 #import "Ballot.h"
 
+#define VOTE_SEGMENT_INDEX 0
+#define MERGE_SEGMENT_INDEX 1
+#define MULTIPLE_SELECT_EDITING_STYLE 3
 
 @implementation TicketViewController
+@synthesize mergeToolbar;
+@synthesize mergeInputToolbar;
+@synthesize mergeInputToolbarTextfield;
 @synthesize isShowingResults;
+@synthesize isOwner;
 @synthesize votes;
 @synthesize delegate;
 @synthesize ticket;
@@ -20,6 +27,9 @@
 @synthesize titleLabel;
 @synthesize imageView;
 @synthesize candidateHash;
+@synthesize mergeSegmentedControl;
+
+
 
 
 
@@ -27,9 +37,9 @@
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
     // Release any cached data, images, etc that aren't in use.
 }
+
 
 - (void) reloadData{
     [tableView reloadData];
@@ -132,22 +142,81 @@
 
 }
 
+-(void)updateCandidates:(CandidateGroup*)candidateGroup{
+    NSArray *selectedRows = [self.tableView indexPathsForSelectedRows];
+    for(NSIndexPath *indexPath in selectedRows){
+        NSArray *candidateArray = [candidates objectAtIndex:indexPath.row];
+        for(Candidate *candidate in candidateArray){
+            candidate.candidateGroupId = candidateGroup.candidateGroupId;
+            candidate.candidateGroup = candidateGroup;
+            [[RKObjectManager sharedManager] putObject:candidate usingBlock:^(RKObjectLoader *loader) {
+                loader.onDidLoadObjects = ^(NSArray *objects){
+                    if(loader.queue.count == 1){
+                        [self stopLoading];
+                        [self.mergeSegmentedControl setSelectedSegmentIndex:VOTE_SEGMENT_INDEX];
+                        [self segmentedControlChanged:mergeSegmentedControl];
+                        [self analyzeCandidates];
+                    }
+                };
+                loader.onDidFailWithError = ^(NSError *error){
+                    [self stopLoading];
+                    NSLog(@"Error POST-ing CandidateGroup:%@",[error localizedDescription]);
+                };
+            }];
+        }
+    }
+    
+}
+
+-(IBAction) submitMergeButtonClicked:(id)sender{
+    [mergeInputToolbarTextfield resignFirstResponder];
+    if(mergeInputToolbarTextfield.text == nil || mergeInputToolbarTextfield.text.length == 0){
+        [[[UIAlertView alloc] initWithTitle:@"Invalid merged name" message:@"Please enter a name to merge the two candidates too in the field below" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        return;
+    }
+    NSArray *selectedRows = [self.tableView indexPathsForSelectedRows];
+    if([selectedRows count] <= 1){
+        [[[UIAlertView alloc] initWithTitle:@"Minimum of two candidates" message:@"Please select atleast two candidates to perform a merge" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        return;
+    }
+    [self startLoading:@"Merging candidates..."];
+    CandidateGroup *candGroup = [[CandidateGroup alloc] init];
+    candGroup.value = mergeInputToolbarTextfield.text;
+    [[RKObjectManager sharedManager] postObject:candGroup usingBlock:^(RKObjectLoader *loader) {
+        loader.onDidLoadObjects = ^(NSArray *objects){
+            [self updateCandidates:[objects objectAtIndex:0]];
+        };
+        loader.onDidFailWithError = ^(NSError *error){
+            [self stopLoading];
+            NSLog(@"Error POST-ing CandidateGroup:%@",[error localizedDescription]);
+        };
+    }];
+
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
     selectedIndex = -1;
     self.candidates = [NSMutableArray array];
     self.titleLabel.text = ticket.player.name;
     //TODO: Put player's image 
     self.imageView.image = [UIImage imageNamed:@"default_list_user.png"];
+    
+    UISwipeGestureRecognizer *fingerSwipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft)];
+    [fingerSwipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [self.view addGestureRecognizer:fingerSwipeLeft];
+    UISwipeGestureRecognizer *fingerSwipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight)];
+    [fingerSwipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
+    [self.view addGestureRecognizer:fingerSwipeRight];
+    
+    if(isOwner){
+        self.tableView.frame = CGRectMake(self.tableView.frame.origin.x,self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height- self.mergeToolbar.frame.size.height);
+        self.mergeToolbar.frame = CGRectMake(0, self.view.frame.size.height-self.mergeToolbar.frame.size.height, self.view.frame.size.width, self.mergeToolbar.frame.size.height);
+    }
 }
 
 - (void)viewDidUnload
@@ -183,6 +252,75 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void) analyzeCandidates{
+    //Match candidates with the same case insensitive value
+    NSMutableDictionary *valueMatchedCandidatesHash = [NSMutableDictionary dictionary];
+    NSMutableDictionary *candidateGroupMatchedCandidatesHash = [NSMutableDictionary dictionary];
+    NSMutableDictionary *valueHash = [NSMutableDictionary dictionary];
+    NSMutableDictionary *candidateGroupHash = [NSMutableDictionary dictionary];
+    for(NSArray *candidateArray in candidates){
+        for(Candidate *candidate in candidateArray){ 
+            NSString *uppercaseValue = [candidate.value uppercaseString];
+            if([valueHash objectForKey:uppercaseValue]){
+                NSMutableArray *matchedCandidates = [valueMatchedCandidatesHash objectForKey:uppercaseValue];
+                [matchedCandidates addObject:candidate];
+                [valueMatchedCandidatesHash setObject:matchedCandidates forKey:uppercaseValue];
+                
+            }else if(candidate.candidateGroup && [candidateGroupHash objectForKey:candidate.candidateGroup.candidateGroupId]){
+                NSMutableArray *matchedCandidates = [candidateGroupMatchedCandidatesHash objectForKey:candidate.candidateGroup.candidateGroupId];
+                [matchedCandidates addObject:candidate];
+                [candidateGroupMatchedCandidatesHash setObject:matchedCandidates forKey:candidate.candidateGroup.candidateGroupId];
+            }
+            else if(candidate.candidateGroup){
+                [candidateGroupHash setObject:candidate forKey:candidate.candidateGroup.candidateGroupId];
+                [candidateGroupMatchedCandidatesHash setObject:[NSMutableArray arrayWithObject:candidate] forKey:candidate.candidateGroup.candidateGroupId];
+            }
+            else{        
+                [valueHash setObject:candidate forKey:uppercaseValue];
+                [valueMatchedCandidatesHash setObject:[NSMutableArray arrayWithObject:candidate] forKey:uppercaseValue];
+            }
+        }
+    }
+    self.candidates = [NSMutableArray arrayWithArray:[valueMatchedCandidatesHash allValues]];
+    [self.candidates addObjectsFromArray:[candidateGroupMatchedCandidatesHash allValues]];
+    [self reloadData];
+}
+
+- (void) swipeLeft{
+    [delegate nextPage];
+
+}
+
+- (void) swipeRight{
+    [delegate previousPage];
+}
+
+- (IBAction) segmentedControlChanged:(id) sender{
+    if(((UISegmentedControl*)sender).selectedSegmentIndex == VOTE_SEGMENT_INDEX){
+        self.tableView.editing = NO;
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.5];
+        self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height- self.mergeToolbar.frame.size.height);
+        self.mergeToolbar.frame = CGRectMake(0, self.view.frame.size.height-self.mergeToolbar.frame.size.height, self.view.frame.size.width, self.mergeToolbar.frame.size.height);
+        self.mergeInputToolbar.frame = CGRectMake(0, self.view.frame.size.height/*+self.mergeInputToolbar.frame.size.height*/, self.view.frame.size.width, self.mergeToolbar.frame.size.height);        
+        [UIView commitAnimations];
+    }else{
+        self.tableView.editing = YES;
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.5];
+        [UIView setAnimationDidStopSelector:@selector(animationEnded)];
+        self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-self.mergeToolbar.frame.size.height*2);
+        self.mergeToolbar.frame = CGRectMake(0, self.view.frame.size.height-self.mergeToolbar.frame.size.height*2, self.view.frame.size.width, self.mergeToolbar.frame.size.height);
+        self.mergeInputToolbar.frame = CGRectMake(0, self.view.frame.size.height-self.mergeInputToolbar.frame.size.height, self.view.frame.size.width, self.mergeToolbar.frame.size.height);        
+        [UIView commitAnimations];
+    }
+}
+
+
+//- (void) animationEnded{
+//    self.mergeInputToolbar.frame = CGRectMake(0, self.view.frame.size.height+self.mergeInputToolbar.frame.size.height, self.view.frame.size.width, self.mergeToolbar.frame.size.height); 
+//}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -206,8 +344,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    Candidate *candidate = [candidates objectAtIndex:indexPath.row];
-    cell.textLabel.text = candidate.value;
+    //TODO: Include logic to use a particular version of the grouped candidates value
+    cell.textLabel.text = [(NSMutableArray*)[candidates objectAtIndex:indexPath.row] getCandidateValue];;
     
     if(selectedIndex == indexPath.row)
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -258,16 +396,21 @@
 }
 */
 
+-(UITableViewCellEditingStyle)tableView:(UITableView*)tableView editingStyleForRowAtIndexPath:(NSIndexPath*)indexPath {
+    return MULTIPLE_SELECT_EDITING_STYLE;
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    selectedIndex = indexPath.row;
-    NSSet *set = [NSSet setWithObject:[candidates objectAtIndex:selectedIndex]];
-    [candidateHash setObject:set forKey:ticket.contestantId];
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    [delegate nextPage];
+    if(!self.tableView.isEditing){
+        selectedIndex = indexPath.row;
+        NSArray *selectedCandidates =  [candidates objectAtIndex:selectedIndex];
+        [candidateHash setObject:selectedCandidates forKey:ticket.contestantId];
+        [self reloadData];
+        [delegate nextPage];
+    }
 }
 
 #pragma mark Object loader delegate methods
@@ -282,6 +425,19 @@
 //- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error{
 //    NSLog(@"Object Loader failed with error: %@", [error localizedDescription]);
 //}
+
+#pragma mark Text Field delegate methods
+
+
+//- (void)textFieldDidBeginEditing:(UITextField *)textField{
+//    [delegate controlSelectedForEditing:mergeInputToolbar];
+//    
+//}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+//    [delegate editingFinished];
+    return YES;
+}
 
 #pragma mark Bar Plot data source methods
 

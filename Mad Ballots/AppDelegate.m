@@ -339,6 +339,7 @@
     [provider registerMapping:[Ballot getObjectMapping] withRootKeyPath:@"ballot"];
     [provider registerMapping:[Ticket getObjectMapping] withRootKeyPath:@"ticket"];
     [provider registerMapping:[Round getObjectMapping] withRootKeyPath:@"round"];
+    [provider registerMapping:[CandidateGroup getObjectMapping] withRootKeyPath:@"candidate_group"];
     //[provider addObjectMapping:[Round getObjectMapping]];
     //[provider addObjectMapping:[Player getObjectMapping]];
     
@@ -369,6 +370,7 @@
     [router routeClass:[Ballot class] toResourcePath:@"/ballots.json" forMethod:RKRequestMethodPOST];
     [router routeClass:[Round class] toResourcePath:@"/rounds.json" forMethod:RKRequestMethodPOST];
     [router routeClass:[Round class] toResourcePath:@"/rounds/:roundId\\.json" forMethod:RKRequestMethodPUT];
+    [router routeClass:[CandidateGroup class] toResourcePath:@"/candidate_groups.json" forMethod:RKRequestMethodPOST];
 
     [RKObjectManager setSharedManager:manager];
         

@@ -51,8 +51,7 @@
     //TODO:Add remove game button
     self.fillCardButton.userInteractionEnabled = self.contestant.card != nil && ![self.contestant.round areCardsFilled];
     //TODO:Change button to Edit Card if card is already filled
-    //self.voteButton.userInteractionEnabled = (self.contestant.card != nil) && ![self.contestant.card isVoteCast];
-    self.voteButton.userInteractionEnabled = YES;
+    self.voteButton.userInteractionEnabled = (self.contestant.card != nil) && ![self.contestant.card isVoteCast];
 
     self.navigationItem.rightBarButtonItem.enabled = self.gameContestants && [self.contestant.game iAmOwner] && ![self.contestant hasGameStarted] && ([self.gameContestants count] <  MAXIMUM_NUMBER_OF_INVITES+1);
 

@@ -46,8 +46,8 @@
     self.title = @"Games";
     self.gamesArray = [NSArray arrayWithObjects:[NSMutableArray array],[NSMutableArray array], nil];
     self.sectionTitleArray = [NSArray arrayWithObjects:@"Game Invitations",@"Active Games", nil];
-    self.navigationController.navigationBar.topItem.rightBarButtonItem = loginLogoutButton;
-    self.navigationController.navigationBar.topItem.leftBarButtonItem = newGameButton;
+    self.navigationController.navigationBar.topItem.leftBarButtonItem = loginLogoutButton;
+    self.navigationController.navigationBar.topItem.rightBarButtonItem = newGameButton;
 
 }
 

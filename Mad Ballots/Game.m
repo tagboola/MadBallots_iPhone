@@ -7,6 +7,7 @@
 //
 
 #import "Game.h"
+#import "AppDelegate.h"
 
 @implementation Game
 
@@ -26,7 +27,7 @@
 
 
 -(BOOL) iAmOwner{
-    return [ownerId isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:USER_ID_KEY]];
+    return [ownerId isEqualToString:[AppDelegate currentPlayer].playerId];
 }
 
 
