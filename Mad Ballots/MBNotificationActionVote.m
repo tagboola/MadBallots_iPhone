@@ -18,9 +18,12 @@
         
         NSString *contestantsPath = [NSString stringWithFormat:@"players/%@/contestants.json",[AppDelegate currentPlayer].playerId];
         
+        MBUIViewController* currentViewController = [[[AppDelegate getInstance] rootNavController] topViewController];
+        [currentViewController startLoading:@"Preparing Tickets..."];
+        
         [[RKObjectManager sharedManager] loadObjectsAtResourcePath:contestantsPath usingBlock:^(RKObjectLoader *loader) {
             loader.onDidLoadObjects = ^(NSArray *objects) {
-                
+                [currentViewController stopLoading];
                 Game *targetGame = NULL;
                 Contestant *targetContestant = NULL;
                 
@@ -72,6 +75,7 @@
             };
            
             loader.onDidFailWithError = ^(NSError *error){
+                [currentViewController stopLoading];
                 NSLog(@"Error loading contestant:%@",[error localizedDescription]);
             };
         
