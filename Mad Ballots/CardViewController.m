@@ -111,6 +111,7 @@
         }
     }
     for(Candidate *candidate in candidates){
+        [self startLoading:@"Submitting Card..."];
         [[RKObjectManager sharedManager] putObject:candidate delegate:self];
     
     }
@@ -222,6 +223,7 @@
 #pragma mark Object loader delegate methods
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
+    [self stopLoading];
     NSLog(@"Did get objects: %@", objects);
     if(objectLoader.method == RKRequestMethodGET){
         self.candidates = [NSArray arrayWithArray:objects];
@@ -240,6 +242,7 @@
 }
 
 - (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error{
+    [self stopLoading];
     NSLog(@"Object Loader failed with error: %@", [error localizedDescription]);
     //TODO: Display Errors
     //TODO: Duplicated Code

@@ -156,13 +156,16 @@
         ballot.contestantId = contestantId;
         NSSet *set = [candidates objectForKey:ticket.contestantId];
         ballot.candidateId = ((Candidate*)[set anyObject]).candidateId;
+        [self startLoading:@"Submitting Votes..."];
         [[RKObjectManager sharedManager] postObject:ballot usingBlock:^(RKObjectLoader *loader) {
             loader.onDidLoadObjects = ^(NSArray * objects){
+                [self stopLoading];
                 RKRequestQueue *queue = [[RKObjectManager sharedManager] requestQueue]; 
                 if(queue.count == 1)
                     [self.navigationController popViewControllerAnimated:YES];
             };
             loader.onDidFailWithError = ^ (NSError *error){
+                [self stopLoading];
                 NSLog(@"Ballot post falled with error:%@",[error localizedDescription]);
         };
         }];
