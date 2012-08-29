@@ -12,6 +12,10 @@
 #import "CardViewController.h"
 #import "VoteViewController.h"
 
+NSString * const MB_ACCEPT_INVITATION_DIALOG_MESSAGE = @"Join this game?";
+NSString * const MB_START_ROUND_DIALOG_MESSAGE = @"Start the round?";
+
+
 @implementation GameViewController
 
 @synthesize contestant;
@@ -58,6 +62,18 @@
 
 }
 
+-(void)showJoinGameAlert
+{
+    [[[UIAlertView alloc] initWithTitle:@"Mad Ballots!" message:MB_ACCEPT_INVITATION_DIALOG_MESSAGE delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes",nil] show];
+}
+
+
+-(void)showStartRoundAlert
+{
+    [[[UIAlertView alloc] initWithTitle:@"Mad Ballots!" message:MB_START_ROUND_DIALOG_MESSAGE delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes",nil] show];
+}
+
+
 -(void) showToolbar:(UIToolbar*)toolbar{
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.5];
@@ -78,7 +94,8 @@
             self.contestant = (Contestant*)[objects objectAtIndex:0];
             [self updateUI];
             if([self.contestant.round isRoundOver])
-                [self showToolbar:startGameToolbar];
+                [self showStartRoundAlert];
+                //[self showToolbar:startGameToolbar];
         };
         loader.onDidFailWithError = ^(NSError *error){
             NSLog(@"Error loading contestant:%@",[error localizedDescription]);
@@ -133,6 +150,28 @@
     return true;
 }
 
+
+#pragma mark Remote Notification Alert Delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    //HANDLE ACCEPT INVITATION PROMPT
+    if (alertView.message == MB_ACCEPT_INVITATION_DIALOG_MESSAGE){
+        if (buttonIndex == 0){ //NO
+            [self rejectGameInvitation:alertView];
+        }else if (buttonIndex == 1){ //YES
+            [self acceptGameInvitation:alertView];
+        }
+    }else if (alertView.message == MB_START_ROUND_DIALOG_MESSAGE){
+        if (buttonIndex == 0){ //NO
+            //[self rejectGameInvitation:alertView];
+        }else if (buttonIndex == 1){ //YES
+            [self startGame:alertView];
+        }
+    }
+    
+}
+
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -186,7 +225,8 @@
             [self.tableView reloadData];
             //TODO: Do we start when all users have repsonded or when minimum number of users have responded??
             if([self.contestant.game iAmOwner] && ![self.contestant hasGameStarted] && [self haveAllContestantsResponded] && [gameContestants count] >= MINIMUM_NUMBER_OF_INVITES)
-                [self showToolbar:startGameToolbar];
+                [self showStartRoundAlert];
+                //[self showToolbar:startGameToolbar];
             if([gameContestants count] < MINIMUM_NUMBER_OF_INVITES+1)
                 [[[UIAlertView alloc] initWithTitle:@"Invite more friends!" message:[NSString stringWithFormat:@"You need atleast %d players to start a game", MINIMUM_NUMBER_OF_INVITES+1] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
             //TODO: If everyone can invite, must check to see if this is just an invitation before inviting other players
@@ -212,7 +252,8 @@
 
     [self refreshContestant];
     if([self.contestant isInvitation])
-        [self showToolbar:self.acceptGameInvitationToolbar];
+        [self showJoinGameAlert];
+//        [self showToolbar:self.acceptGameInvitationToolbar];
      
 }
 

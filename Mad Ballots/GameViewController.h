@@ -6,6 +6,11 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+extern NSString * const MB_ACCEPT_INVITATION_DIALOG_MESSAGE;
+extern NSString * const MB_START_ROUND_DIALOG_MESSAGE;
+
+
+
 #import <UIKit/UIKit.h>
 #import "Contestant.h"
 #import "RestKit.h"
@@ -52,6 +57,7 @@
 -(IBAction)viewResults:(id)sender;
 -(IBAction)addPlayers:(id)sender;
 
-
+-(void)showJoinGameAlert;
+-(void)showStartRoundAlert;
 
 @end
