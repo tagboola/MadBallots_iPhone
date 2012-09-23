@@ -284,13 +284,16 @@ NSString * const MB_START_ROUND_DIALOG_MESSAGE = @"Start the round?";
     round.voteStatus = @"0";
     round.cardStatus = @"0";
     round.gameId = self.contestant.gameId;
+    [self startLoading:@"Starting next round..."];
     [[RKObjectManager sharedManager] postObject:round usingBlock:^(RKObjectLoader *loader) {
         loader.onDidLoadObjects = ^(NSArray * objects){
+            [self stopLoading];
             //Game was started
             [self hideToolbar:startGameToolbar];
             [self refreshContestant];
         };
         loader.onDidFailWithError = ^(NSError *error){
+            [self stopLoading];
             NSLog(@"Error posting round:%@",[error localizedDescription]);
             
         };
