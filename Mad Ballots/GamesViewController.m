@@ -46,8 +46,8 @@
     self.title = @"Games";
     self.gamesArray = [NSArray arrayWithObjects:[NSMutableArray array],[NSMutableArray array], nil];
     self.sectionTitleArray = [NSArray arrayWithObjects:@"Game Invitations",@"Active Games", nil];
-    self.navigationController.navigationBar.topItem.rightBarButtonItem = loginLogoutButton;
-    self.navigationController.navigationBar.topItem.leftBarButtonItem = newGameButton;
+    self.navigationController.navigationBar.topItem.leftBarButtonItem = loginLogoutButton;
+    self.navigationController.navigationBar.topItem.rightBarButtonItem = newGameButton;
 
 }
 
@@ -126,7 +126,7 @@
     if ([AppDelegate getInstance].currentPlayer){
 //        welcomeLabel.text = [NSString stringWithFormat:@"Welcome, %@", [AppDelegate getInstance].currentPlayer.name];
 //        loginLogoutButton.title = @"Logout";
-        self.gamesArray = [NSArray array];
+        self.gamesArray = [NSArray arrayWithObjects:[NSMutableArray array],[NSMutableArray array], nil];
         AppDelegate * app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         [app logout:sender];
     }else{

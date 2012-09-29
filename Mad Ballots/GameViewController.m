@@ -55,8 +55,7 @@ NSString * const MB_START_ROUND_DIALOG_MESSAGE = @"Start the round?";
     //TODO:Add remove game button
     self.fillCardButton.userInteractionEnabled = self.contestant.card != nil && ![self.contestant.round areCardsFilled];
     //TODO:Change button to Edit Card if card is already filled
-    //self.voteButton.userInteractionEnabled = (self.contestant.card != nil) && ![self.contestant.card isVoteCast];
-    self.voteButton.userInteractionEnabled = YES;
+    self.voteButton.userInteractionEnabled = (self.contestant.card != nil) && ![self.contestant.card isVoteCast];
 
     self.navigationItem.rightBarButtonItem.enabled = self.gameContestants && [self.contestant.game iAmOwner] && ![self.contestant hasGameStarted] && ([self.gameContestants count] <  MAXIMUM_NUMBER_OF_INVITES+1);
 
@@ -254,6 +253,10 @@ NSString * const MB_START_ROUND_DIALOG_MESSAGE = @"Start the round?";
     if([self.contestant isInvitation])
         [self showJoinGameAlert];
 //        [self showToolbar:self.acceptGameInvitationToolbar];
+    
+    
+    
+    
      
 }
 
@@ -375,6 +378,7 @@ NSString * const MB_START_ROUND_DIALOG_MESSAGE = @"Start the round?";
     voteView.round = self.contestant.round;
     voteView.contestantId = self.contestant.contestantId;
     voteView.cardId = self.contestant.card.cardId;
+    voteView.isOwner = [self.contestant.game iAmOwner];
     [self.navigationController pushViewController:voteView animated:YES];
 }
 

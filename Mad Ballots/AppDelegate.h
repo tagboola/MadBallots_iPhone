@@ -10,6 +10,7 @@
 #import "Facebook.h"
 #import "RestKit.h"
 #import "Player.h"
+#import "Contestant.h"
 #import "MBRootNavigationController.h"
 #import "MBNotificationProcessor.h"
 
@@ -22,6 +23,8 @@
     BOOL isAuthenticated;
     NSData *deviceToken;
     MBNotificationProcessor *notificationProcessor;
+    
+    
 
 }
 
@@ -48,5 +51,10 @@
 
 -(void)requestPlayerSession;
 -(void)submitDeviceTokenForPlayer:(Player *)aPlayer;
+
+
+
+
+
 
 @end

@@ -39,8 +39,9 @@
     scrollView.contentOffset = CGPointMake(0, 0);
     for(int ii = 0; ii < [viewControllers count]; ii++){
         UIViewController *viewController = [viewControllers objectAtIndex:ii];
-        viewController.view.frame = CGRectMake(self.scrollView.frame.size.width * ii, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+        viewController.view.frame = CGRectMake(self.scrollView.frame.size.width * ii, 0, viewController.view.frame.size.width, viewController.view.frame.size.height);
         [self.scrollView addSubview:viewController.view];
+
     }
 }
 
@@ -53,13 +54,34 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 }
-*/
+
+
+
+- (void)keyboardWillShow:(NSNotification*)aNotification{
+    NSDictionary* info = [aNotification userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    CGPoint scrollPoint = CGPointMake(scrollView.contentOffset.x,scrollView.contentOffset.y + keyboardSize.height);
+    [scrollView setContentOffset:scrollPoint animated:YES];
+}
+
+- (void)keyboardWillHide:(NSNotification*)aNotification{
+    CGPoint scrollPoint = CGPointMake(scrollView.contentOffset.x,0);
+    [scrollView setContentOffset:scrollPoint animated:YES];
+}
 
 - (void)viewDidUnload
 {
@@ -79,31 +101,39 @@
     [self changePage:self.pageControl.currentPage];
 }
 
-- (void)refreshOverviewController {
-    UITableViewController *tableViewController = [viewControllers objectAtIndex:0];
-    [tableViewController.tableView reloadData];
-}
+//- (void)refreshOverviewController {
+//    UITableViewController *tableViewController = [viewControllers objectAtIndex:0];
+//    [tableViewController.tableView reloadData];
+//}
 
 #pragma Mark - ScrollViewWithPaging Delegate methods
 -(void)changePage:(int)page{
     self.pageControl.currentPage = page;
+    pageControlBeingUsed = YES;
     CGRect frame;
     frame.origin.x = self.scrollView.frame.size.width * page;
     frame.origin.y = 0;
     frame.size = self.scrollView.frame.size;
     [self.scrollView scrollRectToVisible:frame animated:YES];
-    pageControlBeingUsed = YES;
-    if(page == 0)
-        [self refreshOverviewController];
+//    if(page == 0)
+//        [self refreshOverviewController];
 }
 
 -(void)nextPage{
     int nextPage = self.pageControl.currentPage+1;
-    if(nextPage >= self.pageControl.numberOfPages)
-        [self changePage:0];
+    if(nextPage == self.pageControl.numberOfPages)
+        return;
     else
         [self changePage:nextPage];
 
+}
+-(void)previousPage{
+    int nextPage = self.pageControl.currentPage-1;
+    if(nextPage == -1)
+        return;
+    else
+        [self changePage:nextPage];
+    
 }
 
 -(void)firstPage{
@@ -117,9 +147,10 @@
     if(!pageControlBeingUsed){
         CGFloat pageWidth = self.scrollView.frame.size.width;
         int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-        if(page == 0 && self.pageControl.currentPage != page)
-            [self refreshOverviewController];
-        self.pageControl.currentPage = page;
+        if(page != self.pageControl.currentPage){
+            pageControlBeingUsed = YES;
+            [self changePage:page];
+        }
     }
 }
 

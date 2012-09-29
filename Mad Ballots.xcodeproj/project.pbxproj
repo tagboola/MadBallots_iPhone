@@ -59,6 +59,8 @@
 		0EE3D62714FEB63500E4A0CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D62614FEB63500E4A0CE /* AppDelegate.m */; };
 		0EE3D62D14FEB63500E4A0CE /* GamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D62C14FEB63500E4A0CE /* GamesViewController.m */; };
 		0EE3D66514FECBB300E4A0CE /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D66414FECBB300E4A0CE /* Game.m */; };
+		0EEDF48115E57658003A5FDD /* CandidateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEDF48015E57658003A5FDD /* CandidateGroup.m */; };
+		0EEDF48C15E59B31003A5FDD /* NSMutableArray+getCandidateValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEDF48B15E59B30003A5FDD /* NSMutableArray+getCandidateValue.m */; };
 		0EF7163215801C8700B70954 /* Contestant.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7163115801C8700B70954 /* Contestant.m */; };
 		0EF96F2515851E6E00A53CA0 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF96F1A15851DBA00A53CA0 /* libRestKit.a */; };
 		0EFD327915A9EF1300785BC3 /* TicketResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EFD327715A9EF1300785BC3 /* TicketResultViewController.xib */; };
@@ -232,6 +234,10 @@
 		0EE3D64414FEB63500E4A0CE /* Mad_BallotsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Mad_BallotsTests.m; sourceTree = "<group>"; };
 		0EE3D66314FECBB300E4A0CE /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		0EE3D66414FECBB300E4A0CE /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		0EEDF47F15E57658003A5FDD /* CandidateGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CandidateGroup.h; sourceTree = "<group>"; };
+		0EEDF48015E57658003A5FDD /* CandidateGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CandidateGroup.m; sourceTree = "<group>"; };
+		0EEDF48A15E59B30003A5FDD /* NSMutableArray+getCandidateValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+getCandidateValue.h"; sourceTree = "<group>"; };
+		0EEDF48B15E59B30003A5FDD /* NSMutableArray+getCandidateValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+getCandidateValue.m"; sourceTree = "<group>"; };
 		0EF7163015801C8700B70954 /* Contestant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contestant.h; sourceTree = "<group>"; };
 		0EF7163115801C8700B70954 /* Contestant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contestant.m; sourceTree = "<group>"; };
 		0EF96F0E15851DBA00A53CA0 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
@@ -413,6 +419,8 @@
 				0E7BC294152BCFD600BCE387 /* Round.m */,
 				0E0D7B22153F1E02005DAE9D /* Card.h */,
 				0E0D7B23153F1E02005DAE9D /* Card.m */,
+				0EEDF47F15E57658003A5FDD /* CandidateGroup.h */,
+				0EEDF48015E57658003A5FDD /* CandidateGroup.m */,
 				0E23E967152EA51E0027E9A0 /* Player.h */,
 				0E23E968152EA51E0027E9A0 /* Player.m */,
 				0E675700157A987500690B98 /* Candidate.h */,
@@ -511,6 +519,8 @@
 				0EE3D61F14FEB63500E4A0CE /* InfoPlist.strings */,
 				0EE3D62214FEB63500E4A0CE /* main.m */,
 				0EE3D62414FEB63500E4A0CE /* Mad Ballots-Prefix.pch */,
+				0EEDF48A15E59B30003A5FDD /* NSMutableArray+getCandidateValue.h */,
+				0EEDF48B15E59B30003A5FDD /* NSMutableArray+getCandidateValue.m */,
 			);
 			name = "Supporting Files";
 			path = "Mad Ballots";
@@ -891,6 +901,8 @@
 				0E0F6DE515BF89D700043247 /* MBUIViewController.m in Sources */,
 				0E0F6DE815BF8A0C00043247 /* MBUITableViewController.m in Sources */,
 				68C70E6D15CB787000C32BDF /* CardViewController.m in Sources */,
+				0EEDF48115E57658003A5FDD /* CandidateGroup.m in Sources */,
+				0EEDF48C15E59B31003A5FDD /* NSMutableArray+getCandidateValue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
