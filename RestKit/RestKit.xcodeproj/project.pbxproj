@@ -383,8 +383,6 @@
 		2516109F1456F2330060A5C5 /* tab_data.xml in Resources */ = {isa = PBXBuildFile; fileRef = 25160FF11456F2330060A5C5 /* tab_data.xml */; };
 		251610A01456F2330060A5C5 /* zend.xml in Resources */ = {isa = PBXBuildFile; fileRef = 25160FF21456F2330060A5C5 /* zend.xml */; };
 		251610A11456F2330060A5C5 /* zend.xml in Resources */ = {isa = PBXBuildFile; fileRef = 25160FF21456F2330060A5C5 /* zend.xml */; };
-		251610A21456F2330060A5C5 /* Data Model.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 25160FF41456F2330060A5C5 /* Data Model.xcdatamodel */; };
-		251610A31456F2330060A5C5 /* Data Model.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 25160FF41456F2330060A5C5 /* Data Model.xcdatamodel */; };
 		251610A41456F2330060A5C5 /* RKCat.m in Sources */ = {isa = PBXBuildFile; fileRef = 25160FF61456F2330060A5C5 /* RKCat.m */; };
 		251610A51456F2330060A5C5 /* RKCat.m in Sources */ = {isa = PBXBuildFile; fileRef = 25160FF61456F2330060A5C5 /* RKCat.m */; };
 		251610A61456F2330060A5C5 /* RKChild.m in Sources */ = {isa = PBXBuildFile; fileRef = 25160FF81456F2330060A5C5 /* RKChild.m */; };
@@ -2727,7 +2725,6 @@
 				2516105C1456F2330060A5C5 /* RKManagedObjectMappingTest.m in Sources */,
 				251610601456F2330060A5C5 /* RKManagedObjectStoreTest.m in Sources */,
 				251610621456F2330060A5C5 /* RKManagedObjectThreadSafeInvocationTest.m in Sources */,
-				251610A21456F2330060A5C5 /* Data Model.xcdatamodel in Sources */,
 				251610A41456F2330060A5C5 /* RKCat.m in Sources */,
 				251610A61456F2330060A5C5 /* RKChild.m in Sources */,
 				251610A81456F2330060A5C5 /* RKDynamicMappingModels.m in Sources */,
@@ -2907,7 +2904,6 @@
 				2516105D1456F2330060A5C5 /* RKManagedObjectMappingTest.m in Sources */,
 				251610611456F2330060A5C5 /* RKManagedObjectStoreTest.m in Sources */,
 				251610631456F2330060A5C5 /* RKManagedObjectThreadSafeInvocationTest.m in Sources */,
-				251610A31456F2330060A5C5 /* Data Model.xcdatamodel in Sources */,
 				251610A51456F2330060A5C5 /* RKCat.m in Sources */,
 				251610A71456F2330060A5C5 /* RKChild.m in Sources */,
 				251610A91456F2330060A5C5 /* RKDynamicMappingModels.m in Sources */,
@@ -3033,7 +3029,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3049,7 +3045,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3058,10 +3054,8 @@
 		25160D3B14564E820060A5C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"ARCHS[sdk=iphoneos*]" = (
-					armv6,
-					armv7,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Code/Support/RestKit-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
@@ -3079,10 +3073,8 @@
 		25160D3C14564E820060A5C5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"ARCHS[sdk=iphoneos*]" = (
-					armv6,
-					armv7,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Code/Support/RestKit-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
