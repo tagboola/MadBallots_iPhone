@@ -10,14 +10,12 @@
 
 @protocol ScrollViewWithPagingDelegate <NSObject>
 -(void)nextPage;
--(void)firstPage;
--(void)changePage:(int)page;
+-(void)previousPage;
+-(void)firstPage; //OBSOLETE
+-(void)changePage:(int)page; //OBSOLETE
 @end
 
 @interface ScrollViewWithPaging : MBUIViewController <UIScrollViewDelegate,ScrollViewWithPagingDelegate>{
-    IBOutlet UIScrollView *scrollView;
-    IBOutlet UIPageControl *pageControl;
-    IBOutlet UILabel *titleLabel;
     NSMutableArray *viewControllers;
     BOOL pageControlBeingUsed;
 }

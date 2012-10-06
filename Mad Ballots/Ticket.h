@@ -11,6 +11,8 @@
 #import "Player.h"
 #import "Candidate.h"
 
+@class Contestant;
+
 @interface Ticket : NSObject{
     NSString *ticketId;
     NSString *contestantId;

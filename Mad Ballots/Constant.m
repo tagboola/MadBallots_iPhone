@@ -6,7 +6,7 @@ NSString * const NAME_KEY = @"name";
 NSString * const EMAIL_KEY = @"email";
 NSString * const FACEBOOK_ID_KEY = @"facebookId";
 #if TARGET_IPHONE_SIMULATOR
- NSString * const BASE_URL = @"http://localhost:3000";
+ NSString * const BASE_URL = @"http://10.0.2.192:3000";
 #else
  NSString * const BASE_URL = @"http://24.60.153.138:3000";
 #endif

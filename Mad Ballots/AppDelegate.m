@@ -54,6 +54,8 @@
 }
 
 
+
+
 +(Facebook *)facebook{
     AppDelegate * app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     return (Facebook *)app.facebook;    
@@ -82,6 +84,8 @@
     [self initHttpClient];
     
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert)];
+  
+
 
     //Try to create a session with the stored PToken. We'll set it to "" if we can't find one.
     //If we receive a 401 error (token not valid), we'll display the login
@@ -339,6 +343,7 @@
     [provider registerMapping:[Ballot getObjectMapping] withRootKeyPath:@"ballot"];
     [provider registerMapping:[Ticket getObjectMapping] withRootKeyPath:@"ticket"];
     [provider registerMapping:[Round getObjectMapping] withRootKeyPath:@"round"];
+    [provider registerMapping:[CandidateGroup getObjectMapping] withRootKeyPath:@"candidate_group"];
     //[provider addObjectMapping:[Round getObjectMapping]];
     //[provider addObjectMapping:[Player getObjectMapping]];
     
@@ -369,6 +374,7 @@
     [router routeClass:[Ballot class] toResourcePath:@"/ballots.json" forMethod:RKRequestMethodPOST];
     [router routeClass:[Round class] toResourcePath:@"/rounds.json" forMethod:RKRequestMethodPOST];
     [router routeClass:[Round class] toResourcePath:@"/rounds/:roundId\\.json" forMethod:RKRequestMethodPUT];
+    [router routeClass:[CandidateGroup class] toResourcePath:@"/candidate_groups.json" forMethod:RKRequestMethodPOST];
 
     [RKObjectManager setSharedManager:manager];
         

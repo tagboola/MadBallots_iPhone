@@ -18,9 +18,12 @@
         
         NSString *contestantsPath = [NSString stringWithFormat:@"players/%@/contestants.json",[AppDelegate currentPlayer].playerId];
         
+        MBUIViewController* currentViewController = [[[AppDelegate getInstance] rootNavController] topViewController];
+        [currentViewController startLoading:@"Preparing Tickets..."];
+        
         [[RKObjectManager sharedManager] loadObjectsAtResourcePath:contestantsPath usingBlock:^(RKObjectLoader *loader) {
             loader.onDidLoadObjects = ^(NSArray *objects) {
-                
+                [currentViewController stopLoading];
                 Game *targetGame = NULL;
                 Contestant *targetContestant = NULL;
                 
@@ -57,7 +60,9 @@
                         //3) Configure the "action" controller for the target game screen
                         //VoteViewController *voteViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"voteViewController"];
                         VoteViewController *voteViewController = [[VoteViewController alloc] initWithNibName:@"MBVoteView" bundle:nil];
+                        voteViewController.round = targetContestant.round;
                         voteViewController.contestantId = targetContestant.contestantId;
+                        voteViewController.cardId = targetContestant.card.cardId;
                         
                         
                         //Set the view controller stack on the nav controller
@@ -70,6 +75,7 @@
             };
            
             loader.onDidFailWithError = ^(NSError *error){
+                [currentViewController stopLoading];
                 NSLog(@"Error loading contestant:%@",[error localizedDescription]);
             };
         

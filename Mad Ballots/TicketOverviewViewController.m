@@ -13,6 +13,7 @@
 @implementation TicketOverviewViewController
 
 @synthesize delegate;
+@synthesize isOwner;
 @synthesize tickets;
 @synthesize candidates;
 

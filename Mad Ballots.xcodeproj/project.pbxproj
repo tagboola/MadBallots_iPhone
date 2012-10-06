@@ -59,6 +59,8 @@
 		0EE3D62714FEB63500E4A0CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D62614FEB63500E4A0CE /* AppDelegate.m */; };
 		0EE3D62D14FEB63500E4A0CE /* GamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D62C14FEB63500E4A0CE /* GamesViewController.m */; };
 		0EE3D66514FECBB300E4A0CE /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D66414FECBB300E4A0CE /* Game.m */; };
+		0EEDF48115E57658003A5FDD /* CandidateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEDF48015E57658003A5FDD /* CandidateGroup.m */; };
+		0EEDF48C15E59B31003A5FDD /* NSMutableArray+getCandidateValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEDF48B15E59B30003A5FDD /* NSMutableArray+getCandidateValue.m */; };
 		0EF7163215801C8700B70954 /* Contestant.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7163115801C8700B70954 /* Contestant.m */; };
 		0EF96F2515851E6E00A53CA0 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF96F1A15851DBA00A53CA0 /* libRestKit.a */; };
 		0EFD327915A9EF1300785BC3 /* TicketResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EFD327715A9EF1300785BC3 /* TicketResultViewController.xib */; };
@@ -68,6 +70,8 @@
 		6831FB4D1561FF3A0093AFB3 /* MBAuthenticationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6831FB4C1561FF3A0093AFB3 /* MBAuthenticationInfo.m */; };
 		6831FB501561FF480093AFB3 /* MBAuthenticationCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 6831FB4F1561FF480093AFB3 /* MBAuthenticationCredentials.m */; };
 		68381ED815C8C7BB007AE448 /* CreateGameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68381ED715C8C7BB007AE448 /* CreateGameView.xib */; };
+		6859152D15EF0E9D00F4B389 /* mad_ballots_icon_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 6859152C15EF0E9D00F4B389 /* mad_ballots_icon_57.png */; };
+		6859152F15EF0EA000F4B389 /* mad_ballots_icon_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 6859152E15EF0EA000F4B389 /* mad_ballots_icon_114.png */; };
 		6863C1B7154F6B0B004015E0 /* MBPlayerSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 6863C1B6154F6B0B004015E0 /* MBPlayerSession.m */; };
 		6879808315CA10E7000F424C /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6879808215CA10E7000F424C /* CardView.xib */; };
 		6879808515CA1683000F424C /* MBVoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6879808415CA1683000F424C /* MBVoteView.xib */; };
@@ -230,6 +234,10 @@
 		0EE3D64414FEB63500E4A0CE /* Mad_BallotsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Mad_BallotsTests.m; sourceTree = "<group>"; };
 		0EE3D66314FECBB300E4A0CE /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		0EE3D66414FECBB300E4A0CE /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		0EEDF47F15E57658003A5FDD /* CandidateGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CandidateGroup.h; sourceTree = "<group>"; };
+		0EEDF48015E57658003A5FDD /* CandidateGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CandidateGroup.m; sourceTree = "<group>"; };
+		0EEDF48A15E59B30003A5FDD /* NSMutableArray+getCandidateValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+getCandidateValue.h"; sourceTree = "<group>"; };
+		0EEDF48B15E59B30003A5FDD /* NSMutableArray+getCandidateValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+getCandidateValue.m"; sourceTree = "<group>"; };
 		0EF7163015801C8700B70954 /* Contestant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contestant.h; sourceTree = "<group>"; };
 		0EF7163115801C8700B70954 /* Contestant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contestant.m; sourceTree = "<group>"; };
 		0EF96F0E15851DBA00A53CA0 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
@@ -323,6 +331,8 @@
 		6831FB4E1561FF480093AFB3 /* MBAuthenticationCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBAuthenticationCredentials.h; sourceTree = "<group>"; };
 		6831FB4F1561FF480093AFB3 /* MBAuthenticationCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBAuthenticationCredentials.m; sourceTree = "<group>"; };
 		68381ED715C8C7BB007AE448 /* CreateGameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateGameView.xib; sourceTree = "<group>"; };
+		6859152C15EF0E9D00F4B389 /* mad_ballots_icon_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mad_ballots_icon_57.png; sourceTree = "<group>"; };
+		6859152E15EF0EA000F4B389 /* mad_ballots_icon_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mad_ballots_icon_114.png; sourceTree = "<group>"; };
 		6863C1B5154F6B0B004015E0 /* MBPlayerSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPlayerSession.h; sourceTree = "<group>"; };
 		6863C1B6154F6B0B004015E0 /* MBPlayerSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPlayerSession.m; sourceTree = "<group>"; };
 		6879808215CA10E7000F424C /* CardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
@@ -409,6 +419,8 @@
 				0E7BC294152BCFD600BCE387 /* Round.m */,
 				0E0D7B22153F1E02005DAE9D /* Card.h */,
 				0E0D7B23153F1E02005DAE9D /* Card.m */,
+				0EEDF47F15E57658003A5FDD /* CandidateGroup.h */,
+				0EEDF48015E57658003A5FDD /* CandidateGroup.m */,
 				0E23E967152EA51E0027E9A0 /* Player.h */,
 				0E23E968152EA51E0027E9A0 /* Player.m */,
 				0E675700157A987500690B98 /* Candidate.h */,
@@ -442,6 +454,9 @@
 		0EE3D60714FEB63400E4A0CE = {
 			isa = PBXGroup;
 			children = (
+				6859152E15EF0EA000F4B389 /* mad_ballots_icon_114.png */,
+				6859152C15EF0E9D00F4B389 /* mad_ballots_icon_57.png */,
+				0EE3D61D14FEB63500E4A0CE /* Supporting Files */,
 				0EF96F0E15851DBA00A53CA0 /* RestKit.xcodeproj */,
 				0EE3D61C14FEB63500E4A0CE /* Mad Ballots */,
 				0EE3D63D14FEB63500E4A0CE /* Mad BallotsTests */,
@@ -485,7 +500,6 @@
 				689CDB82156DC017008E5648 /* Keychain */,
 				0EE3D65F14FEC50800E4A0CE /* User Interface Resources */,
 				0EE3D65D14FEC4F800E4A0CE /* View Controllers */,
-				0EE3D61D14FEB63500E4A0CE /* Supporting Files */,
 				0E23E962152E83C60027E9A0 /* Resources */,
 				0E764D7215321EA20025F490 /* facebook-ios-sdk */,
 				0E0F6DDC15BF7F0900043247 /* MBProgressHUD */,
@@ -505,8 +519,11 @@
 				0EE3D61F14FEB63500E4A0CE /* InfoPlist.strings */,
 				0EE3D62214FEB63500E4A0CE /* main.m */,
 				0EE3D62414FEB63500E4A0CE /* Mad Ballots-Prefix.pch */,
+				0EEDF48A15E59B30003A5FDD /* NSMutableArray+getCandidateValue.h */,
+				0EEDF48B15E59B30003A5FDD /* NSMutableArray+getCandidateValue.m */,
 			);
 			name = "Supporting Files";
+			path = "Mad Ballots";
 			sourceTree = "<group>";
 		};
 		0EE3D63D14FEB63500E4A0CE /* Mad BallotsTests */ = {
@@ -835,6 +852,8 @@
 				6879808315CA10E7000F424C /* CardView.xib in Resources */,
 				6879808515CA1683000F424C /* MBVoteView.xib in Resources */,
 				6879808715CA26D4000F424C /* MBPlayerRequestView.xib in Resources */,
+				6859152D15EF0E9D00F4B389 /* mad_ballots_icon_57.png in Resources */,
+				6859152F15EF0EA000F4B389 /* mad_ballots_icon_114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -882,6 +901,8 @@
 				0E0F6DE515BF89D700043247 /* MBUIViewController.m in Sources */,
 				0E0F6DE815BF8A0C00043247 /* MBUITableViewController.m in Sources */,
 				68C70E6D15CB787000C32BDF /* CardViewController.m in Sources */,
+				0EEDF48115E57658003A5FDD /* CandidateGroup.m in Sources */,
+				0EEDF48C15E59B31003A5FDD /* NSMutableArray+getCandidateValue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -979,7 +1000,9 @@
 		0EE3D64914FEB63500E4A0CE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeremy Clark (GZRMM2DK3Y)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeremy Clark (GZRMM2DK3Y)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
@@ -987,7 +1010,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mad Ballots/Mad Ballots-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"/**";
+				HEADER_SEARCH_PATHS = (
+					"\"$(BUILT_PRODUCTS_DIR)/../../Headers\"/**",
+					"\"$(SRCROOT)/RestKit/Build/Headers/RestKit\"/**",
+					"\"$(SRCROOT)/RestKit/Code/CoreData\"/**",
+				);
 				INFOPLIST_FILE = "Mad Ballots/Mad Ballots-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				LIBRARY_SEARCH_PATHS = (
@@ -997,7 +1024,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = madballots;
-				PROVISIONING_PROFILE = "E56C7ABA-7E7D-45BF-85D5-3E9549605C27";
+				PROVISIONING_PROFILE = "B00846C8-E8A8-46AB-8764-33DA445F99CF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B00846C8-E8A8-46AB-8764-33DA445F99CF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1005,7 +1033,9 @@
 		0EE3D64A14FEB63500E4A0CE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeremy Clark (GZRMM2DK3Y)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeremy Clark (GZRMM2DK3Y)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
@@ -1013,7 +1043,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mad Ballots/Mad Ballots-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"/**";
+				HEADER_SEARCH_PATHS = (
+					"\"$(BUILT_PRODUCTS_DIR)/../../Headers\"/**",
+					"\"$(SRCROOT)/RestKit/Build/Headers/RestKit\"/**",
+					"\"$(SRCROOT)/RestKit/Code/CoreData\"/**",
+				);
 				INFOPLIST_FILE = "Mad Ballots/Mad Ballots-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				LIBRARY_SEARCH_PATHS = (
@@ -1023,7 +1057,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = madballots;
-				PROVISIONING_PROFILE = "E56C7ABA-7E7D-45BF-85D5-3E9549605C27";
+				PROVISIONING_PROFILE = "B00846C8-E8A8-46AB-8764-33DA445F99CF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B00846C8-E8A8-46AB-8764-33DA445F99CF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
