@@ -32,6 +32,7 @@
 @property (nonatomic,retain) IBOutlet UIToolbar *mergeInputToolbar;
 @property (nonatomic,retain) IBOutlet UITextField *mergeInputToolbarTextfield;
 @property (nonatomic,retain) IBOutlet UISegmentedControl *mergeSegmentedControl;
+@property (nonatomic,retain) NSString *cardId;
 
 
 - (void) analyzeCandidates;

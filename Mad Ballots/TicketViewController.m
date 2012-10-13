@@ -29,6 +29,7 @@
 @synthesize imageView;
 @synthesize candidateHash;
 @synthesize mergeSegmentedControl;
+@synthesize cardId;
 
 
 
@@ -260,7 +261,8 @@
     NSMutableDictionary *valueHash = [NSMutableDictionary dictionary];
     NSMutableDictionary *candidateGroupHash = [NSMutableDictionary dictionary];
     for(NSArray *candidateArray in candidates){
-        for(Candidate *candidate in candidateArray){ 
+        for(Candidate *candidate in candidateArray){
+            if (candidate.value == NULL) candidate.value = @"";
             NSString *uppercaseValue = [candidate.value uppercaseString];
             if([valueHash objectForKey:uppercaseValue]){
                 NSMutableArray *matchedCandidates = [valueMatchedCandidatesHash objectForKey:uppercaseValue];
@@ -351,7 +353,8 @@
     //Disable the "owner's" candidate when in "vote" mode
     if ([mergeSegmentedControl selectedSegmentIndex] == VOTE_SEGMENT_INDEX){
         Candidate *candidate = [(NSMutableArray*)[candidates objectAtIndex:indexPath.row] objectAtIndex:0];
-        if ([candidate.contestantId isEqualToString:candidate.card.contestantId]){ //Then this is the owner loading up her candidates for merging. Should be visible, but disabled, for voting, though.
+        //if ([candidate.contestantId isEqualToString:candidate.card.contestantId]){ //Then this is the owner loading up her candidates for merging. Should be visible, but disabled, for voting, though.
+        if ([candidate.cardId isEqualToString:[self cardId]]){ //Then this is the owner loading up her candidates for merging. Should be visible, but disabled, for voting, though.
             cell.textLabel.textColor = [UIColor grayColor];
         }
     }else{

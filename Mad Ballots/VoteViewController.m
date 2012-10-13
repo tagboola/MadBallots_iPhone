@@ -62,6 +62,7 @@
         ticketView.isShowingResults = showResults;
         ticketView.delegate = self;
         ticketView.ticket = ticket;
+        ticketView.cardId = cardId;
         ticketView.isOwner = isOwner;
         if(showResults){
             [self.candidatesHash setObject:ticket.winners forKey:ticket.contestantId];
