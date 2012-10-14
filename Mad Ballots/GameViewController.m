@@ -154,13 +154,13 @@ NSString * const MB_START_ROUND_DIALOG_MESSAGE = @"Start the round?";
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     //HANDLE ACCEPT INVITATION PROMPT
-    if (alertView.message == MB_ACCEPT_INVITATION_DIALOG_MESSAGE){
+    if ([alertView.message isEqualToString:MB_ACCEPT_INVITATION_DIALOG_MESSAGE]){
         if (buttonIndex == 0){ //NO
             [self rejectGameInvitation:alertView];
         }else if (buttonIndex == 1){ //YES
             [self acceptGameInvitation:alertView];
         }
-    }else if (alertView.message == MB_START_ROUND_DIALOG_MESSAGE){
+    }else if ([alertView.message isEqualToString:MB_START_ROUND_DIALOG_MESSAGE]){
         if (buttonIndex == 0){ //NO
             //[self rejectGameInvitation:alertView];
         }else if (buttonIndex == 1){ //YES
