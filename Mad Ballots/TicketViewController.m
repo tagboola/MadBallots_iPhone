@@ -47,7 +47,7 @@
     [tableView reloadData];
     if(!isShowingResults)
         return;
-    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/tickets/%@/ballots.json",ticket.ticketId] usingBlock:^(RKObjectLoader *loader) {
+    /*[[RKObjectManager sharedManager] loadObjectsAtResourcePath:[NSString stringWithFormat:@"/tickets/%@/ballots.json",ticket.ticketId] usingBlock:^(RKObjectLoader *loader) {
         [self startLoading:@"Loading results..."];
         loader.onDidLoadObjects = ^(NSArray * objects){
             [self stopLoading];
@@ -63,40 +63,43 @@
                     
                 }
             }
+            
+            
+
             CPTGraphHostingView *hostingView = [[CPTGraphHostingView alloc] initWithFrame:self.tableView.bounds];
             hostingView.backgroundColor = [UIColor grayColor];
             graph = [[CPTXYGraph alloc] initWithFrame: hostingView.bounds];
-            
+
             hostingView.hostedGraph = graph;
             graph.plotAreaFrame.paddingLeft	  = 30.0;
             graph.plotAreaFrame.paddingRight  = 50.0;
             graph.plotAreaFrame.paddingTop = 10.0;
 
-            
+
             CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
             plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0)
                                                             length:CPTDecimalFromFloat([candidates count])];
             plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0)
                                                             length:CPTDecimalFromFloat([candidates count])];
-            
+
             // Line styles
             CPTMutableLineStyle *axisLineStyle = [CPTMutableLineStyle lineStyle];
             axisLineStyle.lineWidth = 3.0;
-            
+
             CPTMutableLineStyle *majorTickLineStyle = [axisLineStyle mutableCopy];
             majorTickLineStyle.lineWidth = 3.0;
             majorTickLineStyle.lineCap	 = kCGLineCapRound;
-            
+
             CPTMutableLineStyle *minorTickLineStyle = [axisLineStyle mutableCopy];
             minorTickLineStyle.lineWidth = 2.0;
             minorTickLineStyle.lineCap	 = kCGLineCapRound;
-            
+
             // Text styles
             CPTMutableTextStyle *axisTitleTextStyle = [CPTMutableTextStyle textStyle];
             axisTitleTextStyle.fontName = @"Marker Felt";
             axisTitleTextStyle.fontSize = 14.0;
-            
-            
+
+
             CPTXYAxisSet *axisSet = (CPTXYAxisSet *)graph.axisSet;
             axisSet.xAxis.labelingPolicy = CPTAxisLabelingPolicyNone;
             axisSet.xAxis.majorIntervalLength = CPTDecimalFromInt([candidates count]);
@@ -106,15 +109,15 @@
             int maxLabelHeight = 0;
             for(int ii = 0; ii < [candidates count]; ii++){
                 Candidate *candidate = [candidates objectAtIndex:ii];
-                CPTAxisLabel *label; 
+                CPTAxisLabel *label;
                 label = [[CPTAxisLabel alloc] initWithText:candidate.value textStyle:axisSet.xAxis.labelTextStyle];
-                
+
                 label.tickLocation = CPTDecimalFromFloat(ii+.5);
                 label.offset = 5;
                 [labels addObject:label];
                 maxLabelHeight = label.contentLayer.bounds.size.width+label.offset > maxLabelHeight ? label.contentLayer.bounds.size.width+label.offset : maxLabelHeight;
             }
-            
+
             graph.plotAreaFrame.paddingBottom = maxLabelHeight;
             axisSet.xAxis.axisLabels = [NSSet setWithArray:labels];
             axisSet.xAxis.labelRotation = M_PI/4;
@@ -134,12 +137,18 @@
             [graph addPlot:barPlot];
             [self.tableView addSubview:hostingView];
             
+            
         };
+        
+        
+        
+        
+        
         loader.onDidFailWithError = ^(NSError *error){
             [self stopLoading];
             NSLog(@"Error loading ballots for ticket:%@",[error localizedDescription]);
         };
-    }];
+    }];*/
     
 
 }
@@ -463,9 +472,10 @@
     return YES;
 }
 
+/*
 #pragma mark Bar Plot data source methods
 
--(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum 
+-(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum
 			   recordIndex:(NSUInteger)index;
 {
     NSNumber *vote = [votes objectAtIndex:index];
@@ -484,5 +494,7 @@
 - (NSUInteger) numberOfRecordsForPlot:(CPTPlot *)plot{
     return [candidates count];
 }
+*/
+
 
 @end

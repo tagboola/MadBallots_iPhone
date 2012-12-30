@@ -11,11 +11,11 @@
 #import "ScrollViewWithPaging.h"
 #import "Contestant.h"
 #import "Candidate.h"
-#import "CorePlotHeaders/CorePlot-CocoaTouch.h"
+//#import "CorePlotHeaders/CorePlot-CocoaTouch.h"
 #import "NSMutableArray+getCandidateValue.h"
 
-@interface TicketViewController : MBUIViewController <UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate,CPTBarPlotDataSource>{
-    CPTXYGraph *graph;
+@interface TicketViewController : MBUIViewController <UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate/*,CPTBarPlotDataSource*/>{
+    //CPTXYGraph *graph;
     int selectedIndex;
 }
 @property (nonatomic, unsafe_unretained) id <ScrollViewWithPagingDelegate> delegate;

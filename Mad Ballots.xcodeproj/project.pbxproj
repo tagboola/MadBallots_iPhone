@@ -31,7 +31,6 @@
 		0E675702157A987500690B98 /* Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E675701157A987500690B98 /* Candidate.m */; };
 		0E764D71153219100025F490 /* PlayerRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E764D70153219100025F490 /* PlayerRequestViewController.m */; };
 		0E764D8215321EA20025F490 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0E764D7515321EA20025F490 /* FBDialog.bundle */; };
-		0E764D8315321EA20025F490 /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E764D7B15321EA20025F490 /* libfacebook_ios_sdk.a */; };
 		0E7BC1BD152A0BE600BCE387 /* CardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E7BC1BC152A0BE600BCE387 /* CardTableViewCell.xib */; };
 		0E7BC1C0152A0F5600BCE387 /* default_list_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E7BC1BF152A0F5600BCE387 /* default_list_user.png */; };
 		0E7BC1C2152A0F5C00BCE387 /* default_list_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E7BC1C1152A0F5C00BCE387 /* default_list_user@2x.png */; };
@@ -64,7 +63,6 @@
 		0EF7163215801C8700B70954 /* Contestant.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7163115801C8700B70954 /* Contestant.m */; };
 		0EF96F2515851E6E00A53CA0 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF96F1A15851DBA00A53CA0 /* libRestKit.a */; };
 		0EFD327915A9EF1300785BC3 /* TicketResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EFD327715A9EF1300785BC3 /* TicketResultViewController.xib */; };
-		0EFD32CE15A9FB9D00785BC3 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EFD32CD15A9FB9D00785BC3 /* libCorePlot-CocoaTouch.a */; };
 		681188E9154F762D007B323B /* MBPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 681188E8154F762D007B323B /* MBPlayerViewController.m */; };
 		6831FB491561FBCA0093AFB3 /* MBAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 6831FB481561FBCA0093AFB3 /* MBAuthentication.m */; };
 		6831FB4D1561FF3A0093AFB3 /* MBAuthenticationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6831FB4C1561FF3A0093AFB3 /* MBAuthenticationInfo.m */; };
@@ -72,11 +70,13 @@
 		68381ED815C8C7BB007AE448 /* CreateGameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68381ED715C8C7BB007AE448 /* CreateGameView.xib */; };
 		6859152D15EF0E9D00F4B389 /* mad_ballots_icon_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 6859152C15EF0E9D00F4B389 /* mad_ballots_icon_57.png */; };
 		6859152F15EF0EA000F4B389 /* mad_ballots_icon_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 6859152E15EF0EA000F4B389 /* mad_ballots_icon_114.png */; };
+		685F5E54162A665E004E0485 /* Core Plot Stuff in Resources */ = {isa = PBXBuildFile; fileRef = 685F5E53162A665D004E0485 /* Core Plot Stuff */; };
 		6863C1B7154F6B0B004015E0 /* MBPlayerSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 6863C1B6154F6B0B004015E0 /* MBPlayerSession.m */; };
 		6879808315CA10E7000F424C /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6879808215CA10E7000F424C /* CardView.xib */; };
 		6879808515CA1683000F424C /* MBVoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6879808415CA1683000F424C /* MBVoteView.xib */; };
 		6879808715CA26D4000F424C /* MBPlayerRequestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6879808615CA26D4000F424C /* MBPlayerRequestView.xib */; };
 		689CDB88156DC664008E5648 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 689CDB87156DC664008E5648 /* SFHFKeychainUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		68B7B7CD162B607500987F7F /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E764D7B15321EA20025F490 /* libfacebook_ios_sdk.a */; };
 		68BEF4CD1564AC070094DC1C /* MBRootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BEF4CC1564AC060094DC1C /* MBRootNavigationController.m */; };
 		68C27FF41550D37200B1A503 /* MBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C27FF31550D37200B1A503 /* MBLoginViewController.m */; };
 		68C70E6D15CB787000C32BDF /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C70E6C15CB786E00C32BDF /* CardViewController.m */; };
@@ -333,6 +333,7 @@
 		68381ED715C8C7BB007AE448 /* CreateGameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateGameView.xib; sourceTree = "<group>"; };
 		6859152C15EF0E9D00F4B389 /* mad_ballots_icon_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mad_ballots_icon_57.png; sourceTree = "<group>"; };
 		6859152E15EF0EA000F4B389 /* mad_ballots_icon_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mad_ballots_icon_114.png; sourceTree = "<group>"; };
+		685F5E53162A665D004E0485 /* Core Plot Stuff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Core Plot Stuff"; sourceTree = "<group>"; };
 		6863C1B5154F6B0B004015E0 /* MBPlayerSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPlayerSession.h; sourceTree = "<group>"; };
 		6863C1B6154F6B0B004015E0 /* MBPlayerSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPlayerSession.m; sourceTree = "<group>"; };
 		6879808215CA10E7000F424C /* CardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
@@ -368,8 +369,7 @@
 				0E7BC23C152A4DCD00BCE387 /* CoreData.framework in Frameworks */,
 				0E7BC1F1152A17BD00BCE387 /* MobileCoreServices.framework in Frameworks */,
 				0EE3D61914FEB63500E4A0CE /* Foundation.framework in Frameworks */,
-				0E764D8315321EA20025F490 /* libfacebook_ios_sdk.a in Frameworks */,
-				0EFD32CE15A9FB9D00785BC3 /* libCorePlot-CocoaTouch.a in Frameworks */,
+				68B7B7CD162B607500987F7F /* libfacebook_ios_sdk.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +454,7 @@
 		0EE3D60714FEB63400E4A0CE = {
 			isa = PBXGroup;
 			children = (
+				685F5E53162A665D004E0485 /* Core Plot Stuff */,
 				6859152E15EF0EA000F4B389 /* mad_ballots_icon_114.png */,
 				6859152C15EF0E9D00F4B389 /* mad_ballots_icon_57.png */,
 				0EE3D61D14FEB63500E4A0CE /* Supporting Files */,
@@ -854,6 +855,7 @@
 				6879808715CA26D4000F424C /* MBPlayerRequestView.xib in Resources */,
 				6859152D15EF0E9D00F4B389 /* mad_ballots_icon_57.png in Resources */,
 				6859152F15EF0EA000F4B389 /* mad_ballots_icon_114.png in Resources */,
+				685F5E54162A665E004E0485 /* Core Plot Stuff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -966,6 +968,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SRCROOT)/Mad Ballots/facebook-ios-sdk\"",
+				);
 				PROVISIONING_PROFILE = "E56C7ABA-7E7D-45BF-85D5-3E9549605C27";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E56C7ABA-7E7D-45BF-85D5-3E9549605C27";
 				SDKROOT = iphoneos;
@@ -988,6 +993,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SRCROOT)/Mad Ballots/facebook-ios-sdk\"",
+				);
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "E56C7ABA-7E7D-45BF-85D5-3E9549605C27";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CA06169A-716D-4B66-A54F-EC051A25F4A2";
@@ -1003,10 +1011,6 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jeremy Clark (GZRMM2DK3Y)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeremy Clark (GZRMM2DK3Y)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mad Ballots/Mad Ballots-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1036,10 +1040,6 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jeremy Clark (GZRMM2DK3Y)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeremy Clark (GZRMM2DK3Y)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mad Ballots/Mad Ballots-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
