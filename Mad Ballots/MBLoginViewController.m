@@ -12,6 +12,7 @@
 #import "MBAuthenticationInfo.h"
 #import "MBAuthenticationCredentials.h"
 #import "MBPlayerViewController.h"
+#import "MBWebAppViewController.h"
 #import "SFHFKeychainUtils.h"
 
 
@@ -196,11 +197,27 @@
     auth.uid = [self.usernameTextField text];
     auth.credentials.secret = [self.passwordTextField text];
     
-    //Request the authentication
-    [[RKObjectManager sharedManager] postObject:auth usingBlock:^ (RKObjectLoader *loader) {
-        loader.targetObject = [[Player alloc] init];
-        loader.delegate = self;
-    }];
+     //Request the authentication
+    //RESTKIT 0.2
+    [[RKObjectManager sharedManager] postObject:auth path:nil parameters:nil success:^
+     
+     (RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+         NSLog(@"Did authenticate player: %@", mappingResult);
+         Player *player = (Player *)mappingResult.firstObject;
+         [self processAuthenticationForPlayer:player];
+     } failure:^ (RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"Failure");
+     }];
+    
+    
+    
+    
+    //RESTKIT 0.1
+//    [[RKObjectManager sharedManager] postObject:auth usingBlock:^ (RKObjectLoader *loader) {
+//        loader.serializationMIMEType = RKMIMETypeJSON;
+//        loader.targetObject = [[Player alloc] init];
+//        loader.delegate = self;
+//    }];
 
 }
 
@@ -216,7 +233,7 @@
 - (IBAction)createAccount:(UIButton *)sender {
     MBPlayerViewController *vc = [[MBPlayerViewController alloc] initWithNibName:@"MBPlayerView" bundle:nil]; //   [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-    [self presentModalViewController:vc animated:YES];
+    [self presentViewController:vc animated:YES completion:^{}];
 }
 
 
@@ -286,11 +303,30 @@
         auth.info.name = [hash objectForKey:@"name"];
         auth.credentials.token = [defaults objectForKey:FACEBOOK_ACCESS_TOKEN_KEY];
         
+        
+        
         //Request the authentication
-        [[RKObjectManager sharedManager] postObject:auth usingBlock:^ (RKObjectLoader *loader) {
-            loader.targetObject = nil;
-            loader.delegate = self;
-        }];
+        
+        //REST KIT 0.2
+        [[RKObjectManager sharedManager] postObject:auth path:nil parameters:nil success:^
+         
+         (RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+             NSLog(@"Did authenticate player: %@", mappingResult);
+             Player *player = (Player *)mappingResult.firstObject;
+             [self processAuthenticationForPlayer:player];
+         } failure:^ (RKObjectRequestOperation *operation, NSError *error) {
+             NSLog(@"Failure");
+             [self stopLoading];
+         }];
+        
+        
+        
+        
+         //REST KIT 0.1
+//        [[RKObjectManager sharedManager] postObject:auth usingBlock:^ (RKObjectLoader *loader) {
+//            loader.targetObject = nil;
+//            loader.delegate = self;
+//        }];
         
         
         //Store the information in the defaults
@@ -307,32 +343,48 @@
 }
 
 
-
-
-#pragma mark RKObjectLoaderDelegate methods
-
-- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-    
-    NSLog(@"Did authenticate player: %@", objects);
-    Player *player = [objects objectAtIndex:0];
+-(void)processAuthenticationForPlayer:(Player *)player{
     if (player){
         [AppDelegate getInstance].currentPlayer = player;
         [[NSUserDefaults standardUserDefaults] setValue:player.playerId forKey:USER_ID_KEY];
         [[NSUserDefaults standardUserDefaults] synchronize];
         [SFHFKeychainUtils storeUsername:player.playerId andPassword:player.persistenceToken forServiceName:@"mb_ptoken" updateExisting:YES error:NULL];
-    }      
+        [[AppDelegate getInstance] submitDeviceTokenForPlayer:player];
+    }
     [self stopLoading];
-    [[AppDelegate getInstance] submitDeviceTokenForPlayer:player];
-    [self dismissModalViewControllerAnimated:YES];    
+    [(MBWebAppViewController*)[AppDelegate getInstance].window.rootViewController refreshUI];
+    [self dismissViewControllerAnimated:YES completion:^{}];
 
 }
 
-- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error{
-    NSLog(@"Object Loader failed with error: %@", [error localizedDescription]);
-    [self stopLoading];
-    //TODO: Tell current view to refresh
-    
-}
+
+
+
+#pragma mark RKObjectLoaderDelegate methods
+
+//- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
+//    
+//    NSLog(@"Did authenticate player: %@", objects);
+//    Player *player = [objects objectAtIndex:0];
+//    if (player){
+//        [AppDelegate getInstance].currentPlayer = player;
+//        [[NSUserDefaults standardUserDefaults] setValue:player.playerId forKey:USER_ID_KEY];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+//        [SFHFKeychainUtils storeUsername:player.playerId andPassword:player.persistenceToken forServiceName:@"mb_ptoken" updateExisting:YES error:NULL];
+//    }      
+//    [self stopLoading];
+//    [[AppDelegate getInstance] submitDeviceTokenForPlayer:player];
+//    [(MBWebAppViewController*)[AppDelegate getInstance].window.rootViewController refreshUI];
+//    [self dismissViewControllerAnimated:YES completion:^{}];    
+//
+//}
+//
+//- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error{
+//    NSLog(@"Object Loader failed with error: %@", [error localizedDescription]);
+//    [self stopLoading];
+//    //TODO: Tell current view to refresh
+//    
+//}
 
 
 @end

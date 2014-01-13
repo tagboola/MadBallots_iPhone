@@ -10,21 +10,18 @@
 #import "Facebook.h"
 #import "RestKit.h"
 #import "Player.h"
-#import "Contestant.h"
 #import "MBRootNavigationController.h"
 #import "MBNotificationProcessor.h"
 
 @class Player;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate,FBSessionDelegate,FBRequestDelegate,RKObjectLoaderDelegate, RKRequestQueueDelegate>{
+@interface AppDelegate : UIResponder <UIApplicationDelegate,FBSessionDelegate,FBRequestDelegate>{
     Facebook *facebook;
     Player *currentPlayer;
     UINavigationController *rootNavController;
     BOOL isAuthenticated;
     NSData *deviceToken;
     MBNotificationProcessor *notificationProcessor;
-    
-    
 
 }
 
@@ -41,20 +38,18 @@
 +(Facebook *)facebook;
 +(void)showLogin;
 +(void)dismissLogin;
++(UIWebView *)webAppView;
 
 
 -(void)loginToFacebook:(id)sender;
 -(void)initHttpClient;
 -(void)initializeFacebookSession;
 -(void)logout:(id)sender;
+-(void)processLogout;
 
 
 -(void)requestPlayerSession;
+-(NSString *)formattedDeviceTokenString;
 -(void)submitDeviceTokenForPlayer:(Player *)aPlayer;
-
-
-
-
-
 
 @end

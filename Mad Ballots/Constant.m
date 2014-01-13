@@ -6,9 +6,9 @@ NSString * const NAME_KEY = @"name";
 NSString * const EMAIL_KEY = @"email";
 NSString * const FACEBOOK_ID_KEY = @"facebookId";
 #if TARGET_IPHONE_SIMULATOR
- NSString * const BASE_URL = @"http://10.0.2.192:3000";
+ NSString * const BASE_URL = @"http://10.0.1.13:3000";
 #else
- NSString * const BASE_URL = @"http://24.60.153.138:3000";
+ NSString * const BASE_URL = @"http://10.0.1.13:3000";
 #endif
 
 
@@ -23,8 +23,10 @@ NSString * const FACEBOOK_EXIPIRATION_DATE_KEY = @"FBExpirationDateKey";
 NSString * const MAD_BALLOTS_AUTH_PROVIDER_STRING = @"mad_ballots";
 NSString * const FACEBOOK_AUTH_PROVIDER_STRING = @"facebook";
 NSString * const LOGOUT_RESPONSE_STRING = @"Successfully logged out";
+NSString * const LOGOUT_RELATIVE_URL = @"/logout";
 
 
 NSString * const MB_NOTIFICATION_ACTION_IDENTIFIER_VOTE = @"vote";
 NSString * const MB_NOTIFICATION_ACTION_IDENTIFIER_FILL_CARD = @"fill_card";
 NSString * const MB_NOTIFICATION_ACTION_IDENTIFIER_RSVP = @"rsvp";
+NSString * const MB_NOTIFICATION_ACTION_IDENTIFIER_URL = @"url";

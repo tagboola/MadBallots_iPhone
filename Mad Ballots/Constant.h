@@ -7,6 +7,7 @@ extern NSString * const EMAIL_KEY;
 extern NSString * const FACEBOOK_ID_KEY;
 
 extern NSString * const BASE_URL;
+extern NSString * const BASE_HOST;
 extern NSString * const DEFAULT_NUMBER_OF_ROUNDS;
 
 //Facebook Constants
@@ -18,11 +19,13 @@ extern NSString * const FACEBOOK_EXIPIRATION_DATE_KEY;
 extern NSString * const MAD_BALLOTS_AUTH_PROVIDER_STRING;
 extern NSString * const FACEBOOK_AUTH_PROVIDER_STRING;
 extern NSString * const LOGOUT_RESPONSE_STRING;
+extern NSString * const LOGOUT_RELATIVE_URL;
 
 //Notification Action Constants
 extern NSString * const MB_NOTIFICATION_ACTION_IDENTIFIER_VOTE;
 extern NSString * const MB_NOTIFICATION_ACTION_IDENTIFIER_FILL_CARD;
 extern NSString * const MB_NOTIFICATION_ACTION_IDENTIFIER_RSVP;
+extern NSString * const MB_NOTIFICATION_ACTION_IDENTIFIER_URL;
 
 
 

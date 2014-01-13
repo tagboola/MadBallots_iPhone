@@ -46,8 +46,8 @@
     self.title = @"Games";
     self.gamesArray = [NSArray arrayWithObjects:[NSMutableArray array],[NSMutableArray array], nil];
     self.sectionTitleArray = [NSArray arrayWithObjects:@"Game Invitations",@"Active Games", nil];
-    self.navigationController.navigationBar.topItem.leftBarButtonItem = loginLogoutButton;
-    self.navigationController.navigationBar.topItem.rightBarButtonItem = newGameButton;
+    self.navigationController.navigationBar.topItem.rightBarButtonItem = loginLogoutButton;
+    self.navigationController.navigationBar.topItem.leftBarButtonItem = newGameButton;
 
 }
 
@@ -126,7 +126,7 @@
     if ([AppDelegate getInstance].currentPlayer){
 //        welcomeLabel.text = [NSString stringWithFormat:@"Welcome, %@", [AppDelegate getInstance].currentPlayer.name];
 //        loginLogoutButton.title = @"Logout";
-        self.gamesArray = [NSArray arrayWithObjects:[NSMutableArray array],[NSMutableArray array], nil];
+        self.gamesArray = [NSArray array];
         AppDelegate * app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         [app logout:sender];
     }else{
@@ -183,8 +183,8 @@
     NSString *hostString = ([contestant.gameOwner isEqualToString:[[AppDelegate currentPlayer] username]]) ? @"ME!" : contestant.gameOwner;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Hosted By: %@\r%@", hostString, [contestant getGameStatus]];
     cell.detailTextLabel.numberOfLines = 3;
-    cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
-    cell.detailTextLabel.minimumFontSize = 12;
+    cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    cell.detailTextLabel.minimumScaleFactor = 0;
     if([contestant isActionNeeded])
         cell.detailTextLabel.textColor = [UIColor redColor];
     else

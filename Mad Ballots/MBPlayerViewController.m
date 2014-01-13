@@ -135,19 +135,45 @@
     auth.credentials.secretConfirmation = [self.confirmPasswordTextField text];
     auth.info.name = [self.nameTextField text];
     auth.info.email = [self.emailTextField text];
+    auth.info.phone = [[AppDelegate getInstance] formattedDeviceTokenString];
     
     //Request the authentication
-    [[RKObjectManager sharedManager] postObject:auth usingBlock:^ (RKObjectLoader *loader) {
+    [[RKObjectManager sharedManager] postObject:auth path:nil parameters:nil success:^
+     
+     //SUCCESS HANDLER
+     (RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        NSLog(@"Did create player: %@", mappingResult);
+        [self stopLoading];
+        Player *player = [mappingResult firstObject];
+        if (player){
+            [AppDelegate getInstance].currentPlayer = player;
+            [[NSUserDefaults standardUserDefaults] setValue:player.persistenceToken forKey:PERSISTENCE_TOKEN_KEY];
+            [[self presentingViewController] dismissViewControllerAnimated:YES completion:^{}];
+        }else{ //display an alert or something
+            
+        }
+    } failure:^
+     
+     
+     //FAILURE HANDLER
+     (RKObjectRequestOperation *operation, NSError *error) {
+         [self stopLoading];
+         NSLog(@"Object Loader failed with error: %@", [error localizedDescription]);
+    }];
+    
+    
+    
+    /*[[RKObjectManager sharedManager] postObject:auth usingBlock:^ (RKObjectLoader *loader) {
         loader.targetObject = [[Player alloc] init];
         loader.delegate = self;
-    }];
+    }];*/
         
 }
 
 
 -(IBAction)cancel:(id)sender
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 
@@ -223,26 +249,24 @@
 
 #pragma mark RKObjectLoaderDelegate methods
 
-- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
-    NSLog(@"Did create player: %@", objects);
-    [self stopLoading];
-    Player *player = [objects objectAtIndex:0];
-    if (player){
-        [AppDelegate getInstance].currentPlayer = player;
-        [[NSUserDefaults standardUserDefaults] setValue:player.persistenceToken forKey:PERSISTENCE_TOKEN_KEY];
-        [[self presentingViewController] dismissModalViewControllerAnimated:YES];
-        //[self dismissModalViewControllerAnimated:YES];
-        //[AppDelegate dismissLogin];
-    }else{ //display an alert or something
-        
-    }
-    
-}
-
-- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error{
-    [self stopLoading];
-    NSLog(@"Object Loader failed with error: %@", [error localizedDescription]);    
-}
+//- (void)objectLoader:(RKObjectLoader*)objectLoader didLoadObjects:(NSArray*)objects {
+//    NSLog(@"Did create player: %@", objects);
+//    [self stopLoading];
+//    Player *player = [objects objectAtIndex:0];
+//    if (player){
+//        [AppDelegate getInstance].currentPlayer = player;
+//        [[NSUserDefaults standardUserDefaults] setValue:player.persistenceToken forKey:PERSISTENCE_TOKEN_KEY];
+//        [[self presentingViewController] dismissViewControllerAnimated:YES completion:^{}];
+//    }else{ //display an alert or something
+//        
+//    }
+//    
+//}
+//
+//- (void)objectLoader:(RKObjectLoader*)objectLoader didFailWithError:(NSError*)error{
+//    [self stopLoading];
+//    NSLog(@"Object Loader failed with error: %@", [error localizedDescription]);    
+//}
 
 
 

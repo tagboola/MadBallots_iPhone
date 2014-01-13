@@ -12,25 +12,15 @@
 		0E0D7B2B153F9513005DAE9D /* unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E0D7B27153F9513005DAE9D /* unchecked.png */; };
 		0E0D7B2C153F9513005DAE9D /* unchecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E0D7B28153F9513005DAE9D /* unchecked@2x.png */; };
 		0E0F6DD615BE280300043247 /* MBNotificationAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F6DCC15BE280300043247 /* MBNotificationAction.m */; };
-		0E0F6DD715BE280300043247 /* MBNotificationActionFillCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F6DCE15BE280300043247 /* MBNotificationActionFillCard.m */; };
-		0E0F6DD815BE280300043247 /* MBNotificationActionRSVP.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F6DD115BE280300043247 /* MBNotificationActionRSVP.m */; };
-		0E0F6DD915BE280300043247 /* MBNotificationActionVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F6DD315BE280300043247 /* MBNotificationActionVote.m */; };
 		0E0F6DDA15BE280300043247 /* MBNotificationProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F6DD515BE280300043247 /* MBNotificationProcessor.m */; };
 		0E0F6DDF15BF7F3100043247 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F6DDE15BF7F3100043247 /* MBProgressHUD.m */; };
 		0E0F6DE515BF89D700043247 /* MBUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F6DE415BF89D600043247 /* MBUIViewController.m */; };
 		0E0F6DE815BF8A0C00043247 /* MBUITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F6DE715BF8A0B00043247 /* MBUITableViewController.m */; };
-		0E23E960152E3FA70027E9A0 /* CreateGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E23E95E152E3FA70027E9A0 /* CreateGameViewController.m */; };
 		0E23E965152E85230027E9A0 /* tableview_x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E23E963152E85230027E9A0 /* tableview_x.png */; };
 		0E23E966152E85230027E9A0 /* tableview_x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E23E964152E85230027E9A0 /* tableview_x@2x.png */; };
 		0E23E969152EA51E0027E9A0 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E23E968152EA51E0027E9A0 /* Player.m */; };
-		0E2F6E4115890B39001901C0 /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2F6E4015890B39001901C0 /* Ticket.m */; };
-		0E2F6E4415895161001901C0 /* Ballot.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2F6E4315895160001901C0 /* Ballot.m */; };
-		0E4406F01578682800D7D8A3 /* TicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4406EF1578682700D7D8A3 /* TicketViewController.m */; };
-		0E61959C157FEB25003F1672 /* TicketOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E61959B157FEB25003F1672 /* TicketOverviewViewController.m */; };
-		0E61959F157FEB69003F1672 /* VoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E61959E157FEB69003F1672 /* VoteViewController.m */; };
-		0E675702157A987500690B98 /* Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E675701157A987500690B98 /* Candidate.m */; };
-		0E764D71153219100025F490 /* PlayerRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E764D70153219100025F490 /* PlayerRequestViewController.m */; };
 		0E764D8215321EA20025F490 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0E764D7515321EA20025F490 /* FBDialog.bundle */; };
+		0E764D8315321EA20025F490 /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E764D7B15321EA20025F490 /* libfacebook_ios_sdk.a */; };
 		0E7BC1BD152A0BE600BCE387 /* CardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E7BC1BC152A0BE600BCE387 /* CardTableViewCell.xib */; };
 		0E7BC1C0152A0F5600BCE387 /* default_list_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E7BC1BF152A0F5600BCE387 /* default_list_user.png */; };
 		0E7BC1C2152A0F5C00BCE387 /* default_list_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E7BC1C1152A0F5C00BCE387 /* default_list_user@2x.png */; };
@@ -40,46 +30,48 @@
 		0E7BC1F8152A1B3100BCE387 /* Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7BC1F7152A1B3100BCE387 /* Constant.m */; };
 		0E7BC238152A4D9B00BCE387 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E7BC237152A4D9B00BCE387 /* Security.framework */; };
 		0E7BC23A152A4DB400BCE387 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E7BC239152A4DB400BCE387 /* QuartzCore.framework */; };
-		0E7BC23C152A4DCD00BCE387 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E7BC23B152A4DCD00BCE387 /* CoreData.framework */; };
+		0E7BC23C152A4DCD00BCE387 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E7BC23B152A4DCD00BCE387 /* CoreData.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0E7BC23E152A4DE200BCE387 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E7BC23D152A4DE200BCE387 /* libxml2.dylib */; };
-		0E7BC295152BCFD700BCE387 /* Round.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7BC294152BCFD600BCE387 /* Round.m */; };
 		0E84B830158A352A006B9AE5 /* TicketViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E84B82F158A352A006B9AE5 /* TicketViewController.xib */; };
 		0E84B836158A537B006B9AE5 /* TableViewTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E84B835158A5379006B9AE5 /* TableViewTextField.m */; };
 		0EBA0D5415797CBC00BB55BC /* underline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBA0D5215797CBC00BB55BC /* underline@2x.png */; };
 		0EBA0D5515797CBC00BB55BC /* underline.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EBA0D5315797CBC00BB55BC /* underline.png */; };
 		0ED13897157FC24E00F400BF /* ScrollViewWithPaging.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ED13896157FC24E00F400BF /* ScrollViewWithPaging.m */; };
-		0ED66F4915853EEB00FF087B /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EA6C515154107C000D23777 /* GameViewController.m */; };
-		0ED66F4A158557AA00FF087B /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0D7B23153F1E02005DAE9D /* Card.m */; };
 		0EE3D61714FEB63500E4A0CE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EE3D61614FEB63500E4A0CE /* UIKit.framework */; };
 		0EE3D61914FEB63500E4A0CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EE3D61814FEB63500E4A0CE /* Foundation.framework */; };
 		0EE3D61B14FEB63500E4A0CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EE3D61A14FEB63500E4A0CE /* CoreGraphics.framework */; };
 		0EE3D62114FEB63500E4A0CE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0EE3D61F14FEB63500E4A0CE /* InfoPlist.strings */; };
 		0EE3D62314FEB63500E4A0CE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D62214FEB63500E4A0CE /* main.m */; };
 		0EE3D62714FEB63500E4A0CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D62614FEB63500E4A0CE /* AppDelegate.m */; };
-		0EE3D62D14FEB63500E4A0CE /* GamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D62C14FEB63500E4A0CE /* GamesViewController.m */; };
-		0EE3D66514FECBB300E4A0CE /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE3D66414FECBB300E4A0CE /* Game.m */; };
-		0EEDF48115E57658003A5FDD /* CandidateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEDF48015E57658003A5FDD /* CandidateGroup.m */; };
-		0EEDF48C15E59B31003A5FDD /* NSMutableArray+getCandidateValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEDF48B15E59B30003A5FDD /* NSMutableArray+getCandidateValue.m */; };
-		0EF7163215801C8700B70954 /* Contestant.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF7163115801C8700B70954 /* Contestant.m */; };
-		0EF96F2515851E6E00A53CA0 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF96F1A15851DBA00A53CA0 /* libRestKit.a */; };
 		0EFD327915A9EF1300785BC3 /* TicketResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EFD327715A9EF1300785BC3 /* TicketResultViewController.xib */; };
+		0EFD32CE15A9FB9D00785BC3 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EFD32CD15A9FB9D00785BC3 /* libCorePlot-CocoaTouch.a */; };
 		681188E9154F762D007B323B /* MBPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 681188E8154F762D007B323B /* MBPlayerViewController.m */; };
+		6823A7001883097B00955185 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68D5222E188247D800381544 /* libRestKit.a */; };
 		6831FB491561FBCA0093AFB3 /* MBAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 6831FB481561FBCA0093AFB3 /* MBAuthentication.m */; };
 		6831FB4D1561FF3A0093AFB3 /* MBAuthenticationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6831FB4C1561FF3A0093AFB3 /* MBAuthenticationInfo.m */; };
 		6831FB501561FF480093AFB3 /* MBAuthenticationCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 6831FB4F1561FF480093AFB3 /* MBAuthenticationCredentials.m */; };
 		68381ED815C8C7BB007AE448 /* CreateGameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68381ED715C8C7BB007AE448 /* CreateGameView.xib */; };
-		6859152D15EF0E9D00F4B389 /* mad_ballots_icon_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 6859152C15EF0E9D00F4B389 /* mad_ballots_icon_57.png */; };
-		6859152F15EF0EA000F4B389 /* mad_ballots_icon_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 6859152E15EF0EA000F4B389 /* mad_ballots_icon_114.png */; };
-		685F5E54162A665E004E0485 /* Core Plot Stuff in Resources */ = {isa = PBXBuildFile; fileRef = 685F5E53162A665D004E0485 /* Core Plot Stuff */; };
 		6863C1B7154F6B0B004015E0 /* MBPlayerSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 6863C1B6154F6B0B004015E0 /* MBPlayerSession.m */; };
+		687929C9187E58FA00B589AF /* mad_ballots_launch_768_1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 687929C5187E58FA00B589AF /* mad_ballots_launch_768_1024.png */; };
+		687929CA187E58FA00B589AF /* mad_ballots_launch_1024_768.png in Resources */ = {isa = PBXBuildFile; fileRef = 687929C6187E58FA00B589AF /* mad_ballots_launch_1024_768.png */; };
+		687929CB187E58FA00B589AF /* mad_ballots_launch_1536_2048.png in Resources */ = {isa = PBXBuildFile; fileRef = 687929C7187E58FA00B589AF /* mad_ballots_launch_1536_2048.png */; };
+		687929CC187E58FA00B589AF /* mad_ballots_launch_2048_1536.png in Resources */ = {isa = PBXBuildFile; fileRef = 687929C8187E58FA00B589AF /* mad_ballots_launch_2048_1536.png */; };
+		687929D3187E593300B589AF /* mad_ballots_launch_640_960.png in Resources */ = {isa = PBXBuildFile; fileRef = 687929D1187E593300B589AF /* mad_ballots_launch_640_960.png */; };
+		687929D4187E593300B589AF /* mad_ballots_launch_640_1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 687929D2187E593300B589AF /* mad_ballots_launch_640_1136.png */; };
 		6879808315CA10E7000F424C /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6879808215CA10E7000F424C /* CardView.xib */; };
 		6879808515CA1683000F424C /* MBVoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6879808415CA1683000F424C /* MBVoteView.xib */; };
 		6879808715CA26D4000F424C /* MBPlayerRequestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6879808615CA26D4000F424C /* MBPlayerRequestView.xib */; };
+		688E523A18761764003F3369 /* MBWebAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 688E523818761764003F3369 /* MBWebAppViewController.m */; };
+		688E523B18761764003F3369 /* MBWebAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 688E523918761764003F3369 /* MBWebAppViewController.xib */; };
 		689CDB88156DC664008E5648 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 689CDB87156DC664008E5648 /* SFHFKeychainUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		68B7B7CD162B607500987F7F /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E764D7B15321EA20025F490 /* libfacebook_ios_sdk.a */; };
+		68A120FA187A57E100BD0F86 /* mad_ballots_icon_120.png in Resources */ = {isa = PBXBuildFile; fileRef = 68A120F9187A57E100BD0F86 /* mad_ballots_icon_120.png */; };
+		68A120FD187A598000BD0F86 /* mad_ballots_icon_76.png in Resources */ = {isa = PBXBuildFile; fileRef = 68A120FB187A598000BD0F86 /* mad_ballots_icon_76.png */; };
+		68A120FE187A598000BD0F86 /* mad_ballots_icon_152.png in Resources */ = {isa = PBXBuildFile; fileRef = 68A120FC187A598000BD0F86 /* mad_ballots_icon_152.png */; };
+		68A12100187A5CEE00BD0F86 /* mad_ballots_icon_640_1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 68A120FF187A5CEE00BD0F86 /* mad_ballots_icon_640_1136.png */; };
+		68A12103187CFC2D00BD0F86 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68A12102187CFC2D00BD0F86 /* Default-568h@2x.png */; };
+		68AC036618789E8E00EB3439 /* MBNotificationActionURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AC036518789E8E00EB3439 /* MBNotificationActionURL.m */; };
 		68BEF4CD1564AC070094DC1C /* MBRootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BEF4CC1564AC060094DC1C /* MBRootNavigationController.m */; };
 		68C27FF41550D37200B1A503 /* MBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C27FF31550D37200B1A503 /* MBLoginViewController.m */; };
-		68C70E6D15CB787000C32BDF /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C70E6C15CB786E00C32BDF /* CardViewController.m */; };
 		68D669ED15C7736D0084A212 /* MBPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68D669EC15C7736D0084A212 /* MBPlayerView.xib */; };
 		68D669EF15C77CB90084A212 /* MBGameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68D669EE15C77CB90084A212 /* MBGameView.xib */; };
 		68EB41C715C4674C007C771F /* GamesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68EB41C615C4674C007C771F /* GamesViewController.xib */; };
@@ -87,47 +79,40 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0EF96F1915851DBA00A53CA0 /* PBXContainerItemProxy */ = {
+		6823A6FE1883082D00955185 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 0EF96F0E15851DBA00A53CA0 /* RestKit.xcodeproj */;
+			containerPortal = 68D52226188247D800381544 /* RestKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 25160D1514564E810060A5C5;
+			remoteInfo = RestKit;
+		};
+		68D5222D188247D800381544 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 68D52226188247D800381544 /* RestKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 25160D1614564E810060A5C5;
 			remoteInfo = RestKit;
 		};
-		0EF96F1B15851DBA00A53CA0 /* PBXContainerItemProxy */ = {
+		68D5222F188247D800381544 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 0EF96F0E15851DBA00A53CA0 /* RestKit.xcodeproj */;
+			containerPortal = 68D52226188247D800381544 /* RestKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 25160D2614564E820060A5C5;
 			remoteInfo = RestKitTests;
 		};
-		0EF96F1D15851DBA00A53CA0 /* PBXContainerItemProxy */ = {
+		68D52231188247D800381544 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 0EF96F0E15851DBA00A53CA0 /* RestKit.xcodeproj */;
+			containerPortal = 68D52226188247D800381544 /* RestKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 25160E62145651060060A5C5;
 			remoteInfo = RestKitFramework;
 		};
-		0EF96F1F15851DBA00A53CA0 /* PBXContainerItemProxy */ = {
+		68D52233188247D800381544 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 0EF96F0E15851DBA00A53CA0 /* RestKit.xcodeproj */;
+			containerPortal = 68D52226188247D800381544 /* RestKit.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 25160E78145651060060A5C5;
 			remoteInfo = RestKitFrameworkTests;
-		};
-		0EF96F2115851DBA00A53CA0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0EF96F0E15851DBA00A53CA0 /* RestKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 259C301615128079003066A2;
-			remoteInfo = RestKitResources;
-		};
-		0EF96F2315851E4400A53CA0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0EF96F0E15851DBA00A53CA0 /* RestKit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 25160D1514564E810060A5C5;
-			remoteInfo = RestKit;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -234,13 +219,8 @@
 		0EE3D64414FEB63500E4A0CE /* Mad_BallotsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Mad_BallotsTests.m; sourceTree = "<group>"; };
 		0EE3D66314FECBB300E4A0CE /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		0EE3D66414FECBB300E4A0CE /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
-		0EEDF47F15E57658003A5FDD /* CandidateGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CandidateGroup.h; sourceTree = "<group>"; };
-		0EEDF48015E57658003A5FDD /* CandidateGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CandidateGroup.m; sourceTree = "<group>"; };
-		0EEDF48A15E59B30003A5FDD /* NSMutableArray+getCandidateValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+getCandidateValue.h"; sourceTree = "<group>"; };
-		0EEDF48B15E59B30003A5FDD /* NSMutableArray+getCandidateValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+getCandidateValue.m"; sourceTree = "<group>"; };
 		0EF7163015801C8700B70954 /* Contestant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contestant.h; sourceTree = "<group>"; };
 		0EF7163115801C8700B70954 /* Contestant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contestant.m; sourceTree = "<group>"; };
-		0EF96F0E15851DBA00A53CA0 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
 		0EFD327715A9EF1300785BC3 /* TicketResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TicketResultViewController.xib; sourceTree = "<group>"; };
 		0EFD327E15A9FB9D00785BC3 /* _CPTConstraintsFixed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CPTConstraintsFixed.h; sourceTree = "<group>"; };
 		0EFD327F15A9FB9D00785BC3 /* _CPTConstraintsRelative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CPTConstraintsRelative.h; sourceTree = "<group>"; };
@@ -331,22 +311,36 @@
 		6831FB4E1561FF480093AFB3 /* MBAuthenticationCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBAuthenticationCredentials.h; sourceTree = "<group>"; };
 		6831FB4F1561FF480093AFB3 /* MBAuthenticationCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBAuthenticationCredentials.m; sourceTree = "<group>"; };
 		68381ED715C8C7BB007AE448 /* CreateGameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateGameView.xib; sourceTree = "<group>"; };
-		6859152C15EF0E9D00F4B389 /* mad_ballots_icon_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mad_ballots_icon_57.png; sourceTree = "<group>"; };
-		6859152E15EF0EA000F4B389 /* mad_ballots_icon_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mad_ballots_icon_114.png; sourceTree = "<group>"; };
-		685F5E53162A665D004E0485 /* Core Plot Stuff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Core Plot Stuff"; sourceTree = "<group>"; };
 		6863C1B5154F6B0B004015E0 /* MBPlayerSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPlayerSession.h; sourceTree = "<group>"; };
 		6863C1B6154F6B0B004015E0 /* MBPlayerSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPlayerSession.m; sourceTree = "<group>"; };
+		687929C5187E58FA00B589AF /* mad_ballots_launch_768_1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mad_ballots_launch_768_1024.png; sourceTree = SOURCE_ROOT; };
+		687929C6187E58FA00B589AF /* mad_ballots_launch_1024_768.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mad_ballots_launch_1024_768.png; sourceTree = SOURCE_ROOT; };
+		687929C7187E58FA00B589AF /* mad_ballots_launch_1536_2048.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mad_ballots_launch_1536_2048.png; sourceTree = SOURCE_ROOT; };
+		687929C8187E58FA00B589AF /* mad_ballots_launch_2048_1536.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mad_ballots_launch_2048_1536.png; sourceTree = SOURCE_ROOT; };
+		687929D1187E593300B589AF /* mad_ballots_launch_640_960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mad_ballots_launch_640_960.png; sourceTree = SOURCE_ROOT; };
+		687929D2187E593300B589AF /* mad_ballots_launch_640_1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mad_ballots_launch_640_1136.png; sourceTree = SOURCE_ROOT; };
 		6879808215CA10E7000F424C /* CardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
 		6879808415CA1683000F424C /* MBVoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBVoteView.xib; sourceTree = "<group>"; };
 		6879808615CA26D4000F424C /* MBPlayerRequestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBPlayerRequestView.xib; sourceTree = "<group>"; };
+		688E523718761764003F3369 /* MBWebAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBWebAppViewController.h; sourceTree = "<group>"; };
+		688E523818761764003F3369 /* MBWebAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBWebAppViewController.m; sourceTree = "<group>"; };
+		688E523918761764003F3369 /* MBWebAppViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBWebAppViewController.xib; sourceTree = "<group>"; };
 		689CDB86156DC664008E5648 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		689CDB87156DC664008E5648 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
+		68A120F9187A57E100BD0F86 /* mad_ballots_icon_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mad_ballots_icon_120.png; sourceTree = "<group>"; };
+		68A120FB187A598000BD0F86 /* mad_ballots_icon_76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mad_ballots_icon_76.png; sourceTree = "<group>"; };
+		68A120FC187A598000BD0F86 /* mad_ballots_icon_152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mad_ballots_icon_152.png; sourceTree = "<group>"; };
+		68A120FF187A5CEE00BD0F86 /* mad_ballots_icon_640_1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mad_ballots_icon_640_1136.png; sourceTree = "<group>"; };
+		68A12102187CFC2D00BD0F86 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		68AC036418789E8E00EB3439 /* MBNotificationActionURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBNotificationActionURL.h; sourceTree = "<group>"; };
+		68AC036518789E8E00EB3439 /* MBNotificationActionURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBNotificationActionURL.m; sourceTree = "<group>"; };
 		68BEF4CB1564AC060094DC1C /* MBRootNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBRootNavigationController.h; sourceTree = "<group>"; };
 		68BEF4CC1564AC060094DC1C /* MBRootNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBRootNavigationController.m; sourceTree = "<group>"; };
 		68C27FF21550D37200B1A503 /* MBLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBLoginViewController.h; sourceTree = "<group>"; };
 		68C27FF31550D37200B1A503 /* MBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBLoginViewController.m; sourceTree = "<group>"; };
 		68C70E6B15CB786D00C32BDF /* CardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardViewController.h; sourceTree = "<group>"; };
 		68C70E6C15CB786E00C32BDF /* CardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardViewController.m; sourceTree = "<group>"; };
+		68D52226188247D800381544 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
 		68D669EC15C7736D0084A212 /* MBPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBPlayerView.xib; sourceTree = "<group>"; };
 		68D669EE15C77CB90084A212 /* MBGameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBGameView.xib; sourceTree = "<group>"; };
 		68EB41C615C4674C007C771F /* GamesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GamesViewController.xib; sourceTree = "<group>"; };
@@ -358,7 +352,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0EF96F2515851E6E00A53CA0 /* libRestKit.a in Frameworks */,
+				6823A7001883097B00955185 /* libRestKit.a in Frameworks */,
 				0EE3D61B14FEB63500E4A0CE /* CoreGraphics.framework in Frameworks */,
 				0E7BC238152A4D9B00BCE387 /* Security.framework in Frameworks */,
 				0E7BC1EE152A17B300BCE387 /* CFNetwork.framework in Frameworks */,
@@ -369,7 +363,8 @@
 				0E7BC23C152A4DCD00BCE387 /* CoreData.framework in Frameworks */,
 				0E7BC1F1152A17BD00BCE387 /* MobileCoreServices.framework in Frameworks */,
 				0EE3D61914FEB63500E4A0CE /* Foundation.framework in Frameworks */,
-				68B7B7CD162B607500987F7F /* libfacebook_ios_sdk.a in Frameworks */,
+				0E764D8315321EA20025F490 /* libfacebook_ios_sdk.a in Frameworks */,
+				0EFD32CE15A9FB9D00785BC3 /* libCorePlot-CocoaTouch.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +384,17 @@
 		0E23E962152E83C60027E9A0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				687929D1187E593300B589AF /* mad_ballots_launch_640_960.png */,
+				687929D2187E593300B589AF /* mad_ballots_launch_640_1136.png */,
+				687929C5187E58FA00B589AF /* mad_ballots_launch_768_1024.png */,
+				687929C6187E58FA00B589AF /* mad_ballots_launch_1024_768.png */,
+				687929C7187E58FA00B589AF /* mad_ballots_launch_1536_2048.png */,
+				687929C8187E58FA00B589AF /* mad_ballots_launch_2048_1536.png */,
+				68A120FF187A5CEE00BD0F86 /* mad_ballots_icon_640_1136.png */,
+				68A120FB187A598000BD0F86 /* mad_ballots_icon_76.png */,
+				68A120FC187A598000BD0F86 /* mad_ballots_icon_152.png */,
+				68A120F9187A57E100BD0F86 /* mad_ballots_icon_120.png */,
+				68A120F8187A528A00BD0F86 /* iPhone */,
 				0EBA0D5215797CBC00BB55BC /* underline@2x.png */,
 				0EBA0D5315797CBC00BB55BC /* underline.png */,
 				0E0D7B25153F9513005DAE9D /* checked.png */,
@@ -419,8 +425,6 @@
 				0E7BC294152BCFD600BCE387 /* Round.m */,
 				0E0D7B22153F1E02005DAE9D /* Card.h */,
 				0E0D7B23153F1E02005DAE9D /* Card.m */,
-				0EEDF47F15E57658003A5FDD /* CandidateGroup.h */,
-				0EEDF48015E57658003A5FDD /* CandidateGroup.m */,
 				0E23E967152EA51E0027E9A0 /* Player.h */,
 				0E23E968152EA51E0027E9A0 /* Player.m */,
 				0E675700157A987500690B98 /* Candidate.h */,
@@ -454,11 +458,8 @@
 		0EE3D60714FEB63400E4A0CE = {
 			isa = PBXGroup;
 			children = (
-				685F5E53162A665D004E0485 /* Core Plot Stuff */,
-				6859152E15EF0EA000F4B389 /* mad_ballots_icon_114.png */,
-				6859152C15EF0E9D00F4B389 /* mad_ballots_icon_57.png */,
-				0EE3D61D14FEB63500E4A0CE /* Supporting Files */,
-				0EF96F0E15851DBA00A53CA0 /* RestKit.xcodeproj */,
+				68A12102187CFC2D00BD0F86 /* Default-568h@2x.png */,
+				68D52226188247D800381544 /* RestKit.xcodeproj */,
 				0EE3D61C14FEB63500E4A0CE /* Mad Ballots */,
 				0EE3D63D14FEB63500E4A0CE /* Mad BallotsTests */,
 				0EE3D61514FEB63500E4A0CE /* Frameworks */,
@@ -497,10 +498,12 @@
 		0EE3D61C14FEB63500E4A0CE /* Mad Ballots */ = {
 			isa = PBXGroup;
 			children = (
+				68AC036B1878A09A00EB3439 /* Notifications */,
 				0EFD327D15A9FB9D00785BC3 /* CorePlotHeaders */,
 				689CDB82156DC017008E5648 /* Keychain */,
 				0EE3D65F14FEC50800E4A0CE /* User Interface Resources */,
 				0EE3D65D14FEC4F800E4A0CE /* View Controllers */,
+				0EE3D61D14FEB63500E4A0CE /* Supporting Files */,
 				0E23E962152E83C60027E9A0 /* Resources */,
 				0E764D7215321EA20025F490 /* facebook-ios-sdk */,
 				0E0F6DDC15BF7F0900043247 /* MBProgressHUD */,
@@ -520,11 +523,8 @@
 				0EE3D61F14FEB63500E4A0CE /* InfoPlist.strings */,
 				0EE3D62214FEB63500E4A0CE /* main.m */,
 				0EE3D62414FEB63500E4A0CE /* Mad Ballots-Prefix.pch */,
-				0EEDF48A15E59B30003A5FDD /* NSMutableArray+getCandidateValue.h */,
-				0EEDF48B15E59B30003A5FDD /* NSMutableArray+getCandidateValue.m */,
 			);
 			name = "Supporting Files";
-			path = "Mad Ballots";
 			sourceTree = "<group>";
 		};
 		0EE3D63D14FEB63500E4A0CE /* Mad BallotsTests */ = {
@@ -555,17 +555,6 @@
 				68C27FF31550D37200B1A503 /* MBLoginViewController.m */,
 				0EE3D62B14FEB63500E4A0CE /* GamesViewController.h */,
 				0EE3D62C14FEB63500E4A0CE /* GamesViewController.m */,
-				0E0F6DCB15BE280300043247 /* MBNotificationAction.h */,
-				0E0F6DCC15BE280300043247 /* MBNotificationAction.m */,
-				0E0F6DCD15BE280300043247 /* MBNotificationActionFillCard.h */,
-				0E0F6DCE15BE280300043247 /* MBNotificationActionFillCard.m */,
-				0E0F6DCF15BE280300043247 /* MBNotificationActionHandler.h */,
-				0E0F6DD015BE280300043247 /* MBNotificationActionRSVP.h */,
-				0E0F6DD115BE280300043247 /* MBNotificationActionRSVP.m */,
-				0E0F6DD215BE280300043247 /* MBNotificationActionVote.h */,
-				0E0F6DD315BE280300043247 /* MBNotificationActionVote.m */,
-				0E0F6DD415BE280300043247 /* MBNotificationProcessor.h */,
-				0E0F6DD515BE280300043247 /* MBNotificationProcessor.m */,
 				0E23E95D152E3FA70027E9A0 /* CreateGameViewController.h */,
 				0E23E95E152E3FA70027E9A0 /* CreateGameViewController.m */,
 				0E4406EE1578682700D7D8A3 /* TicketViewController.h */,
@@ -590,6 +579,8 @@
 				0E0F6DE415BF89D600043247 /* MBUIViewController.m */,
 				0E0F6DE615BF8A0B00043247 /* MBUITableViewController.h */,
 				0E0F6DE715BF8A0B00043247 /* MBUITableViewController.m */,
+				688E523718761764003F3369 /* MBWebAppViewController.h */,
+				688E523818761764003F3369 /* MBWebAppViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -597,6 +588,7 @@
 		0EE3D65F14FEC50800E4A0CE /* User Interface Resources */ = {
 			isa = PBXGroup;
 			children = (
+				688E523918761764003F3369 /* MBWebAppViewController.xib */,
 				68EB41CA15C4C73D007C771F /* LoginViewController.xib */,
 				6879808215CA10E7000F424C /* CardView.xib */,
 				68EB41C615C4674C007C771F /* GamesViewController.xib */,
@@ -611,18 +603,6 @@
 				6879808615CA26D4000F424C /* MBPlayerRequestView.xib */,
 			);
 			name = "User Interface Resources";
-			sourceTree = "<group>";
-		};
-		0EF96F0F15851DBA00A53CA0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				0EF96F1A15851DBA00A53CA0 /* libRestKit.a */,
-				0EF96F1C15851DBA00A53CA0 /* RestKitTests.octest */,
-				0EF96F1E15851DBA00A53CA0 /* RestKit.framework */,
-				0EF96F2015851DBA00A53CA0 /* RestKitFrameworkTests.octest */,
-				0EF96F2215851DBA00A53CA0 /* RestKitResources.bundle */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		0EFD327D15A9FB9D00785BC3 /* CorePlotHeaders */ = {
@@ -735,6 +715,44 @@
 			name = Keychain;
 			sourceTree = "<group>";
 		};
+		68A120F8187A528A00BD0F86 /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPhone;
+			sourceTree = "<group>";
+		};
+		68AC036B1878A09A00EB3439 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				0E0F6DCB15BE280300043247 /* MBNotificationAction.h */,
+				0E0F6DCC15BE280300043247 /* MBNotificationAction.m */,
+				68AC036418789E8E00EB3439 /* MBNotificationActionURL.h */,
+				68AC036518789E8E00EB3439 /* MBNotificationActionURL.m */,
+				0E0F6DCD15BE280300043247 /* MBNotificationActionFillCard.h */,
+				0E0F6DCE15BE280300043247 /* MBNotificationActionFillCard.m */,
+				0E0F6DCF15BE280300043247 /* MBNotificationActionHandler.h */,
+				0E0F6DD015BE280300043247 /* MBNotificationActionRSVP.h */,
+				0E0F6DD115BE280300043247 /* MBNotificationActionRSVP.m */,
+				0E0F6DD215BE280300043247 /* MBNotificationActionVote.h */,
+				0E0F6DD315BE280300043247 /* MBNotificationActionVote.m */,
+				0E0F6DD415BE280300043247 /* MBNotificationProcessor.h */,
+				0E0F6DD515BE280300043247 /* MBNotificationProcessor.m */,
+			);
+			name = Notifications;
+			sourceTree = "<group>";
+		};
+		68D52227188247D800381544 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				68D5222E188247D800381544 /* libRestKit.a */,
+				68D52230188247D800381544 /* RestKitTests.octest */,
+				68D52232188247D800381544 /* RestKit.framework */,
+				68D52234188247D800381544 /* RestKitFrameworkTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -749,7 +767,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				0EF96F2415851E4400A53CA0 /* PBXTargetDependency */,
+				6823A6FF1883082D00955185 /* PBXTargetDependency */,
 			);
 			name = "Mad Ballots";
 			productName = "Mad Ballots";
@@ -776,8 +794,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 0EF96F0F15851DBA00A53CA0 /* Products */;
-					ProjectRef = 0EF96F0E15851DBA00A53CA0 /* RestKit.xcodeproj */;
+					ProductGroup = 68D52227188247D800381544 /* Products */;
+					ProjectRef = 68D52226188247D800381544 /* RestKit.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -788,39 +806,32 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		0EF96F1A15851DBA00A53CA0 /* libRestKit.a */ = {
+		68D5222E188247D800381544 /* libRestKit.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRestKit.a;
-			remoteRef = 0EF96F1915851DBA00A53CA0 /* PBXContainerItemProxy */;
+			remoteRef = 68D5222D188247D800381544 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0EF96F1C15851DBA00A53CA0 /* RestKitTests.octest */ = {
+		68D52230188247D800381544 /* RestKitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = RestKitTests.octest;
-			remoteRef = 0EF96F1B15851DBA00A53CA0 /* PBXContainerItemProxy */;
+			remoteRef = 68D5222F188247D800381544 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0EF96F1E15851DBA00A53CA0 /* RestKit.framework */ = {
+		68D52232188247D800381544 /* RestKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = RestKit.framework;
-			remoteRef = 0EF96F1D15851DBA00A53CA0 /* PBXContainerItemProxy */;
+			remoteRef = 68D52231188247D800381544 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		0EF96F2015851DBA00A53CA0 /* RestKitFrameworkTests.octest */ = {
+		68D52234188247D800381544 /* RestKitFrameworkTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = RestKitFrameworkTests.octest;
-			remoteRef = 0EF96F1F15851DBA00A53CA0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0EF96F2215851DBA00A53CA0 /* RestKitResources.bundle */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = RestKitResources.bundle;
-			remoteRef = 0EF96F2115851DBA00A53CA0 /* PBXContainerItemProxy */;
+			remoteRef = 68D52233188247D800381544 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -830,14 +841,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68A120FD187A598000BD0F86 /* mad_ballots_icon_76.png in Resources */,
 				0EE3D62114FEB63500E4A0CE /* InfoPlist.strings in Resources */,
 				0E7BC1BD152A0BE600BCE387 /* CardTableViewCell.xib in Resources */,
+				68A120FE187A598000BD0F86 /* mad_ballots_icon_152.png in Resources */,
 				0E7BC1C0152A0F5600BCE387 /* default_list_user.png in Resources */,
+				68A12100187A5CEE00BD0F86 /* mad_ballots_icon_640_1136.png in Resources */,
+				68A12103187CFC2D00BD0F86 /* Default-568h@2x.png in Resources */,
 				0E7BC1C2152A0F5C00BCE387 /* default_list_user@2x.png in Resources */,
 				0E23E965152E85230027E9A0 /* tableview_x.png in Resources */,
+				68A120FA187A57E100BD0F86 /* mad_ballots_icon_120.png in Resources */,
+				687929D4187E593300B589AF /* mad_ballots_launch_640_1136.png in Resources */,
+				687929CB187E58FA00B589AF /* mad_ballots_launch_1536_2048.png in Resources */,
 				0E23E966152E85230027E9A0 /* tableview_x@2x.png in Resources */,
 				0E764D8215321EA20025F490 /* FBDialog.bundle in Resources */,
 				0E0D7B29153F9513005DAE9D /* checked.png in Resources */,
+				688E523B18761764003F3369 /* MBWebAppViewController.xib in Resources */,
+				687929C9187E58FA00B589AF /* mad_ballots_launch_768_1024.png in Resources */,
 				0E0D7B2A153F9513005DAE9D /* checked@2x.png in Resources */,
 				0E0D7B2B153F9513005DAE9D /* unchecked.png in Resources */,
 				0E0D7B2C153F9513005DAE9D /* unchecked@2x.png in Resources */,
@@ -846,16 +866,16 @@
 				0E84B830158A352A006B9AE5 /* TicketViewController.xib in Resources */,
 				0EFD327915A9EF1300785BC3 /* TicketResultViewController.xib in Resources */,
 				68EB41C715C4674C007C771F /* GamesViewController.xib in Resources */,
+				687929D3187E593300B589AF /* mad_ballots_launch_640_960.png in Resources */,
+				687929CA187E58FA00B589AF /* mad_ballots_launch_1024_768.png in Resources */,
 				68EB41CB15C4C73D007C771F /* LoginViewController.xib in Resources */,
 				68D669ED15C7736D0084A212 /* MBPlayerView.xib in Resources */,
 				68D669EF15C77CB90084A212 /* MBGameView.xib in Resources */,
 				68381ED815C8C7BB007AE448 /* CreateGameView.xib in Resources */,
 				6879808315CA10E7000F424C /* CardView.xib in Resources */,
 				6879808515CA1683000F424C /* MBVoteView.xib in Resources */,
+				687929CC187E58FA00B589AF /* mad_ballots_launch_2048_1536.png in Resources */,
 				6879808715CA26D4000F424C /* MBPlayerRequestView.xib in Resources */,
-				6859152D15EF0E9D00F4B389 /* mad_ballots_icon_57.png in Resources */,
-				6859152F15EF0EA000F4B389 /* mad_ballots_icon_114.png in Resources */,
-				685F5E54162A665E004E0485 /* Core Plot Stuff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -868,18 +888,9 @@
 			files = (
 				0EE3D62314FEB63500E4A0CE /* main.m in Sources */,
 				0EE3D62714FEB63500E4A0CE /* AppDelegate.m in Sources */,
-				0EE3D62D14FEB63500E4A0CE /* GamesViewController.m in Sources */,
-				0EE3D66514FECBB300E4A0CE /* Game.m in Sources */,
 				0E7BC1F8152A1B3100BCE387 /* Constant.m in Sources */,
-				0E7BC295152BCFD700BCE387 /* Round.m in Sources */,
-				0E23E960152E3FA70027E9A0 /* CreateGameViewController.m in Sources */,
 				0E23E969152EA51E0027E9A0 /* Player.m in Sources */,
-				0E764D71153219100025F490 /* PlayerRequestViewController.m in Sources */,
-				0E4406F01578682800D7D8A3 /* TicketViewController.m in Sources */,
-				0E675702157A987500690B98 /* Candidate.m in Sources */,
 				0ED13897157FC24E00F400BF /* ScrollViewWithPaging.m in Sources */,
-				0E61959C157FEB25003F1672 /* TicketOverviewViewController.m in Sources */,
-				0E61959F157FEB69003F1672 /* VoteViewController.m in Sources */,
 				6863C1B7154F6B0B004015E0 /* MBPlayerSession.m in Sources */,
 				681188E9154F762D007B323B /* MBPlayerViewController.m in Sources */,
 				68C27FF41550D37200B1A503 /* MBLoginViewController.m in Sources */,
@@ -888,33 +899,24 @@
 				6831FB501561FF480093AFB3 /* MBAuthenticationCredentials.m in Sources */,
 				68BEF4CD1564AC070094DC1C /* MBRootNavigationController.m in Sources */,
 				689CDB88156DC664008E5648 /* SFHFKeychainUtils.m in Sources */,
-				0EF7163215801C8700B70954 /* Contestant.m in Sources */,
-				0ED66F4915853EEB00FF087B /* GameViewController.m in Sources */,
-				0ED66F4A158557AA00FF087B /* Card.m in Sources */,
-				0E2F6E4115890B39001901C0 /* Ticket.m in Sources */,
-				0E2F6E4415895161001901C0 /* Ballot.m in Sources */,
+				68AC036618789E8E00EB3439 /* MBNotificationActionURL.m in Sources */,
 				0E84B836158A537B006B9AE5 /* TableViewTextField.m in Sources */,
 				0E0F6DD615BE280300043247 /* MBNotificationAction.m in Sources */,
-				0E0F6DD715BE280300043247 /* MBNotificationActionFillCard.m in Sources */,
-				0E0F6DD815BE280300043247 /* MBNotificationActionRSVP.m in Sources */,
-				0E0F6DD915BE280300043247 /* MBNotificationActionVote.m in Sources */,
+				688E523A18761764003F3369 /* MBWebAppViewController.m in Sources */,
 				0E0F6DDA15BE280300043247 /* MBNotificationProcessor.m in Sources */,
 				0E0F6DDF15BF7F3100043247 /* MBProgressHUD.m in Sources */,
 				0E0F6DE515BF89D700043247 /* MBUIViewController.m in Sources */,
 				0E0F6DE815BF8A0C00043247 /* MBUITableViewController.m in Sources */,
-				68C70E6D15CB787000C32BDF /* CardViewController.m in Sources */,
-				0EEDF48115E57658003A5FDD /* CandidateGroup.m in Sources */,
-				0EEDF48C15E59B31003A5FDD /* NSMutableArray+getCandidateValue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0EF96F2415851E4400A53CA0 /* PBXTargetDependency */ = {
+		6823A6FF1883082D00955185 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RestKit;
-			targetProxy = 0EF96F2315851E4400A53CA0 /* PBXContainerItemProxy */;
+			targetProxy = 6823A6FE1883082D00955185 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -952,8 +954,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jeremy Clark (GZRMM2DK3Y)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeremy Clark (GZRMM2DK3Y)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -968,11 +970,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = (
-					"\"$(SRCROOT)/Mad Ballots/facebook-ios-sdk\"",
-				);
-				PROVISIONING_PROFILE = "E56C7ABA-7E7D-45BF-85D5-3E9549605C27";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E56C7ABA-7E7D-45BF-85D5-3E9549605C27";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				SYMROOT = build;
 			};
@@ -984,8 +983,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jeremy Clark (GZRMM2DK3Y)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeremy Clark (GZRMM2DK3Y)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -993,12 +992,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = (
-					"\"$(SRCROOT)/Mad Ballots/facebook-ios-sdk\"",
-				);
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "E56C7ABA-7E7D-45BF-85D5-3E9549605C27";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CA06169A-716D-4B66-A54F-EC051A25F4A2";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				SYMROOT = build;
 				VALIDATE_PRODUCT = YES;
@@ -1008,28 +1004,33 @@
 		0EE3D64914FEB63500E4A0CE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jeremy Clark (GZRMM2DK3Y)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeremy Clark (GZRMM2DK3Y)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mad Ballots/Mad Ballots-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/RestKit/Build/Headers/RestKit/**",
 					"\"$(BUILT_PRODUCTS_DIR)/../../Headers\"/**",
-					"\"$(SRCROOT)/RestKit/Build/Headers/RestKit\"/**",
-					"\"$(SRCROOT)/RestKit/Code/CoreData\"/**",
 				);
 				INFOPLIST_FILE = "Mad Ballots/Mad Ballots-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Mad Ballots/facebook-ios-sdk\"",
 					"\"$(SRCROOT)/Mad Ballots\"",
+					"\"$(SRCROOT)/../../Library/Developer/Xcode/DerivedData/Mad_Ballots-fqgwtsyphckuoxgqclwgooqamvld/Build/Headers/RestKit\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = madballots;
-				PROVISIONING_PROFILE = "19931C09-5AD5-4E7E-8F11-3790778530F2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4DD61A38-0F54-4C53-BFF9-418655CDE58D";
+				PROVISIONING_PROFILE = "A2ED2A4A-F761-4734-A85C-5C398E2F999E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A2ED2A4A-F761-4734-A85C-5C398E2F999E";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1037,28 +1038,32 @@
 		0EE3D64A14FEB63500E4A0CE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jeremy Clark (GZRMM2DK3Y)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeremy Clark (GZRMM2DK3Y)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mad Ballots/Mad Ballots-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = (
-					"\"$(BUILT_PRODUCTS_DIR)/../../Headers\"/**",
-					"\"$(SRCROOT)/RestKit/Build/Headers/RestKit\"/**",
-					"\"$(SRCROOT)/RestKit/Code/CoreData\"/**",
-				);
+				HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"/**";
 				INFOPLIST_FILE = "Mad Ballots/Mad Ballots-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Mad Ballots/facebook-ios-sdk\"",
 					"\"$(SRCROOT)/Mad Ballots\"",
+					"\"$(SRCROOT)/../../Library/Developer/Xcode/DerivedData/Mad_Ballots-fqgwtsyphckuoxgqclwgooqamvld/Build/Headers/RestKit\"",
+					"\"$(SRCROOT)/RestKit/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/RestKit/Vendor/AFNetowrking/AFNetowrking",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = madballots;
-				PROVISIONING_PROFILE = "19931C09-5AD5-4E7E-8F11-3790778530F2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4DD61A38-0F54-4C53-BFF9-418655CDE58D";
+				PROVISIONING_PROFILE = "A2ED2A4A-F761-4734-A85C-5C398E2F999E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A2ED2A4A-F761-4734-A85C-5C398E2F999E";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

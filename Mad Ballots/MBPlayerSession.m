@@ -14,7 +14,10 @@
 
 +(RKObjectMapping*) getObjectMapping{
     RKObjectMapping *playerSessionMapping = [RKObjectMapping mappingForClass:[MBPlayerSession class]];
-    [playerSessionMapping mapKeyPath:@"persistence_token" toAttribute:@"persistenceToken"];
+    [playerSessionMapping addAttributeMappingsFromDictionary:@{@"persistence_token":@"persistenceToken"}];
+        
+    
+    //mapKeyPath:@"persistence_token" toAttribute:@"persistenceToken"];
     return playerSessionMapping;
 }
 

@@ -22,14 +22,25 @@
 
 +(RKObjectMapping*) getObjectMapping{
     RKObjectMapping *playerMapping = [RKObjectMapping mappingForClass:[Player class]];
-    [playerMapping mapKeyPath:@"id" toAttribute:@"playerId"];
+    [playerMapping addAttributeMappingsFromDictionary:@{
+                                                       @"id": @"playerId",
+                                                       @"email": @"email",
+                                                       @"username": @"username",
+                                                       @"name": @"name",
+                                                       @"password": @"password",
+                                                       @"password_confirmation": @"passwordConfirmation",
+                                                       @"persistence_token": @"persistenceToken",
+                                                       @"apple_device_id": @"appleDeviceToken"
+                                                       }];
+    
+    /*[playerMapping mapKeyPath:@"id" toAttribute:@"playerId"];
     [playerMapping mapKeyPath:@"email" toAttribute:@"email"];
     [playerMapping mapKeyPath:@"username" toAttribute:@"username"];
     [playerMapping mapKeyPath:@"name" toAttribute:@"name"];
     [playerMapping mapKeyPath:@"password" toAttribute:@"password"];
     [playerMapping mapKeyPath:@"password_confirmation" toAttribute:@"passwordConfirmation"];
     [playerMapping mapKeyPath:@"persistence_token" toAttribute:@"persistenceToken"];
-    [playerMapping mapKeyPath:@"apple_device_id" toAttribute:@"appleDeviceToken"];
+    [playerMapping mapKeyPath:@"apple_device_id" toAttribute:@"appleDeviceToken"];*/
 
 
     return playerMapping;

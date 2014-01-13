@@ -23,21 +23,21 @@
 -(void)execute{}
 
 
--(RKObjectMappingResult *)mapResourceFromJsonString:(NSString *)jsonObjString
-{
-    NSString* MIMEType = @"application/json";
-    NSError* error = nil;
-    id<RKParser> parser = [[RKParserRegistry sharedRegistry] parserForMIMEType:MIMEType];
-    id parsedData = [parser objectFromString:jsonObjString error:&error];
-    if (parsedData == nil && error) {
-        NSLog(@"error");
-    }
-    
-    RKObjectMappingProvider* mappingProvider = [RKObjectManager sharedManager].mappingProvider;
-    RKObjectMapper* mapper = [RKObjectMapper mapperWithObject:parsedData mappingProvider:mappingProvider];
-    RKObjectMappingResult* result = [mapper performMapping];
-    return result;
-}
+//-(RKObjectMappingResult *)mapResourceFromJsonString:(NSString *)jsonObjString
+//{
+//    NSString* MIMEType = @"application/json";
+//    NSError* error = nil;
+//    id<RKParser> parser = [[RKParserRegistry sharedRegistry] parserForMIMEType:MIMEType];
+//    id parsedData = [parser objectFromString:jsonObjString error:&error];
+//    if (parsedData == nil && error) {
+//        NSLog(@"error");
+//    }
+//    
+//    RKObjectMappingProvider* mappingProvider = [RKObjectManager sharedManager].mappingProvider;
+//    RKObjectMapper* mapper = [RKObjectMapper mapperWithObject:parsedData mappingProvider:mappingProvider];
+//    RKObjectMappingResult* result = [mapper performMapping];
+//    return result;
+//}
 
 
 

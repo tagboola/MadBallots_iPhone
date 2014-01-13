@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "MBNotificationActionHandler.h"
 #import "AppDelegate.h"
-#import "Contestant.h"
-#import "Game.h"
-#import "GameViewController.h"
-#import "GamesViewController.h"
+//#import "Contestant.h"
+//#import "Game.h"
+//#import "GameViewController.h"
+//#import "GamesViewController.h"
 
 @interface MBNotificationAction : NSObject <MBNotificationActionHandler> 
 
--(RKObjectMappingResult *)mapResourceFromJsonString:(NSString *)jsonObjString;
+//-(RKObjectMappingResult *)mapResourceFromJsonString:(NSString *)jsonObjString;
 
 @end

@@ -15,9 +15,17 @@
 
 +(RKObjectMapping*) getObjectMapping{
     RKObjectMapping *authCredentialsMapping = [RKObjectMapping mappingForClass:[MBAuthenticationCredentials class]];
-    [authCredentialsMapping mapKeyPath:@"token" toAttribute:@"token"];
-    [authCredentialsMapping mapKeyPath:@"secret" toAttribute:@"secret"];
-    [authCredentialsMapping mapKeyPath:@"secret_confirmation" toAttribute:@"secretConfirmation"];
+    
+    //Add Attributes
+    [authCredentialsMapping addAttributeMappingsFromDictionary:@{
+                                                      @"token": @"token",
+                                                      @"secret": @"secret",
+                                                      @"secret_confirmation": @"secretConfirmation"}];
+//    
+//    [authCredentialsMapping mapKeyPath:@"token" toAttribute:@"token"];
+//    [authCredentialsMapping mapKeyPath:@"secret" toAttribute:@"secret"];
+//    [authCredentialsMapping mapKeyPath:@"secret_confirmation" toAttribute:@"secretConfirmation"];
+
     return authCredentialsMapping;
 }
 

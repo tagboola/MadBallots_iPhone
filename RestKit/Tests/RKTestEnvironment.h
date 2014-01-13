@@ -18,39 +18,25 @@
 //  limitations under the License.
 //
 
+#import <SenTestingKit/SenTestingKit.h>
 #import <OCMock/OCMock.h>
 #import <OCMock/NSNotificationCenter+OCMAdditions.h>
 
-#define HC_SHORTHAND
-#import <OCHamcrestIOS/OCHamcrestIOS.h>
-#import <SenTestingKit/SenTestingKit.h>
+// If Kiwi has been imported, skip Hamcrest
+#ifndef KW_VERSION
+    #define HC_SHORTHAND
+    #import "OCHamcrest.h"
+#endif
 
-#import "RestKit.h"
-#import "Testing.h"
-#import "RKManagedObjectStore.h"
+#define EXP_SHORTHAND
+#import "Expecta.h"
 
-////////////////////////////////////////////////////////////////////////////
-// OCMock - For some reason this macro is incorrect. Note the use of __typeof
+#import <RestKit/RestKit.h>
+#import <RestKit/Testing.h>
 
-#undef OCMOCK_VALUE
-#define OCMOCK_VALUE(variable) [NSValue value:&variable withObjCType:@encode(__typeof(variable))]
-
-RKOAuthClient* RKTestNewOAuthClient(RKTestResponseLoader* loader);
-
-// TODO: Figure out how to extract...
-void RKTestClearCacheDirectory(void);
-
-/* 
- Base class for RestKit test cases. Provides initialization of testing
- infrastructure.
+/*
+ Base class for RestKit test cases. Provides initialization of testing infrastructure.
  */
 @interface RKTestCase : SenTestCase
 @end
 
-@interface SenTestCase (MethodSwizzling)
-- (void)swizzleMethod:(SEL)aOriginalMethod
-              inClass:(Class)aOriginalClass
-           withMethod:(SEL)aNewMethod
-            fromClass:(Class)aNewClass
-         executeBlock:(void (^)(void))aBlock;
-@end

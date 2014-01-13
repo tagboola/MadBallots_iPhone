@@ -1,0 +1,30 @@
+dependencies: \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/ObjectMapping/RKObjectMappingOperation.m \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/ObjectMapping/RKObjectMappingOperation.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/ObjectMapping/RKObjectMapping.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/ObjectMapping/RKObjectMappingDefinition.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/ObjectMapping/RKObjectAttributeMapping.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/ObjectMapping/RKObjectRelationshipMapping.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/ObjectMapping/RKObjectMapperError.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/Support/RKErrors.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/ObjectMapping/RKObjectPropertyInspector.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/ObjectMapping/RKObjectMapper.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/ObjectMapping/RKObjectMappingResult.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/ObjectMapping/RKObjectMappingProvider.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/ObjectMapping/RKDynamicObjectMapping.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/ObjectMapping/RKObjectMappingProviderContextEntry.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/ObjectMapping/RKMappingOperationQueue.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/Support/Support.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/Support/RKMIMETypes.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/Support/RKLog.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Vendor/LibComponentLogging/Core/lcl.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/Support/lcl_config_components.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/Support/lcl_config_logger.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Vendor/LibComponentLogging/NSLog/LCLNSLog.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/Support/lcl_config_extensions.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/Support/RKPathMatcher.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/Support/RKDotNetDateFormatter.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/Support/RKDirectory.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/Support/NSDictionary+RKAdditions.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/Support/NSString+RKAdditions.h \
+  /Users/clarkjj/code/MadBallots_iPhone/RestKit/Code/Support/NSBundle+RKAdditions.h

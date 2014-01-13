@@ -12,23 +12,21 @@
 
 @interface VoteViewController : ScrollViewWithPaging{
     Round *round;
-    BOOL isOwner;
     NSString *contestantId;
     NSString *cardId;
     NSArray *tickets;
     NSMutableDictionary *viewControllerHash;
-    NSMutableDictionary *candidatesHash;
+    NSMutableDictionary *candidates;
     IBOutlet UIBarButtonItem *submitButton;
 }
 @property (nonatomic,retain) Round *round;
-@property (nonatomic,assign) BOOL isOwner;
 @property (nonatomic,retain) NSString *contestantId;
 @property (nonatomic,retain) NSString *cardId;
 @property (nonatomic,retain) NSArray *tickets;
 @property (nonatomic,retain) NSMutableDictionary *viewControllerHash;
-@property (nonatomic,retain) NSMutableDictionary *candidatesHash;
+@property (nonatomic,retain) NSMutableDictionary *candidates;
 @property (nonatomic,retain) IBOutlet UIBarButtonItem *submitButton;
 
--(IBAction)castVoteButtonClicked:(id)sender;
+-(IBAction)submitButtonClicked:(id)sender;
 
 @end

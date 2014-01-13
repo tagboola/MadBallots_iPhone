@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RestKit.h"
 
-@interface MBPlayerViewController: MBUIViewController <RKObjectLoaderDelegate, UITextFieldDelegate>{
+@interface MBPlayerViewController: MBUIViewController <UITextFieldDelegate>{
     IBOutlet UITextField *nameTextField;
     IBOutlet UITextField *usernameTextField;
     IBOutlet UITextField *emailTextField;

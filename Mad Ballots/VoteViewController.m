@@ -18,11 +18,10 @@
 
 @synthesize round;
 @synthesize contestantId;
-@synthesize isOwner;
 @synthesize cardId;
 @synthesize tickets;
 @synthesize viewControllerHash;
-@synthesize candidatesHash;
+@synthesize candidates;
 @synthesize submitButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -44,7 +43,7 @@
 -(void) loadViewControllers{
     
     self.viewControllerHash = [NSMutableDictionary dictionary];
-    self.candidatesHash = [[NSMutableDictionary alloc] init];
+    self.candidates = [[NSMutableDictionary alloc] init];
     viewControllers = [NSMutableArray array];
     BOOL showResults = false;
     if([round isRoundOver]){
@@ -52,8 +51,8 @@
         showResults = true;
     }
 
-//    TicketOverviewViewController *firstView = [[TicketOverviewViewController alloc] initWithStyle:UITableViewStylePlain showResults:YES tickets:tickets candidates:candidates delegate:self];
-//    [viewControllers addObject:firstView];
+    TicketOverviewViewController *firstView = [[TicketOverviewViewController alloc] initWithStyle:UITableViewStylePlain showResults:YES tickets:tickets candidates:candidates delegate:self];
+    [viewControllers addObject:firstView];
     
     TicketViewController *ticketView;
     for(int ii=0;ii < [tickets count]; ii++){
@@ -62,12 +61,10 @@
         ticketView.isShowingResults = showResults;
         ticketView.delegate = self;
         ticketView.ticket = ticket;
-        ticketView.cardId = cardId;
-        ticketView.isOwner = isOwner;
         if(showResults){
-            [self.candidatesHash setObject:ticket.winners forKey:ticket.contestantId];
+            [self.candidates setObject:ticket.winners forKey:ticket.contestantId];
         }
-        ticketView.candidateHash = self.candidatesHash;
+        ticketView.candidateHash = self.candidates;
         [viewControllers addObject:ticketView];
         [viewControllerHash setObject:ticketView forKey:ticket.contestantId];
     }
@@ -80,14 +77,17 @@
             [self stopLoading];
             TicketViewController *ticketView;
             for(Candidate *candidate in objects){
-                if(![candidate.cardId isEqualToString:cardId] || isOwner){
+                if(![candidate.cardId isEqualToString:cardId]){
                     ticketView = [viewControllerHash objectForKey:candidate.contestantId];
-                    [ticketView.candidates addObject:[NSMutableArray arrayWithObject:candidate]];
+                    [ticketView.candidates addObject:candidate];
                 }
             }
             //TODO: Refactor - TicketOverviewController involved in this
-            for(TicketViewController *ticketView in viewControllers){
-                [ticketView analyzeCandidates]; 
+            for(TicketViewController *ballotView in viewControllers){
+            if([ballotView class] == [TicketViewController class])
+                [ballotView reloadData];
+            else
+                [ballotView.tableView reloadData];
             }
         };
         loader.onDidFailWithError = ^(NSError *error){
@@ -111,7 +111,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.scrollView.scrollEnabled = FALSE;
     self.titleLabel.text = [NSString stringWithFormat:@"What %@ is...",round.category];
     self.navigationItem.rightBarButtonItem = submitButton;
 
@@ -146,37 +145,28 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
--(IBAction)castVoteButtonClicked:(id)sender{
-    if([candidatesHash count] != [tickets count]){
+-(IBAction)submitButtonClicked:(id)sender{
+    if([candidates count] != [tickets count]){
         [[[UIAlertView alloc] initWithTitle:@"Ticket incomplete" message:@"Place your vote for each player before submitting!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         return;
     }
-    [self startLoading:@"Casting vote..."];
     Ballot *ballot = [[Ballot alloc] init];
     for(Ticket *ticket in tickets){
         ballot.ticketId = ticket.ticketId;
         ballot.contestantId = contestantId;
-        NSArray *candidatesArray = [candidatesHash objectForKey:ticket.contestantId];
-        [self startLoading:@"Submitting Votes..."];
-        for(Candidate *candidate in candidatesArray){
-            ballot.candidateId = candidate.candidateId;
-            [[RKObjectManager sharedManager] postObject:ballot usingBlock:^(RKObjectLoader *loader) {
-                loader.onDidLoadObjects = ^(NSArray * objects){
-                    RKRequestQueue *queue = [[RKObjectManager sharedManager] requestQueue]; 
-                    if(queue.count == 1)
-                        [self.navigationController popViewControllerAnimated:YES];
-                };
-                loader.onDidFailWithError = ^ (NSError *error){
-                    [self stopLoading];
-                    NSLog(@"Ballot post falled with error:%@",[error localizedDescription]);
+        NSSet *set = [candidates objectForKey:ticket.contestantId];
+        ballot.candidateId = ((Candidate*)[set anyObject]).candidateId;
+        [[RKObjectManager sharedManager] postObject:ballot usingBlock:^(RKObjectLoader *loader) {
+            loader.onDidLoadObjects = ^(NSArray * objects){
+                RKRequestQueue *queue = [[RKObjectManager sharedManager] requestQueue]; 
+                if(queue.count == 1)
+                    [self.navigationController popViewControllerAnimated:YES];
             };
-            }];
-        }
-        [self stopLoading];
+            loader.onDidFailWithError = ^ (NSError *error){
+                NSLog(@"Ballot post falled with error:%@",[error localizedDescription]);
+        };
+        }];
     }
 }
-
-
-
 
 @end

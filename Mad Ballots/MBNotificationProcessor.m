@@ -8,10 +8,11 @@
 
 #import "MBNotificationProcessor.h"
 #import "AppDelegate.h"
-#import "MBNotificationActionHandler.h"
-#import "MBNotificationActionFillCard.h"
-#import "MBNotificationActionVote.h"
-#import "MBNotificationActionRSVP.h"
+//#import "MBNotificationActionHandler.h"
+//#import "MBNotificationActionFillCard.h"
+//#import "MBNotificationActionVote.h"
+//#import "MBNotificationActionRSVP.h"
+#import "MBNotificationActionURL.h"
 
 @interface MBNotificationProcessor (PrivateMethods)
 
@@ -41,22 +42,42 @@
 }
 
 
+/*Notifications come in the form:
+ 
+ aps =     {
+    alert = "Welcome to Mad Ballots!";
+ };
+ "mb_notification_action_action" = url;
+ "mb_notification_action_objects" = "http://10.0.1.13:3000/games";
+ 
+ 
+*/
+
 -(void)processNotificationAction{
     
-    NSDictionary *mbNotificationActionObject = [remoteNotification objectForKey:@"mb_notification_action"];
-    NSString * actionIdentifier = [mbNotificationActionObject objectForKey:@"action"];
-    NSArray *actionObjectArray = [mbNotificationActionObject objectForKey:@"objects"];
+    /*
+     With the usage of the Rails WebApp embedded in a UIWebView, the only action we'll really be passing as an APN is a URL action. I keep the other's in there in case we need to start sending JSON objects again.
+     */
+    
+    
+    //NSDictionary *mbNotificationActionObject = [remoteNotification objectForKey:@"mb_notification_action"];
+    NSString * actionIdentifier = [remoteNotification objectForKey:@"mb_notification_action"];
+    NSArray * actionObjectArray = [NSArray arrayWithObject:[remoteNotification objectForKey:@"mb_notification_object"]];
+    
+    
     
     id <MBNotificationActionHandler> notificationHandler = NULL;
     if ([actionIdentifier isEqualToString:MB_NOTIFICATION_ACTION_IDENTIFIER_VOTE]){
-        notificationHandler = [[MBNotificationActionVote alloc] initWithActionObjects:actionObjectArray];
+        //notificationHandler = [[MBNotificationActionVote alloc] initWithActionObjects:actionObjectArray];
     }else if ([actionIdentifier isEqualToString:MB_NOTIFICATION_ACTION_IDENTIFIER_RSVP]){
-        notificationHandler = [[MBNotificationActionRSVP alloc] initWithActionObjects:actionObjectArray];
+        //notificationHandler = [[MBNotificationActionRSVP alloc] initWithActionObjects:actionObjectArray];
     }else if ([actionIdentifier isEqualToString:MB_NOTIFICATION_ACTION_IDENTIFIER_FILL_CARD]){
-        notificationHandler = [[MBNotificationActionFillCard alloc] initWithActionObjects:actionObjectArray];
+        //notificationHandler = [[MBNotificationActionFillCard alloc] initWithActionObjects:actionObjectArray];
+    }else if ([actionIdentifier isEqualToString:MB_NOTIFICATION_ACTION_IDENTIFIER_URL]){
+        notificationHandler = [[MBNotificationActionURL alloc] initWithActionObjects:actionObjectArray];
     }
     [notificationHandler execute];
-    
+
 }
 
 

@@ -15,7 +15,21 @@
 
 +(RKObjectMapping*) getObjectMapping{
     RKObjectMapping *authInfoMapping = [RKObjectMapping mappingForClass:[MBAuthenticationInfo class]];
-    [authInfoMapping mapKeyPath:@"name" toAttribute:@"name"];
+    
+    [authInfoMapping addAttributeMappingsFromDictionary:@{
+                                                          @"name": @"name",
+                                                          @"email": @"email",
+                                                          @"nickname": @"nickname",
+                                                          @"first_name": @"firstName",
+                                                          @"last_name": @"lastName",
+                                                          @"location": @"location",
+                                                          @"description": @"description",
+                                                          @"phone": @"phone",
+                                                          @"urls": @"urls"
+                                                          }];
+    
+    
+    /*[authInfoMapping mapKeyPath:@"name" toAttribute:@"name"];
     [authInfoMapping mapKeyPath:@"email" toAttribute:@"email"];
     [authInfoMapping mapKeyPath:@"nickname" toAttribute:@"nickname"];
     [authInfoMapping mapKeyPath:@"first_name" toAttribute:@"firstName"];
@@ -23,7 +37,7 @@
     [authInfoMapping mapKeyPath:@"location" toAttribute:@"location"];
     [authInfoMapping mapKeyPath:@"description" toAttribute:@"description"];
     [authInfoMapping mapKeyPath:@"phone" toAttribute:@"phone"];
-    [authInfoMapping mapKeyPath:@"urls" toAttribute:@"urls"];
+    [authInfoMapping mapKeyPath:@"urls" toAttribute:@"urls"];*/
     return authInfoMapping;
 }
 
