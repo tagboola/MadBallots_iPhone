@@ -25,6 +25,7 @@
 #import "MBNotificationActionVote.h"
 #import "MBNotificationActionFillCard.h"
 #import "MBNotificationActionRSVP.h"
+#import "MBNetworkErrorViewController.h"
 #import "MBPlayerSession.h"
 #import "SFHFKeychainUtils.h"
 #import "AFHTTPClient.h"
@@ -68,6 +69,33 @@
     MBLoginViewController *vc = [[MBLoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil]; //   [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     [vc setModalPresentationStyle:UIModalPresentationFullScreen];
     [app.window.rootViewController presentViewController:vc animated:YES completion:^{}];
+}
+
+
+-(void)showReachabilityModal{
+    MBNetworkErrorViewController *networkErrView = [[MBNetworkErrorViewController alloc] initWithNibName:@"MBNetworkErrorViewController" bundle:nil];
+    [networkErrView setModalPresentationStyle:UIModalTransitionStyleCrossDissolve];
+    [[AppDelegate topViewController] presentViewController:networkErrView animated:YES completion:^{}];
+}
+
+
+-(void)dismissReachabilityModal{
+    NSString *currentModalClass = NSStringFromClass([AppDelegate topViewController].class);
+    if ([currentModalClass isEqualToString:@"MBNetworkErrorViewController"]){
+        [[AppDelegate topViewController].presentingViewController dismissViewControllerAnimated:YES completion:^{}];
+    }
+    [self requestPlayerSession];
+    [[AppDelegate webAppView] reload];
+}
+
+
++(UIViewController *)topViewController{
+    AppDelegate *app = [AppDelegate getInstance];
+    UIViewController *topViewController = app.window.rootViewController;
+    while (topViewController.presentedViewController){
+        topViewController = topViewController.presentedViewController;
+    }
+    return topViewController;
 }
 
 
@@ -530,16 +558,14 @@
     //[router routeClass:[Round class] toResourcePath:@"/rounds.json" forMethod:RKRequestMethodPOST];
     //[router routeClass:[Round class] toResourcePath:@"/rounds/:roundId\\.json" forMethod:RKRequestMethodPUT];
 
+    
     [RKObjectManager setSharedManager:manager];
     
     [manager.HTTPClient setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         if (status == AFNetworkReachabilityStatusNotReachable) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
-                                                            message:@"You must be connected to the internet to use this app."
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
+            [self showReachabilityModal];
+        } else if ((status == AFNetworkReachabilityStatusReachableViaWiFi) || (status == AFNetworkReachabilityStatusReachableViaWWAN)) {
+            [self dismissReachabilityModal];
         }
     }];
     

@@ -46,6 +46,9 @@
 		0EFD327915A9EF1300785BC3 /* TicketResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EFD327715A9EF1300785BC3 /* TicketResultViewController.xib */; };
 		0EFD32CE15A9FB9D00785BC3 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EFD32CD15A9FB9D00785BC3 /* libCorePlot-CocoaTouch.a */; };
 		681188E9154F762D007B323B /* MBPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 681188E8154F762D007B323B /* MBPlayerViewController.m */; };
+		6817658C1884EF1A0077321B /* MBNetworkErrorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6817658A1884EF1A0077321B /* MBNetworkErrorViewController.m */; };
+		6817658D1884EF1A0077321B /* MBNetworkErrorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6817658B1884EF1A0077321B /* MBNetworkErrorViewController.xib */; };
+		6817658F1884EF530077321B /* mad_ballots_network_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 6817658E1884EF530077321B /* mad_ballots_network_error.png */; };
 		6823A7001883097B00955185 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68D5222E188247D800381544 /* libRestKit.a */; };
 		6831FB491561FBCA0093AFB3 /* MBAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 6831FB481561FBCA0093AFB3 /* MBAuthentication.m */; };
 		6831FB4D1561FF3A0093AFB3 /* MBAuthenticationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6831FB4C1561FF3A0093AFB3 /* MBAuthenticationInfo.m */; };
@@ -304,6 +307,10 @@
 		0EFD32CD15A9FB9D00785BC3 /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libCorePlot-CocoaTouch.a"; path = "Mad Ballots/libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
 		681188E7154F762D007B323B /* MBPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPlayerViewController.h; sourceTree = "<group>"; };
 		681188E8154F762D007B323B /* MBPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPlayerViewController.m; sourceTree = "<group>"; };
+		681765891884EF1A0077321B /* MBNetworkErrorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBNetworkErrorViewController.h; sourceTree = "<group>"; };
+		6817658A1884EF1A0077321B /* MBNetworkErrorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBNetworkErrorViewController.m; sourceTree = "<group>"; };
+		6817658B1884EF1A0077321B /* MBNetworkErrorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MBNetworkErrorViewController.xib; sourceTree = "<group>"; };
+		6817658E1884EF530077321B /* mad_ballots_network_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mad_ballots_network_error.png; sourceTree = SOURCE_ROOT; };
 		6831FB471561FBCA0093AFB3 /* MBAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBAuthentication.h; sourceTree = "<group>"; };
 		6831FB481561FBCA0093AFB3 /* MBAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBAuthentication.m; sourceTree = "<group>"; };
 		6831FB4B1561FF3A0093AFB3 /* MBAuthenticationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBAuthenticationInfo.h; sourceTree = "<group>"; };
@@ -384,6 +391,7 @@
 		0E23E962152E83C60027E9A0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6817658E1884EF530077321B /* mad_ballots_network_error.png */,
 				687929D1187E593300B589AF /* mad_ballots_launch_640_960.png */,
 				687929D2187E593300B589AF /* mad_ballots_launch_640_1136.png */,
 				687929C5187E58FA00B589AF /* mad_ballots_launch_768_1024.png */,
@@ -581,6 +589,8 @@
 				0E0F6DE715BF8A0B00043247 /* MBUITableViewController.m */,
 				688E523718761764003F3369 /* MBWebAppViewController.h */,
 				688E523818761764003F3369 /* MBWebAppViewController.m */,
+				681765891884EF1A0077321B /* MBNetworkErrorViewController.h */,
+				6817658A1884EF1A0077321B /* MBNetworkErrorViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -601,6 +611,7 @@
 				68D669EE15C77CB90084A212 /* MBGameView.xib */,
 				6879808415CA1683000F424C /* MBVoteView.xib */,
 				6879808615CA26D4000F424C /* MBPlayerRequestView.xib */,
+				6817658B1884EF1A0077321B /* MBNetworkErrorViewController.xib */,
 			);
 			name = "User Interface Resources";
 			sourceTree = "<group>";
@@ -860,8 +871,10 @@
 				687929C9187E58FA00B589AF /* mad_ballots_launch_768_1024.png in Resources */,
 				0E0D7B2A153F9513005DAE9D /* checked@2x.png in Resources */,
 				0E0D7B2B153F9513005DAE9D /* unchecked.png in Resources */,
+				6817658F1884EF530077321B /* mad_ballots_network_error.png in Resources */,
 				0E0D7B2C153F9513005DAE9D /* unchecked@2x.png in Resources */,
 				0EBA0D5415797CBC00BB55BC /* underline@2x.png in Resources */,
+				6817658D1884EF1A0077321B /* MBNetworkErrorViewController.xib in Resources */,
 				0EBA0D5515797CBC00BB55BC /* underline.png in Resources */,
 				0E84B830158A352A006B9AE5 /* TicketViewController.xib in Resources */,
 				0EFD327915A9EF1300785BC3 /* TicketResultViewController.xib in Resources */,
@@ -905,6 +918,7 @@
 				688E523A18761764003F3369 /* MBWebAppViewController.m in Sources */,
 				0E0F6DDA15BE280300043247 /* MBNotificationProcessor.m in Sources */,
 				0E0F6DDF15BF7F3100043247 /* MBProgressHUD.m in Sources */,
+				6817658C1884EF1A0077321B /* MBNetworkErrorViewController.m in Sources */,
 				0E0F6DE515BF89D700043247 /* MBUIViewController.m in Sources */,
 				0E0F6DE815BF8A0C00043247 /* MBUITableViewController.m in Sources */,
 			);

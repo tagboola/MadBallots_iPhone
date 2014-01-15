@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>784B1380-45B7-4BF4-8C2C-F90C772CB5D6</string>
+	<string>FA3FFBE3-579C-44B2-8D54-72B8A6B5F368</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Mad Ballots</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>9ECBA48A-F5A8-4C8D-A8DE-9980F4A1345E</key>
-		<string>https://github.com/tmoney2k/MadBallots_iPhone.git</string>
+		<key>6FD07491-4910-4F29-8B5A-0F18D26DB37F</key>
+		<string>https://github.com/tagboola/MadBallots_iPhone.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Mad Ballots.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>9ECBA48A-F5A8-4C8D-A8DE-9980F4A1345E</key>
+		<key>6FD07491-4910-4F29-8B5A-0F18D26DB37F</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/tmoney2k/MadBallots_iPhone.git</string>
+	<string>https://github.com/tagboola/MadBallots_iPhone.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>9ECBA48A-F5A8-4C8D-A8DE-9980F4A1345E</string>
+	<string>6FD07491-4910-4F29-8B5A-0F18D26DB37F</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>9ECBA48A-F5A8-4C8D-A8DE-9980F4A1345E</string>
+			<string>6FD07491-4910-4F29-8B5A-0F18D26DB37F</string>
 			<key>IDESourceControlWCCName</key>
-			<string>MadBallots_iPhone</string>
+			<string>MadBallots_iPhone_Github</string>
 		</dict>
 	</array>
 </dict>
