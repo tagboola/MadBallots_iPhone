@@ -106,8 +106,7 @@
 
 +(UIWebView *)webAppView{
     AppDelegate * app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    return (UIWebView *)app.window.rootViewController.view;
-    
+    return (UIWebView *)[[app.window.rootViewController.view subviews] objectAtIndex:0];
 }
 
 
@@ -135,12 +134,13 @@
     
 
     // Override point for customization after application launch.
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    MBWebAppViewController *webAppViewController = [[MBWebAppViewController alloc] initWithNibName:@"MBWebAppViewController" bundle:nil];
+    //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    //self.window.bounds = CGRectMake(0, -20, self.window.frame.size.width, self.window.frame.size.height);
+    //MBWebAppViewController *webAppViewController = [[MBWebAppViewController alloc] initWithNibName:@"MBWebAppViewController" bundle:nil];
     //GamesViewController *gamesViewController = [[GamesViewController alloc] initWithNibName:@"GamesViewController" bundle:nil];
-    self.rootNavController = [[UINavigationController alloc] init];
-    self.window.rootViewController = webAppViewController; //self.rootNavController;
-    [self.window makeKeyAndVisible];
+    //self.rootNavController = nil; //[[UINavigationController alloc] init];
+    //self.window.rootViewController = //webAppViewController; //self.rootNavController;
+    //[self.window makeKeyAndVisible];
 
     
     

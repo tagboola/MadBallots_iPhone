@@ -15,7 +15,7 @@
 
 @implementation MBWebAppViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+/*- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -23,12 +23,16 @@
         [(UIWebView *)[self view] setDelegate:self];
     }
     return self;
-}
+}*/
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,7 +44,7 @@
 -(void)refreshUI{
     
     NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:BASE_URL]];
-    [(UIWebView*)[self view] loadRequest:req];
+    [(UIWebView*)[AppDelegate webAppView] loadRequest:req];
     
 }
 
@@ -72,7 +76,6 @@
         [[AppDelegate getInstance] processLogout];
     }
     
-    
 }
 
 
@@ -81,6 +84,7 @@
     NSLog(@"Start Loading");
     
 }
+
 
 
 @end
